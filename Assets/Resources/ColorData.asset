@@ -15,16 +15,16 @@ MonoBehaviour:
   Colors:
     _serializedList:
     - Key: 0
-      Value: {r: 1, g: 1, b: 1, a: 1}
+      Value: {fileID: 2100000, guid: 66c05709e04ed42a3a537ad26aca9cb8, type: 2}
     - Key: 1
-      Value: {r: 1, g: 0.15254237, b: 0, a: 1}
+      Value: {fileID: 2100000, guid: 1d41f8c57e738e44f9f12fc053be388c, type: 2}
     - Key: 2
-      Value: {r: 0.47026488, g: 0.9150943, b: 0.41006586, a: 1}
+      Value: {fileID: 2100000, guid: fb045539f4b18a242aca8e57e88c5cd7, type: 2}
     - Key: 3
-      Value: {r: 0.41176465, g: 0.8115363, b: 0.91764706, a: 1}
+      Value: {fileID: 2100000, guid: 0d337a70f9e175348909eb917056c239, type: 2}
     - Key: 4
-      Value: {r: 1, g: 0.521978, b: 0, a: 1}
+      Value: {fileID: 2100000, guid: 700ae469e5be9ac4095d29b97116027a, type: 2}
     - Key: 5
-      Value: {r: 0.7495314, g: 0.41176465, b: 0.91764706, a: 1}
+      Value: {fileID: 2100000, guid: be11bb95eeb9f45e2a4ab7d03f51b6a0, type: 2}
     - Key: 6
-      Value: {r: 0.9119955, g: 0.91764706, b: 0.41176465, a: 1}
+      Value: {fileID: 2100000, guid: 42caffe1132386f4daa037a9663088b9, type: 2}

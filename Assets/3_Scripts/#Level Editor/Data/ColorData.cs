@@ -8,6 +8,6 @@ namespace CarLotJam
     public class ColorData : ScriptableObject
     {
          [SerializedDictionary("Color Type", "Color")]
-         public SerializedDictionary<SelectedColor, Color> Colors;
+         public SerializedDictionary<SelectedColor, Material> Colors;
     }
 }

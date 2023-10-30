@@ -68,7 +68,6 @@ namespace ODProjects.LevelEditor
                 }
 
                 _allLevelDatas = levelDataList.ToArray();
-                Debug.Log(_allLevelDatas[0].gridSize.x);
                 _levelDataNames = levelDataNameList.ToArray();
                 if (_currentLevelData == null) _currentLevelData = levelDataList[0];
             }
@@ -122,7 +121,6 @@ namespace ODProjects.LevelEditor
 
         private void CheckPathAndInitialization()
         {
-            Debug.Log(_currentLevelData);
             if (!_hasInitialize)
             {
                 _colorData = Resources.Load<ColorData>("ColorData");
@@ -213,7 +211,6 @@ namespace ODProjects.LevelEditor
                 _currentLevelData.gridSize.y = newGridSize.y;
 
                 _hasInitialize = false;
-                Debug.Log("YOK Burdan");
                 _currentLevelData.ClearPath();
                 CheckPathAndInitialization();
             }
@@ -262,7 +259,7 @@ namespace ODProjects.LevelEditor
                                 //content.image = _elementData.Elements[_selectedElement];
                             }
 
-                            _currentLevelData.SetButtonColor(index, _colorData.Colors[_selectedColor], content, _selectedElement);
+                            _currentLevelData.SetButtonColor(index, _colorData.Colors[_selectedColor].color, content, _selectedElement);
                         }
                     }
                 }

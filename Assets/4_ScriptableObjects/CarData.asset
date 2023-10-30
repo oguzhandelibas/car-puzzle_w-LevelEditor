@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e85d670b0eb8e741a0577f22d3aed41, type: 3}
+  m_Name: CarData
+  m_EditorClassIdentifier: 
+  ColorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
+  Cars:
+    _serializedList:
+    - Key: 1
+      Value: {fileID: 1757930630412612659, guid: 5b51c5785de9ea24ca917061ab418131,
+        type: 3}
+    - Key: 0
+      Value: {fileID: 4794169948452409173, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}

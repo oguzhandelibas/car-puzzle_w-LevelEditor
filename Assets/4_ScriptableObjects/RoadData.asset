@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb21554e676ee74fb5c55c3ce460aec, type: 3}
+  m_Name: RoadData
+  m_EditorClassIdentifier: 
+  road_default: {fileID: 8747690206616207891, guid: 851a52fd49c9d4946ab4cc070f1dadd1,
+    type: 3}
+  road_corner: {fileID: 2971988576792683814, guid: da79eeb06d9adcd4fb0720aa7ab4251f,
+    type: 3}
+  road_triple: {fileID: 4565406670825531119, guid: f5c39dd26fa7d1a40805697673b97ec9,
+    type: 3}
