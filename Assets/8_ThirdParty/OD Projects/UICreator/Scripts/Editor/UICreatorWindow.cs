@@ -240,7 +240,7 @@ namespace ODProjects.UICreator.Scripts.Editor
         /// <summary>
         /// Creates an instance of this editor window and show
         /// </summary>
-        [MenuItem("OD Projects/Mobile/UI/UI Creator")]
+        [MenuItem("OD Projects/Mobile/UI Creator")]
         public static void ShowCreatorWindow()
         {
             EditorWindow window = GetWindow(typeof(UICreatorWindow));
