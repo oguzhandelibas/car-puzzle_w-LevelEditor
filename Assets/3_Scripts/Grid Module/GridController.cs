@@ -88,7 +88,7 @@ namespace CarLotJam
                         road2.transform.position += Vector3.forward * 3.45f;
                         road2.transform.rotation = Quaternion.Euler(0, 90, 0);
 
-                        var road3 = Instantiate(roadData.road_corner, obj.transform.position, Quaternion.identity);
+                        var road3 = Instantiate(roadData.road_triple, obj.transform.position, Quaternion.identity);
                         road3.transform.position += Vector3.forward * 3.45f + Vector3.left * 3.45f;
                         road3.transform.rotation = Quaternion.Euler(0, 360, 0);
                     }
