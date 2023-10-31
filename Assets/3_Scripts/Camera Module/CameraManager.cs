@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CarLotJam.LevelModule;
+using Cinemachine;
 using UnityEngine;
 
 namespace CarLotJam.CameraModule
@@ -8,11 +9,14 @@ namespace CarLotJam.CameraModule
     public class CameraManager : MonoBehaviour
     {
         [SerializeField] private Camera camera;
+        [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
+        private CinemachineTransposer cinemachineTransposer;
         #region EVENT SUBSCRIPTION
 
         private void Start()
         {
+            cinemachineTransposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
             Subscribe();
         }
 
@@ -38,14 +42,14 @@ namespace CarLotJam.CameraModule
         { 
             Vector2Int gridSize = LevelSignals.Instance.onGetLevelGridSize.Invoke();
 
-            if (gridSize.y > 6)
+            if (gridSize.y >= 6)
             {
                 // Camera Ortografik görüntüye geçecek
                 camera.orthographic = true;
             }
             else
             {
-                
+                cinemachineTransposer.m_FollowOffset = new Vector3(10, 50 + gridSize.y, -30 - gridSize.y);
             }
         }
     }

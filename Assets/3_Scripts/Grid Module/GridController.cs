@@ -6,6 +6,7 @@ namespace CarLotJam
 {
     public class GridController : MonoBehaviour
     {
+        [SerializeField] private Transform gridLookTransform;
         [SerializeField] private RoadData roadData;
         [SerializeField] private Grid grid;
         [SerializeField] private GameObject groundObject;
@@ -109,6 +110,8 @@ namespace CarLotJam
                     }
                 }
             }
+
+            gridLookTransform.localPosition = new Vector3((3.5f * _gridSize.x) / 2, 0, (3.5f * _gridSize.y) / 2);
         }
     }
 }
