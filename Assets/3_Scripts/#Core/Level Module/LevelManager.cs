@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using CarLotJam.GameManagementModule;
+using CarLotJam.UIModule;
 using UnityEngine;
 
 namespace CarLotJam.LevelModule
@@ -21,6 +23,7 @@ namespace CarLotJam.LevelModule
 
         private void Start()
         {
+            UIManager.Instance.Show<HomeUI>();
             levelCount = PlayerPrefs.GetInt("LevelCount", 1);
         }
 
@@ -42,7 +45,6 @@ namespace CarLotJam.LevelModule
             LevelSignals.Instance.onGetLevelCount += GetLevelCount;
             LevelSignals.Instance.onGetLevelGridSize += GetLevelGridSize;
         }
-
 
         private void UnsubscribeEvents()
         {

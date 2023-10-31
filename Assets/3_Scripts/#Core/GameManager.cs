@@ -4,24 +4,49 @@ using CarLotJam.LevelModule;
 using UnityEditor;
 using UnityEngine;
 
-namespace CarLotJam
+namespace CarLotJam.GameManagementModule
 {
     public class GameManager : AbstractSingleton<GameManager>
     {
         [SerializeField] private GridController gridController;
         [SerializeField] private LevelData[] levelDatas;
 
+        #region SUBSCRIBE EVENTS
+
         private void OnEnable()
         {
-            if (levelDatas == null) LoadLevelDatas();
+            SubscribeEvents();
         }
 
-        private void Awake()
+        private void SubscribeEvents()
         {
-            LevelSignals.Instance.onLevelInitialize.Invoke();
-            gridController.SetGrid(GetCurrentLevelData().gridSize);
-            gridController.CreteGrid();
+            LevelSignals.Instance.onLevelInitialize += StartGame;
+            LevelSignals.Instance.onLevelInitialize += LoadLevelDatas;
+
         }
+
+        private void UnsubscribeEvents()
+        {
+            LevelSignals.Instance.onLevelInitialize -= StartGame;
+            LevelSignals.Instance.onLevelInitialize -= LoadLevelDatas;
+
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeEvents();
+        }
+
+        #endregion
+
+        public void StartGame()
+        {
+            LoadLevelDatas();
+            gridController.SetGrid(GetCurrentLevelData().gridSize);
+            gridController.CreateGrid();
+        }
+
+        private void LoadLevelDatas() => LoadLevelDatasFromFolder();
 
         public LevelData GetCurrentLevelData()
         {
@@ -31,7 +56,7 @@ namespace CarLotJam
 
         #region GUI BUTTON
 
-        public void LoadLevelDatas()
+        public void LoadLevelDatasFromFolder()
         {
             string levelDataFolder = "Assets/Resources/LevelData";
             if (Directory.Exists(levelDataFolder))

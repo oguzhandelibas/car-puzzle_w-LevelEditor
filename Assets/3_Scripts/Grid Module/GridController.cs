@@ -12,7 +12,7 @@ namespace CarLotJam
         private Vector2Int _gridSize;
 
         public void SetGrid(Vector2Int gridSize) => _gridSize = gridSize;
-        public void CreteGrid()
+        public void CreateGrid()
         {
             for (int y = 0; y < _gridSize.x; y++)
             {

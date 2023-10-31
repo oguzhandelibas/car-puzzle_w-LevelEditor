@@ -24,7 +24,6 @@ namespace CarLotJam.UIModule
         {
             m_Views = m_Root.GetComponentsInChildren<View>(true).ToList();
             Init();
-
             //m_ViewLayer.ResizeToSafeArea(m_Canvas);
         }
 
@@ -32,7 +31,6 @@ namespace CarLotJam.UIModule
         {
             foreach (var view in m_Views)
                 view.Hide();
-            //Show<MenuScreen>();
             m_History.Clear();
         }
 

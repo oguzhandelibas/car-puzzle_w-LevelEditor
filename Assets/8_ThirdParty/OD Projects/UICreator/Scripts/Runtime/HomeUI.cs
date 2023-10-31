@@ -1,5 +1,19 @@
-﻿using UnityEngine;
+﻿using CarLotJam.GameManagementModule;
+using CarLotJam.LevelModule;
+using UnityEngine;
 
-public class HomeUI : MonoBehaviour
+namespace CarLotJam.UIModule
 {
+    public class HomeUI : View
+    {
+        #region BUTTONS
+
+        public void _StartButton()
+        {
+            UIManager.Instance.Show<GameUI>();
+            GameManager.Instance.StartGame();
+            LevelSignals.Instance.onLevelInitialize.Invoke();
+        }
+        #endregion
+    }
 }

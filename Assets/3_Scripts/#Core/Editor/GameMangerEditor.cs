@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CarLotJam
+namespace CarLotJam.GameManagementModule
 {
     [CustomEditor(typeof(GameManager))]
     public class GameMangerEditor : Editor
@@ -14,7 +14,7 @@ namespace CarLotJam
 
             if (GUILayout.Button("Load Levels"))
             {
-                gameManager.LoadLevelDatas();
+                gameManager.LoadLevelDatasFromFolder();
             }
         }
     }

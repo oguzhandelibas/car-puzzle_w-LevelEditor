@@ -4,53 +4,56 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnlockUI : MonoBehaviour
+namespace CarLotJam.UIModule
 {
-    [SerializeField] private RectTransform shineHolder;
-    [SerializeField] private Image itemBackgroundIcon;
-    [SerializeField] private Image itemIcon;
-    [SerializeField] private TextMeshProUGUI unlockPercentageText;
-    [SerializeField] private Transform unlockedTextHolder;
-
-    private float progressValue;
-
-    public void UnlockShine()
+    public class UnlockUI : View
     {
-        shineHolder.DORotate(Vector3.forward * 30, .2f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Incremental);
-    }
+        [SerializeField] private RectTransform shineHolder;
+        [SerializeField] private Image itemBackgroundIcon;
+        [SerializeField] private Image itemIcon;
+        [SerializeField] private TextMeshProUGUI unlockPercentageText;
+        [SerializeField] private Transform unlockedTextHolder;
 
-    public void SetUnlockItemIcon(Sprite itemIconSprite)
-    {
-        itemIcon.sprite = itemIconSprite;
-        itemBackgroundIcon.sprite = itemIconSprite;
-    }
+        private float progressValue;
 
-    public void SetUnlockItemProgressValue(float value)
-    {
-        if (value >= 0f && value <= 1f)
+        public void UnlockShine()
         {
-            progressValue = value;
-        }
-        else if (value > 1f)
-        {
-            progressValue = value / 100f;
+            shineHolder.DORotate(Vector3.forward * 30, .2f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Incremental);
         }
 
-        if (Math.Abs(progressValue - 1f) < .01f)
+        public void SetUnlockItemIcon(Sprite itemIconSprite)
         {
-            unlockedTextHolder.gameObject.SetActive(true);
-            progressValue = 1f;
+            itemIcon.sprite = itemIconSprite;
+            itemBackgroundIcon.sprite = itemIconSprite;
         }
 
-        itemIcon.DOFillAmount(progressValue, .1f);
-        unlockPercentageText.text = "% " + ((int)(progressValue * 100));
+        public void SetUnlockItemProgressValue(float value)
+        {
+            if (value >= 0f && value <= 1f)
+            {
+                progressValue = value;
+            }
+            else if (value > 1f)
+            {
+                progressValue = value / 100f;
+            }
+
+            if (Math.Abs(progressValue - 1f) < .01f)
+            {
+                unlockedTextHolder.gameObject.SetActive(true);
+                progressValue = 1f;
+            }
+
+            itemIcon.DOFillAmount(progressValue, .1f);
+            unlockPercentageText.text = "% " + ((int)(progressValue * 100));
 
 
 
-    }
+        }
 
-    public float GetUnlockItemProgressValue()
-    {
-        return progressValue;
+        public float GetUnlockItemProgressValue()
+        {
+            return progressValue;
+        }
     }
 }
