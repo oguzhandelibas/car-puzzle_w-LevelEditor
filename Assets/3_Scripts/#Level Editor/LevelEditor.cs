@@ -207,8 +207,8 @@ namespace ODProjects.LevelEditor
             EditorGUILayout.EndHorizontal();
             if (newGridSize.y > 25) newGridSize.y = 25;
             if (newGridSize.x > 25) newGridSize.x = 25;
-            if (newGridSize.y < 4) newGridSize.y = 4;
-            if (newGridSize.x < 4) newGridSize.x = 4;
+            if (newGridSize.y < 2) newGridSize.y = 2;
+            if (newGridSize.x < 2) newGridSize.x = 2;
 
             if (_currentLevelData.gridSize.x != newGridSize.x || _currentLevelData.gridSize.y != newGridSize.y)
             {

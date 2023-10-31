@@ -9,7 +9,7 @@ namespace CarLotJam
         [SerializeField] private RoadData roadData;
         [SerializeField] private Grid grid;
         [SerializeField] private GameObject groundObject;
-        private Vector2Int _gridSize;
+        [SerializeField] private Vector2Int _gridSize;
 
         public void SetGrid(Vector2Int gridSize) => _gridSize = gridSize;
         public void CreateGrid()

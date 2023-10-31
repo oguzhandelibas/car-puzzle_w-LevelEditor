@@ -24,7 +24,8 @@ namespace CarLotJam.LevelModule
         private void Start()
         {
             UIManager.Instance.Show<HomeUI>();
-            levelCount = PlayerPrefs.GetInt("LevelCount", 1);
+            levelCount = PlayerPrefs.GetInt("LevelCount", 0);
+            SubscribeEvents();
         }
 
         #endregion
@@ -32,10 +33,7 @@ namespace CarLotJam.LevelModule
 
         #region SUBSCRIBE EVENTS
 
-        private void OnEnable()
-        {
-            SubscribeEvents();
-        }
+
 
         private void SubscribeEvents()
         {
@@ -87,6 +85,7 @@ namespace CarLotJam.LevelModule
 
         private Vector2Int GetLevelGridSize()
         {
+            if(!currentLevelData) OnInitializeLevel();
             return currentLevelData.gridSize;
         }
 

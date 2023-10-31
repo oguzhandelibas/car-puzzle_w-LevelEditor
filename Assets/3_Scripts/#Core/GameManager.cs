@@ -13,7 +13,7 @@ namespace CarLotJam.GameManagementModule
 
         #region SUBSCRIBE EVENTS
 
-        private void OnEnable()
+        private void Start()
         {
             SubscribeEvents();
         }
