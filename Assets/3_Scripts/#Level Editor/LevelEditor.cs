@@ -84,7 +84,7 @@ namespace ODProjects.LevelEditor
             
             CheckPathAndInitialization();
 
-            int maxGridSize = 15;
+            int maxGridSize = 14;
             _boxSize = 80;
             if (_currentLevelData.gridSize.x > maxGridSize) _currentLevelData.gridSize.x = maxGridSize;
             if (_currentLevelData.gridSize.y > maxGridSize) _currentLevelData.gridSize.y = maxGridSize;
@@ -194,10 +194,17 @@ namespace ODProjects.LevelEditor
         }
         private void GridArea()
         {
+            EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Grid Size", GUILayout.Width(75));
             Vector2Int newGridSize = EditorGUILayout.Vector2IntField("", _currentLevelData.gridSize);
 
+            if (GUILayout.Button("Reset Grid", GUILayout.Height(25)))
+            {
+                _currentLevelData.ResetGrid();
+                newGridSize = _currentLevelData.gridSize;
+            }
 
+            EditorGUILayout.EndHorizontal();
             if (newGridSize.y > 25) newGridSize.y = 25;
             if (newGridSize.x > 25) newGridSize.x = 25;
             if (newGridSize.y < 4) newGridSize.y = 4;

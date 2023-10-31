@@ -16,7 +16,6 @@ namespace CarLotJam
 
         public void SetArray(int length)
         {
-            Debug.Log("Burdan");
             _contents = new GUIContent[length];
             _buttonColors = new Color[length];
             _selectedElements = new SelectedElement[length];
@@ -45,8 +44,13 @@ namespace CarLotJam
                 _selectedElements[i] = SelectedElement.Null;
             }
 
-            gridSize = new Vector2Int(4, 4);
             _hasPath = false;
+        }
+
+        public void ResetGrid()
+        {
+            ClearPath();
+            gridSize = new Vector2Int(4, 4);
         }
     }
 }

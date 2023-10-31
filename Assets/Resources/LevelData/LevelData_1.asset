@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelData_1
   m_EditorClassIdentifier: 
   gridSize: {x: 4, y: 4}
-  _hasPath: 1
+  _hasPath: 0
   _contents:
   - m_Text: N/A
     m_Image: {fileID: 0}
@@ -39,10 +39,10 @@ MonoBehaviour:
   - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
-  - m_Text: SM_F
+  - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
-  - m_Text: SM_F
+  - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
   - m_Text: N/A
@@ -51,16 +51,493 @@ MonoBehaviour:
   - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
-  - m_Text: SM_F
+  - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
-  - m_Text: SM_F
+  - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
-  - m_Text: SM_F
+  - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
-  - m_Text: SM_F
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
   _buttonColors:
@@ -72,12 +549,171 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0.6170216, a: 1}
-  - {r: 0.9921568, g: 0.7727113, b: 0.1411764, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
-  - {r: 0.3138989, g: 0.5588235, b: 0.20544976, a: 1}
-  - {r: 0.20784307, g: 0.8, b: 0.8666667, a: 1}
-  - {r: 0.9882353, g: 0.490196, b: 0.12549013, a: 1}
-  _selectedElements: 00000000000000000000000000000000000000000000000000000000000000000100000001000000000000000000000001000000010000000100000001000000
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  _selectedElements: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
