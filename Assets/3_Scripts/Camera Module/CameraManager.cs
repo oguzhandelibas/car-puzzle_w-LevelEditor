@@ -44,8 +44,8 @@ namespace CarLotJam.CameraModule
 
             if (gridSize.y >= 6)
             {
-                // Camera Ortografik görüntüye geçecek
                 camera.orthographic = true;
+                virtualCamera.m_Lens.OrthographicSize = 30 + gridSize.y;
             }
             else
             {

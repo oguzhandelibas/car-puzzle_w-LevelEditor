@@ -63,6 +63,66 @@ MonoBehaviour:
   - m_Text: N/A
     m_Image: {fileID: 0}
     m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  - m_Text: N/A
+    m_Image: {fileID: 0}
+    m_Tooltip: 
   _buttonColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -80,4 +140,24 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  _selectedElements: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  _selectedElements: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
