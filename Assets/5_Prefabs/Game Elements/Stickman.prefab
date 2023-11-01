@@ -115,6 +115,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: stickman-tpose
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 572bb1bfb8162554c83f87146b64967a,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ace8953064b60054cbe750c99c9c9f44, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 572bb1bfb8162554c83f87146b64967a, type: 3}
 --- !u!137 &6030084421584686113 stripped

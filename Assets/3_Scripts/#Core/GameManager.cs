@@ -43,7 +43,7 @@ namespace CarLotJam.GameManagementModule
         {
             LoadLevelDatas();
             gridController.SetGrid(GetCurrentLevelData().gridSize);
-            gridController.CreateGrid();
+            gridController.InitializeGrid();
         }
 
         private void LoadLevelDatas() => LoadLevelDatasFromFolder();

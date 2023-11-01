@@ -11,7 +11,6 @@ namespace CarLotJam.UIModule
         public void _StartButton()
         {
             UIManager.Instance.Show<GameUI>();
-            GameManager.Instance.StartGame();
             LevelSignals.Instance.onLevelInitialize.Invoke();
         }
         #endregion
