@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +31,29 @@ namespace ODProjects.LevelEditor
         private bool _hasInitialize;
         private string[] _levelDataNames;
         private int _selectedOption = 0;
+        private int _requiredSize;
+
+        public void SetRequiredSize()
+        {
+            switch (_selectedElement)
+            {
+                case SelectedElement.SM_Stickman:
+                    _requiredSize = 1;
+                    break;
+                case SelectedElement.SC_ShortCar:
+                    _requiredSize = 2;
+                    break;
+                case SelectedElement.LC_LongCar:
+                    _requiredSize = 3;
+                    break;
+                case SelectedElement.BO_BarrierObstacle:
+                    _requiredSize = 2;
+                    break;
+                case SelectedElement.TC_TrafficConeObsctacle:
+                    _requiredSize = 1;
+                    break;
+            }
+        }
 
         #endregion
 
@@ -153,6 +177,8 @@ namespace ODProjects.LevelEditor
             EditorGUILayout.Space();
 
             _selectedElement = (SelectedElement)EditorGUILayout.EnumPopup("Selected Element", _selectedElement);
+            SetRequiredSize();
+
             _selectedDirection = (SelectedDirection)EditorGUILayout.EnumPopup("Selected Direction", _selectedDirection);
             _selectedColor = (SelectedColor)EditorGUILayout.EnumPopup("Selected Color", _selectedColor);
 
@@ -253,18 +279,45 @@ namespace ODProjects.LevelEditor
                 for (int x = 0; x < _currentLevelData.gridSize.x; x++)
                 {
                     int index = y * _currentLevelData.gridSize.x + x;
+
                     if (index >= 0 && index < _currentLevelData.ArrayLength())
                     {
                         GUI.color = _currentLevelData.GetColor(index);
                         content = _currentLevelData.GetContent(index);
+                        content.text = index.ToString();
                         if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
                         {
+                            // TIKLANDIÐINDA GEREKLÝ KUTULARI BOYASIN
+                            // TIKLANDIÐINDA ÖNÜNÜN MÜSAÝT OLDUÐUNU BÝLSÝN
+                            for (int i = 1; i < _requiredSize; i++)
+                            {// ÞU AN NULL CHECK YOK
+                                bool hasNeighbour = false;
+                                switch (_selectedDirection)
+                                {
+                                    case SelectedDirection.Forward:
+                                        hasNeighbour = IsSameColumn(index, index + (_currentLevelData.gridSize.y * i));
+                                        break;
+                                    case SelectedDirection.Back:
+                                        hasNeighbour = IsSameColumn(index, index - (_currentLevelData.gridSize.y * i));
+                                        break;
+                                    case SelectedDirection.Left:
+                                        hasNeighbour = IsSameRow(index, index - i);
+                                        break;
+                                    case SelectedDirection.Right:
+                                        hasNeighbour = IsSameRow(index, index + i);
+                                        break;
+                                }
+                                if(!hasNeighbour) return;
+
+                            }
+
                             if (_selectedColor == SelectedColor.Null || _selectedElement == SelectedElement.Null)
                             {
                                 content.text = "N/A";
                             }
                             else
                             {
+                                _currentLevelData.Elements[index].SelectedDirection = _selectedDirection;
                                 string temp = _selectedElement.ToString();
                                 string temp2 = _selectedDirection.ToString();
                                 content.text = temp[0].ToString() + temp[1].ToString() + "_" + temp2[0];
@@ -276,11 +329,31 @@ namespace ODProjects.LevelEditor
                     }
                 }
 
+
                 GUI.color = Color.white;
                 GUILayout.Space((position.width - totalWidth) / 2);
                 EditorGUILayout.EndHorizontal();
             }
         }
+
+
+        private bool IsSameRow(int currentIndex, int targetIndex)
+        {
+            if ((targetIndex > _currentLevelData.gridSize.x * _currentLevelData.gridSize.y) || targetIndex < 0) return false;
+            int currentRow = currentIndex / _currentLevelData.gridSize.x;
+            int targetRow = targetIndex / _currentLevelData.gridSize.x;
+            return currentRow == targetRow;
+        }
+
+        private bool IsSameColumn(int currentIndex, int targetIndex)
+        {
+            if ((targetIndex > _currentLevelData.gridSize.x * _currentLevelData.gridSize.y) || targetIndex < 0) return false;
+            int currentColumn = currentIndex % _currentLevelData.gridSize.x;
+            int targetColumn = targetIndex % _currentLevelData.gridSize.x;
+            Debug.Log("Zbab: " + currentIndex + " ve: " + targetIndex + " oldu sana: " + (currentColumn == targetColumn));
+            return currentColumn == targetColumn;
+        }
+
         private Texture2D MakeTex(int width, int height, Color color)
         {
             Color[] pix = new Color[width * height];

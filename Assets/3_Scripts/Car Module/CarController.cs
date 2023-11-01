@@ -8,13 +8,12 @@ namespace CarLotJam.CarModule
     {
         [SerializeField] private CarData carData;
         [SerializeField] private CarType carType;
-        [SerializeField] private SelectedColor carColor;
 
-
-        public void InitializeElement(Material targetMaterial)
+        public void InitializeElement(SelectedColor selectedColor)
         {
             var carObject = Instantiate(carData.Cars[carType], transform);
-            carObject.GetComponent<ColorSetter>().SetMeshMaterials(carData.ColorData.Colors[carColor]);
+            carObject.transform.position += transform.forward * 3f;
+            carObject.GetComponent<ColorSetter>().SetMeshMaterials(carData.ColorData.Colors[selectedColor]);
         }
     }
 }

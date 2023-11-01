@@ -6,6 +6,7 @@ namespace ODProjects.LevelEditor
         SM_Stickman,
         SC_ShortCar,
         LC_LongCar,
-        OB_Obstacle
+        BO_BarrierObstacle,
+        TC_TrafficConeObsctacle
     }
 }

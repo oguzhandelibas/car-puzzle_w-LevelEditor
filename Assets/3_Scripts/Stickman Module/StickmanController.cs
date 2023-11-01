@@ -6,13 +6,12 @@ namespace CarLotJam.StickmanModule
 {
     public class StickmanController : MonoBehaviour, IElement
     {
-        [SerializeField] private SelectedColor stickmanColor;
         [SerializeField] private ColorData colorData;
         [SerializeField] private ColorSetter colorSetter;
 
-        public void InitializeElement(Material targetMaterial)
+        public void InitializeElement(SelectedColor selectedColor)
         {
-            colorSetter.SetMeshMaterials(targetMaterial);
+            colorSetter.SetMeshMaterials(colorData.Colors[selectedColor]);
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e85d670b0eb8e741a0577f22d3aed41, type: 3}
   m_Name: CarData
   m_EditorClassIdentifier: 
-  ColorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
+  ColorData: {fileID: 11400000, guid: 4a55553bfb4de924d8eab12d828101fa, type: 2}
   Cars:
     _serializedList:
     - Key: 1

@@ -11,8 +11,32 @@ namespace CarLotJam
         public SelectedDirection SelectedDirection;
         public SelectedColor SelectedColor;
 
+        public int RequiredSize;
+
         public GUIContent GuiContent;
         public Color Color;
+
+        public Vector3 GetDirection()
+        {
+            Vector3 direction = Vector3.zero;
+            switch (SelectedDirection)
+            {
+                case SelectedDirection.Forward:
+                    direction = new Vector3(0,0,0);
+                    break;
+                case SelectedDirection.Back:
+                    direction = new Vector3(0, 180, 0);
+                    break;
+                case SelectedDirection.Left:
+                    direction = new Vector3(0, -90, 0);
+                    break;
+                case SelectedDirection.Right:
+                    direction = new Vector3(0, 90, 0);
+                    break;
+            }
+
+            return direction;
+        }
     }
 
     [CreateAssetMenu(fileName = "LevelData", menuName = "ScriptableObjects/Level/LevelData", order = 1)]
@@ -38,6 +62,7 @@ namespace CarLotJam
         public void SetArray(int length)
         {
             Elements = new Element[length];
+            //SetRequiredSize(selectedElement, index);
             ClearPath();
         }
         public int ArrayLength() => Elements.Length;
@@ -49,6 +74,8 @@ namespace CarLotJam
             Elements[index].SelectedElement = selectedElement;
             Elements[index].GuiContent = guiContent;
         }
+
+        
         public GUIContent GetContent(int index) => Elements[index].GuiContent;
 
         public Color GetColor(int index)

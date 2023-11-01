@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ODProjects.LevelEditor;
 
 namespace CarLotJam.GridModule
 {
     public interface IElement
     {
-        public void InitializeElement(Material targetMaterial);
+        public void InitializeElement(SelectedColor selectedColor);
     }
 }

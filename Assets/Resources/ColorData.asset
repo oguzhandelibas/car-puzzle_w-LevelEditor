@@ -15,7 +15,7 @@ MonoBehaviour:
   Colors:
     _serializedList:
     - Key: 0
-      Value: {fileID: 2100000, guid: 66c05709e04ed42a3a537ad26aca9cb8, type: 2}
+      Value: {fileID: 2100000, guid: 11a8c080607cf47c299aff53087e0334, type: 2}
     - Key: 1
       Value: {fileID: 2100000, guid: 1d41f8c57e738e44f9f12fc053be388c, type: 2}
     - Key: 2

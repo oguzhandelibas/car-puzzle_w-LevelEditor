@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3393810021586367810}
   - component: {fileID: 3393810021586367813}
   m_Layer: 0
-  m_Name: Car
+  m_Name: Car_Long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,4 +46,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carData: {fileID: 11400000, guid: a2a21be62c908364bb2141156bfdfc61, type: 2}
   carType: 0
-  carColor: 6
