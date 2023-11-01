@@ -1,26 +1,35 @@
+using System;
 using ODProjects.LevelEditor;
 using UnityEngine;
 
 namespace CarLotJam
 {
+    [Serializable]
+    public struct Element
+    {
+        public SelectedElement SelectedElement;
+        public SelectedDirection SelectedDirection;
+        public SelectedColor SelectedColor;
+
+        public GUIContent GuiContent;
+        public Color Color;
+    }
+
     [CreateAssetMenu(fileName = "LevelData", menuName = "ScriptableObjects/Level/LevelData", order = 1)]
     public class LevelData : ScriptableObject
     {
         public Vector2Int gridSize;
         public bool _hasPath;
-        public GUIContent[] _contents;
-        public Color[] _buttonColors;
 
-        public SelectedElement[] _gridElements;
-        public SelectedColor[] _gridColors;
+        public Element[] Elements;
 
         public bool HasPath{ get => _hasPath;}
 
         #region GET LEVEL DATA
 
-        public SelectedColor GetSelectedColor(int index) => _gridColors[index];
+        public SelectedColor GetSelectedColor(int index) => Elements[index].SelectedColor;
 
-        public SelectedElement GetSelectedElement(int index) => _gridElements[index];
+        public SelectedElement GetSelectedElement(int index) => Elements[index].SelectedElement;
 
         #endregion
 
@@ -28,35 +37,32 @@ namespace CarLotJam
 
         public void SetArray(int length)
         {
-            _contents = new GUIContent[length];
-            _gridColors = new SelectedColor[length];
-            _buttonColors = new Color[length];
-            _gridElements = new SelectedElement[length];
+            Elements = new Element[length];
             ClearPath();
         }
-        public int ArrayLength() => _buttonColors.Length;
-        public void SetButtonColor(int index, SelectedColor gridMaterial, Color color, GUIContent guiContent, SelectedElement selectedElement)
+        public int ArrayLength() => Elements.Length;
+        public void SetButtonColor(int index, SelectedColor selectedColor, Color color, GUIContent guiContent, SelectedElement selectedElement)
         {
             if (!_hasPath) _hasPath = true;
-            _buttonColors[index] = color;
-            _gridColors[index] = gridMaterial;
-            _gridElements[index] = selectedElement;
-            _contents[index] = guiContent;
+            Elements[index].Color = color;
+            Elements[index].SelectedColor = selectedColor;
+            Elements[index].SelectedElement = selectedElement;
+            Elements[index].GuiContent = guiContent;
         }
-        public GUIContent GetContent(int index) => _contents[index];
+        public GUIContent GetContent(int index) => Elements[index].GuiContent;
 
         public Color GetColor(int index)
         {
-            return _buttonColors[index];
+            return Elements[index].Color;
         }
 
         public void ClearPath()
         {
-            for (int i = 0; i < _buttonColors.Length; i++)
+            for (int i = 0; i < Elements.Length; i++)
             {
-                _buttonColors[i] = Color.white;
-                _contents[i] = new GUIContent("N/A");
-                _gridElements[i] = SelectedElement.Null;
+                Elements[i].Color = Color.white;
+                Elements[i].GuiContent = new GUIContent("N/A");
+                Elements[i].SelectedElement = SelectedElement.Null;
             }
 
             _hasPath = false;
