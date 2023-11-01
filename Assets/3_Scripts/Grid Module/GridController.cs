@@ -2,18 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CarLotJam
+namespace CarLotJam.GridModule
 {
     public class GridController : MonoBehaviour
     {
-        [SerializeField] private Transform gridLookTransform;
         [SerializeField] private RoadData roadData;
+        [SerializeField] private Transform gridLookTransform;
+
         [SerializeField] private Grid grid;
         [SerializeField] private GameObject groundObject;
+
+        private ColorData _colorData;
+        private ElementData _elementData;
+        private LevelData _levelData;
         private Vector2Int _gridSize;
 
-        public void SetGrid(Vector2Int gridSize) => _gridSize = gridSize;
-        
+        public void SetGridController(Vector2Int gridSize, LevelData levelData)
+        {
+            LoadDatas();
+            _levelData = levelData;
+            _gridSize = gridSize;
+        }
+
+        private void LoadDatas()
+        {
+            _colorData = Resources.Load<ColorData>("ColorData");
+            _elementData = Resources.Load<ElementData>("ElementData");
+        }
+
         public void InitializeGrid()
         {
             for (int y = 0; y < _gridSize.x; y++)
@@ -23,6 +39,18 @@ namespace CarLotJam
                     var worldPosition = grid.GetCellCenterWorld(new Vector3Int(x, y));
                     var obj = Instantiate(groundObject, worldPosition, Quaternion.identity, transform);
                     obj.name = x + "," + y;
+
+                    int index = y * _gridSize.x + x;
+                    GameObject testElementObj = _elementData.Elements[_levelData.GetSelectedElement(index)];
+                    if (testElementObj)
+                    {
+                        GameObject elementObj = Instantiate(testElementObj, worldPosition, Quaternion.identity);
+                        if (elementObj.TryGetComponent(out IElement IElement))
+                        {
+                            IElement.InitializeElement(_colorData.Colors[_levelData.GetSelectedColor(index)]);
+                        }
+                    }
+                    
 
                     if (x != 0 && x!= _gridSize.x-1 && y == 0) // Alt kenar
                     {

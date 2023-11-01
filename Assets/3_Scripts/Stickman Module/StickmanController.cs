@@ -1,23 +1,18 @@
+using CarLotJam.GridModule;
 using ODProjects.LevelEditor;
 using UnityEngine;
 
 namespace CarLotJam.StickmanModule
 {
-    public class StickmanController : MonoBehaviour
+    public class StickmanController : MonoBehaviour, IElement
     {
         [SerializeField] private SelectedColor stickmanColor;
         [SerializeField] private ColorData colorData;
         [SerializeField] private ColorSetter colorSetter;
 
-        void Start()
+        public void InitializeElement(Material targetMaterial)
         {
-            colorSetter.SetMeshMaterials(colorData.Colors[stickmanColor]);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            colorSetter.SetMeshMaterials(targetMaterial);
         }
     }
 }

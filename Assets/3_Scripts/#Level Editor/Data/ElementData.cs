@@ -8,6 +8,6 @@ namespace CarLotJam
     public class ElementData : ScriptableObject
     {
         [SerializedDictionary("Element Type", "Texture")]
-        public SerializedDictionary<SelectedElement, Texture2D> Elements;
+        public SerializedDictionary<SelectedElement, GameObject> Elements;
     }
 }

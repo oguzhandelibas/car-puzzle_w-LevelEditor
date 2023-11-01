@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using CarLotJam.GridModule;
 using CarLotJam.LevelModule;
 using UnityEditor;
 using UnityEngine;
@@ -42,7 +43,7 @@ namespace CarLotJam.GameManagementModule
         public void StartGame()
         {
             LoadLevelDatas();
-            gridController.SetGrid(GetCurrentLevelData().gridSize);
+            gridController.SetGridController(GetCurrentLevelData().gridSize, GetCurrentLevelData());
             gridController.InitializeGrid();
         }
 

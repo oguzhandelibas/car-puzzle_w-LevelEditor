@@ -32,6 +32,7 @@ namespace ODProjects.LevelEditor
         private int _selectedOption = 0;
 
         #endregion
+
         #region MAIN FUNCTIONS
 
         [MenuItem("OD Projects/Mobile/LevelEditor", false, 1)]
@@ -46,6 +47,7 @@ namespace ODProjects.LevelEditor
         }
 
         #endregion
+
         #region GUI FUNCTIONS
 
         private void LoadLevelDatas()
@@ -241,6 +243,9 @@ namespace ODProjects.LevelEditor
             GUIContent content = new GUIContent("N/A");
 
             // GRID CREATION
+            //int y = 0; y < _currentLevelData.gridSize.x; y++
+            //int y = _currentLevelData.gridSize.y - 1; y >= 0; y--
+
             for (int y = _currentLevelData.gridSize.y - 1; y >= 0; y--)
             {
                 EditorGUILayout.BeginHorizontal();
@@ -266,7 +271,7 @@ namespace ODProjects.LevelEditor
                                 //content.image = _elementData.Elements[_selectedElement];
                             }
 
-                            _currentLevelData.SetButtonColor(index, _colorData.Colors[_selectedColor].color, content, _selectedElement);
+                            _currentLevelData.SetButtonColor(index, _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
                         }
                     }
                 }
