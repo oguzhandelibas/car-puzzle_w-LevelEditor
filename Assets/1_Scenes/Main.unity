@@ -1271,7 +1271,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2489,8 +2489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b17f175e1f73d4faca5e2d28aa1f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridLookTransform: {fileID: 1952526749}
   roadData: {fileID: 11400000, guid: ea4987ed46e8c9f44aa0f33cd0198a4c, type: 2}
+  gridLookTransform: {fileID: 1952526749}
   grid: {fileID: 1106915933}
   groundObject: {fileID: 1872075314858273616, guid: 08efec4658f3a3d4fbb031289dc06586,
     type: 3}
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   gridController: {fileID: 1106915935}
   levelDatas:
   - {fileID: 11400000, guid: c78d4f7ba40df1c4fbab0de7e69eb87e, type: 2}
-  - {fileID: 11400000, guid: 37f86956846d0f04695d24b6d2626b5a, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 217ba800ebba1ef42a4658577cf4f48e, type: 2}
   - {fileID: 11400000, guid: 8eb951a718ec05644bb78019c91161b1, type: 2}
 --- !u!1 &1353223464

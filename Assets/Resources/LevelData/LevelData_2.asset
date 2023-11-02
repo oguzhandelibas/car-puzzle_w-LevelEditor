@@ -18,32 +18,36 @@ MonoBehaviour:
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
+    RequiredSize: 0
     GuiContent:
-      m_Text: N/A
+      m_Text: 0
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
+    RequiredSize: 0
     GuiContent:
-      m_Text: N/A
+      m_Text: 1
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
+    RequiredSize: 0
     GuiContent:
-      m_Text: N/A
+      m_Text: 2
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
+    RequiredSize: 0
     GuiContent:
-      m_Text: N/A
+      m_Text: 3
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}

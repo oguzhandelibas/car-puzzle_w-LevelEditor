@@ -55,7 +55,6 @@ namespace CarLotJam.GridModule
                             IElement.InitializeElement(_levelData.GetSelectedColor(index));
                         }
                     }
-
                 }
             }
 

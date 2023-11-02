@@ -284,7 +284,7 @@ namespace ODProjects.LevelEditor
                     {
                         GUI.color = _currentLevelData.GetColor(index);
                         content = _currentLevelData.GetContent(index);
-                        content.text = index.ToString();
+                        //content.text = index.ToString();
                         if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
                         {
                             // TIKLANDIÐINDA GEREKLÝ KUTULARI BOYASIN
