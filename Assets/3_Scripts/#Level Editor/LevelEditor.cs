@@ -118,6 +118,7 @@ namespace ODProjects.LevelEditor
             if (_currentLevelData.gridSize.x > 8) _boxSize = 45;
 
             GUI.color = Color.white;
+
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition); // Scrollview baþlat
 
             EditorGUILayout.Space();
@@ -130,7 +131,11 @@ namespace ODProjects.LevelEditor
 
             EditorGUILayout.EndScrollView(); // Scrollview'ý sonlandýr
 
+            
+
             GUI.color = Color.green;
+            
+            
 
             if (GUILayout.Button("CREATE NEW LEVEL", GUILayout.Height(40)))
             {
@@ -197,12 +202,6 @@ namespace ODProjects.LevelEditor
                 _hasInitialize = false;
             }
 
-            GUI.color = Color.cyan;
-            if (GUILayout.Button("SAVE LEVEL", GUILayout.Height(30)))
-            {
-                
-                Debug.Log("FAKE SAVE COMPLETED!!!: " + _allLevelDatas[_selectedOption]);
-            }
 
             GUI.color = Color.white;
             EditorUtility.SetDirty(_currentLevelData);
@@ -278,13 +277,13 @@ namespace ODProjects.LevelEditor
                 GUILayout.Space((position.width - totalWidth) / 2);
                 for (int x = 0; x < _currentLevelData.gridSize.x; x++)
                 {
-                    int index = y * _currentLevelData.gridSize.x + x;
+                    int index = x * _currentLevelData.gridSize.x + y;
 
                     if (index >= 0 && index < _currentLevelData.ArrayLength())
                     {
                         GUI.color = _currentLevelData.GetColor(index);
                         content = _currentLevelData.GetContent(index);
-                        //content.text = index.ToString();
+                        content.text = x + ", " + y;
                         if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
                         {
                             // TIKLANDIÐINDA GEREKLÝ KUTULARI BOYASIN
@@ -317,6 +316,7 @@ namespace ODProjects.LevelEditor
                             }
                             else
                             {
+                                _currentLevelData.SetMatrix();
                                 _currentLevelData.Elements[index].SelectedDirection = _selectedDirection;
                                 string temp = _selectedElement.ToString();
                                 string temp2 = _selectedDirection.ToString();

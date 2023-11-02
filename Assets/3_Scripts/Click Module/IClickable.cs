@@ -1,9 +1,11 @@
+using CarLotJam.Pathfind;
 using UnityEngine;
 
 namespace CarLotJam.ClickModule
 {
     public interface IClickable
     {
-        public void OnClick();
+        public Point OnClick();
+        public bool IsGround();
     }
 }

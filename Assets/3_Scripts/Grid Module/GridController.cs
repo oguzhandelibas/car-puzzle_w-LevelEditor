@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using CarLotJam.Pathfind;
+using CarLotJam.StickmanModule;
 using UnityEngine;
 
 namespace CarLotJam.GridModule
 {
-    public class GridController : MonoBehaviour
+    public class GridController : AbstractSingleton<GridController>
     {
         [SerializeField] private RoadData roadData;
         [SerializeField] private Transform gridLookTransform;
@@ -12,22 +14,49 @@ namespace CarLotJam.GridModule
         [SerializeField] private Grid grid;
         [SerializeField] private GameObject groundObject;
 
-        private ColorData _colorData;
         private ElementData _elementData;
         private LevelData _levelData;
+        private bool[,] levelWaypoint;
         private Vector2Int _gridSize;
 
-        public void SetGridController(Vector2Int gridSize, LevelData levelData)
+        public void SetGridController(LevelData levelData)
         {
             LoadDatas();
             _levelData = levelData;
-            _gridSize = gridSize;
+            _levelData.SetMatrix();
+            levelWaypoint = _levelData.waypoint;
+            _gridSize = new Vector2Int(_levelData.levelMatrix.matrixSizeX,_levelData.levelMatrix.matrixSizeY);
         }
+
+        public void UpdateMatrix(int x, int y, bool value)
+        {
+            levelWaypoint[x, y] = value;
+            /*
+            for (int i = 0; i < levelWaypoint.GetLength(0); i++)
+            {
+                for (int j = 0; j < levelWaypoint.GetLength(1); j++)
+                {
+                    Debug.Log(i + " , " + j +": " + levelWaypoint[i, j]);
+                }
+            }*/
+        }
+
+        public Matrix GetMatrix()
+        {
+            return new Matrix(_gridSize.x, _gridSize.y, levelWaypoint);
+        }
+
+        public bool GetWaypoint(Point point) => levelWaypoint[point.x, point.y];
 
         private void LoadDatas()
         {
-            _colorData = Resources.Load<ColorData>("ColorData");
             _elementData = Resources.Load<ElementData>("ElementData");
+        }
+
+        public Vector3 GridToWorlPosition(Point point)
+        {
+            Vector3 worldPoint = grid.GetCellCenterWorld(new Vector3Int(point.x, point.y,0));
+            return worldPoint;
         }
 
         public void InitializeGrid()
@@ -39,33 +68,41 @@ namespace CarLotJam.GridModule
                     var worldPosition = grid.GetCellCenterWorld(new Vector3Int(x, y));
                     var obj = Instantiate(groundObject, worldPosition, Quaternion.identity, transform);
                     obj.name = x + "," + y;
-
+                    obj.GetComponent<Ground>().SetPoint(x,y);
 
                     CreateRoadSide(x, y, obj);
                     CreateRoadCorner(x, y, obj);
-
-                    int index = y * _gridSize.x + x;
-                    GameObject testElementObj = _elementData.Elements[_levelData.GetSelectedElement(index)];
-                    if (testElementObj)
-                    {
-                        GameObject elementObj = Instantiate(testElementObj, worldPosition, Quaternion.identity);
-                        elementObj.transform.rotation = Quaternion.Euler(_levelData.Elements[index].GetDirection());
-                        if (elementObj.TryGetComponent(out IElement IElement))
-                        {
-                            IElement.InitializeElement(_levelData.GetSelectedColor(index));
-                        }
-                    }
+                    CreateElements(x, y, worldPosition);
                 }
             }
 
             gridLookTransform.localPosition = new Vector3((3.5f * _gridSize.x) / 2, 0, (3.5f * _gridSize.y) / 2);
         }
 
+        private void CreateElements(int x, int y, Vector3 worldPosition)
+        {
+            int index = y * _gridSize.x + x;
+            GameObject testElementObj = _elementData.Elements[_levelData.GetSelectedElement(index)];
+            if (testElementObj)
+            {
+                GameObject elementObj = Instantiate(testElementObj, worldPosition, Quaternion.identity);
+                elementObj.transform.rotation = Quaternion.Euler(_levelData.Elements[index].GetDirection());
+                if (elementObj.TryGetComponent(out IElement IElement))
+                {
+                    IElement.InitializeElement(_levelData.GetSelectedColor(index));
+                }
+
+                if (elementObj.TryGetComponent(out StickmanController stickmanController))
+                {
+                    stickmanController.SetStickmanPoint(new Point(x,y));
+                }
+            }
+        }
         private void CreateRoad(GameObject prefabObject, GameObject parent, Vector3 positionOffset, Quaternion rotation)
         {
             var road = Instantiate(prefabObject, parent.transform.position + positionOffset, rotation, parent.transform);
         }
-        private void CreateRoadSide(float x, float y, GameObject obj)
+        private void CreateRoadSide(int x, int y, GameObject obj)
         {
             if (x != 0 && x != _gridSize.x - 1 && y == 0) // Alt kenar
             {

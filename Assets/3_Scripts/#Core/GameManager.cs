@@ -43,7 +43,9 @@ namespace CarLotJam.GameManagementModule
         public void StartGame()
         {
             LoadLevelDatas();
-            gridController.SetGridController(GetCurrentLevelData().gridSize, GetCurrentLevelData());
+
+            // MATRIX SÝSTEMÝ ENTEGRE EDÝLECEK
+            gridController.SetGridController(GetCurrentLevelData());
             gridController.InitializeGrid();
         }
 
@@ -51,6 +53,7 @@ namespace CarLotJam.GameManagementModule
 
         public LevelData GetCurrentLevelData()
         {
+            // MATRIX SÝSTEMÝ ENTEGRE EDÝLECEK
             return levelDatas[LevelSignals.Instance.onGetLevelCount()];
         }
 

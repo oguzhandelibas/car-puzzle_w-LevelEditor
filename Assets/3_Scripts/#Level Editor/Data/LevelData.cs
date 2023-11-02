@@ -1,4 +1,5 @@
 using System;
+using CarLotJam.Pathfind;
 using ODProjects.LevelEditor;
 using UnityEngine;
 
@@ -42,12 +43,13 @@ namespace CarLotJam
     [CreateAssetMenu(fileName = "LevelData", menuName = "ScriptableObjects/Level/LevelData", order = 1)]
     public class LevelData : ScriptableObject
     {
+        public Matrix levelMatrix;
         public Vector2Int gridSize;
         public bool _hasPath;
-
         public Element[] Elements;
-
         public bool HasPath{ get => _hasPath;}
+
+        public bool[,] waypoint;
 
         #region GET LEVEL DATA
 
@@ -58,7 +60,6 @@ namespace CarLotJam
         #endregion
 
         #region LEVEL DATA CREATION
-
         public void SetArray(int length)
         {
             Elements = new Element[length];
@@ -74,15 +75,11 @@ namespace CarLotJam
             Elements[index].SelectedElement = selectedElement;
             Elements[index].GuiContent = guiContent;
         }
-
-        
         public GUIContent GetContent(int index) => Elements[index].GuiContent;
-
         public Color GetColor(int index)
         {
             return Elements[index].Color;
         }
-
         public void ClearPath()
         {
             for (int i = 0; i < Elements.Length; i++)
@@ -94,10 +91,28 @@ namespace CarLotJam
 
             _hasPath = false;
         }
+
         public void ResetGrid()
         {
             ClearPath();
-            gridSize = new Vector2Int(4, 4);
+            gridSize = new Vector2Int(4,4);
+            SetMatrix();
+        }
+
+        public Matrix SetMatrix()
+        {
+            int index = 0;
+            waypoint = new bool[gridSize.x, gridSize.y];
+            for (int i = 0; i < gridSize.x; i++)
+            {
+                for (int j = 0; j < gridSize.y; j++)
+                {
+                    waypoint[i, j] = Elements[index].SelectedElement == SelectedElement.Null;
+                    index++;
+                }
+            }
+            levelMatrix = new Matrix(gridSize.x, gridSize.y, waypoint);
+            return levelMatrix;
         }
 
         #endregion
