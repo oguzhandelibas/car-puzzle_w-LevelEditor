@@ -80,6 +80,7 @@ namespace CarLotJam.StickmanModule
             int bestPointIndex = 0;
             for (int i = 0; i < points.Count; i++)
             {
+                if(!GridController.Instance.GetWaypoint(points[i])) continue;
                 if (bestPath.Count == 0)
                 {
                     bestPointIndex = i;
