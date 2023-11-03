@@ -1,19 +1,53 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using CarLotJam.ClickModule;
 using CarLotJam.GridModule;
+using CarLotJam.Pathfind;
 using ODProjects.LevelEditor;
 using UnityEngine;
 
 namespace CarLotJam.CarModule
 {
-    public class CarController : MonoBehaviour, IElement
+    public class CarController : MonoBehaviour, IElement, IClickable
     {
+        public CarType carType;
         [SerializeField] private CarData carData;
-        [SerializeField] private CarType carType;
+        [SerializeField] private GameObject outlineObject;
+        [SerializeField] private GameObject carObject;
 
-        public void InitializeElement(SelectedColor selectedColor)
+
+        public Point carPoint;
+        public List<Point> _boardingPoints;
+
+        public void InitializeElement(SelectedColor selectedColor, Point elementPoint)
         {
-            var carObject = Instantiate(carData.Cars[carType], transform);
-            carObject.transform.position += transform.forward * 3f;
+            //carObject.transform.position += transform.forward * 3f;
             carObject.GetComponent<ColorSetter>().SetMeshMaterials(carData.ColorData.Colors[selectedColor]);
+            carPoint = elementPoint;
+        }
+
+        public void Hold()
+        {
+            outlineObject.layer = LayerMask.NameToLayer("Outline");
+            ReleaseRoutine();
+        }
+
+        public async Task ReleaseRoutine()
+        {
+            await Task.Delay(500);
+            Release();
+        }
+
+        public void Release() => outlineObject.layer = LayerMask.NameToLayer("NoOutline");
+
+        public void SetBoardingPoints(List<Point> boardingPoints)
+        {
+            _boardingPoints = boardingPoints;
+        }
+
+        public Point OnClick()
+        {
+            return _boardingPoints[0];
         }
     }
 }

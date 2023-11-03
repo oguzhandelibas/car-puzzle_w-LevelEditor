@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using CarLotJam.CarModule;
 using CarLotJam.Pathfind;
 using CarLotJam.StickmanModule;
 using UnityEngine;
@@ -27,30 +27,24 @@ namespace CarLotJam.GridModule
             levelWaypoint = _levelData.waypoint;
             _gridSize = new Vector2Int(_levelData.levelMatrix.matrixSizeX,_levelData.levelMatrix.matrixSizeY);
         }
-
         public void UpdateMatrix(int x, int y, bool value)
         {
             levelWaypoint[x, y] = value;
         }
-
         public Matrix GetMatrix()
         {
             return new Matrix(_gridSize.x, _gridSize.y, levelWaypoint);
         }
-
         public bool GetWaypoint(Point point) => levelWaypoint[point.x, point.y];
-
         private void LoadDatas()
         {
             _elementData = Resources.Load<ElementData>("ElementData");
         }
-
         public Vector3 GridToWorlPosition(Point point)
         {
             Vector3 worldPoint = grid.GetCellCenterWorld(new Vector3Int(point.x, point.y,0));
             return worldPoint;
         }
-
         public void InitializeGrid()
         {
             for (int y = 0; y < _gridSize.x; y++)
@@ -70,7 +64,6 @@ namespace CarLotJam.GridModule
 
             gridLookTransform.localPosition = new Vector3((3.5f * _gridSize.x) / 2, 0, (3.5f * _gridSize.y) / 2);
         }
-
         private void CreateElements(int x, int y, Vector3 worldPosition)
         {
             int index = y * _gridSize.x + x;
@@ -81,15 +74,57 @@ namespace CarLotJam.GridModule
                 elementObj.transform.rotation = Quaternion.Euler(_levelData.Elements[index].GetDirection());
                 if (elementObj.TryGetComponent(out IElement IElement))
                 {
-                    IElement.InitializeElement(_levelData.GetSelectedColor(index));
+                    IElement.InitializeElement(_levelData.GetSelectedColor(index), new Point(x,y));
                 }
 
                 if (elementObj.TryGetComponent(out StickmanController stickmanController))
                 {
                     stickmanController.SetStickmanPoint(new Point(x,y));
                 }
+
+                if (elementObj.TryGetComponent(out CarController carController))
+                {
+                    List<Point> boardingPoints = new List<Point>();
+                    CarType carType = carController.carType;
+                    Point carFront;
+                    int increaseValue = 1;
+                    if (carType == CarType.LongCar)
+                    {
+                        increaseValue = 2;
+                    }
+                    Point point;
+                    switch (_levelData.Elements[index].SelectedDirection)
+                    {
+                        case SelectedDirection.Forward:
+                            point = new Point(carController.carPoint.x + 1, carController.carPoint.y + increaseValue);
+                            if(IsOnGrid(point)) boardingPoints.Add(point);
+                            point = new Point(carController.carPoint.x - 1, carController.carPoint.y + increaseValue);
+                            if (IsOnGrid(point)) boardingPoints.Add(point);
+                            break;
+                        case SelectedDirection.Back:
+                            point = new Point(carController.carPoint.x + 1, carController.carPoint.y - increaseValue);
+                            if (IsOnGrid(point)) boardingPoints.Add(point);
+                            point = new Point(carController.carPoint.x - 1, carController.carPoint.y - increaseValue);
+                            if (IsOnGrid(point)) boardingPoints.Add(point);
+                            break;
+                        case SelectedDirection.Left:
+                            point = new Point(carController.carPoint.x - increaseValue, carController.carPoint.y + 1);
+                            if (IsOnGrid(point)) boardingPoints.Add(point);
+                            point = new Point(carController.carPoint.x - increaseValue, carController.carPoint.y - 1);
+                            if (IsOnGrid(point)) boardingPoints.Add(point);
+                            break;
+                        case SelectedDirection.Right:
+                            point = new Point(carController.carPoint.x + increaseValue, carController.carPoint.y + 1);
+                            if (IsOnGrid(point)) boardingPoints.Add(point);
+                            point = new Point(carController.carPoint.x + increaseValue, carController.carPoint.y - 1);
+                            if (IsOnGrid(point)) boardingPoints.Add(point);
+                            break;
+                    }
+                    carController.SetBoardingPoints(boardingPoints);
+                }
             }
         }
+        private bool IsOnGrid(Point point) => (point.x >= 0 && point.x < _gridSize.x && point.y >= 0 && point.y < _gridSize.y);
         private void CreateRoad(GameObject prefabObject, GameObject parent, Vector3 positionOffset, Quaternion rotation)
         {
             var road = Instantiate(prefabObject, parent.transform.position + positionOffset, rotation, parent.transform);

@@ -283,7 +283,7 @@ namespace ODProjects.LevelEditor
                     {
                         GUI.color = _currentLevelData.GetColor(index);
                         content = _currentLevelData.GetContent(index);
-                        //content.text = x + ", " + y;
+                        content.text = x + ", " + y;
                         if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
                         {
                             // TIKLANDIÐINDA GEREKLÝ KUTULARI BOYASIN
@@ -347,7 +347,7 @@ namespace ODProjects.LevelEditor
                                             }
                                             break;
                                         case SelectedDirection.Left:
-                                            indexTemp = index - 1;
+                                            indexTemp = index - i;
                                             if (_currentLevelData.ElementIsAvailable(indexTemp))
                                             {
                                                 indexes.Add(indexTemp);
@@ -358,7 +358,7 @@ namespace ODProjects.LevelEditor
                                             }
                                             break;
                                         case SelectedDirection.Right:
-                                            indexTemp = index + 1;
+                                            indexTemp = index + i;
                                             if (_currentLevelData.ElementIsAvailable(indexTemp))
                                             {
                                                 indexes.Add(indexTemp);

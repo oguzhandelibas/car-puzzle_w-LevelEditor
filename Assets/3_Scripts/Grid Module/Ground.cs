@@ -15,7 +15,6 @@ namespace CarLotJam.GridModule
 
         public void SetPoint(int x, int y) => point = new Point(x, y);
         public Point OnClick() => point;
-        public bool IsGround() => true;
 
         public void SetColorAnim(SelectedColor selectedColor)
         {

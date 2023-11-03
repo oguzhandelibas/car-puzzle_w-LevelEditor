@@ -174,6 +174,19 @@ MonoBehaviour:
   - {fileID: 6119475681703738917}
   - {fileID: 767074545621548120}
   - {fileID: 1756079759201336157}
+--- !u!65 &1429285359559380795
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4794169948452409173}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &6119475681703738917 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7303282448182195167, guid: 1c5a3d1795a140c4b9f682d85c386f71,

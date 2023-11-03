@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CarLotJam.CarModule;
 using CarLotJam.GridModule;
 using CarLotJam.StickmanModule;
 using ODProjects.LevelEditor;
@@ -10,6 +11,7 @@ namespace CarLotJam.ClickModule
     public class ClickManager : MonoBehaviour
     {
         private StickmanController _stickmanController;
+        private CarController _carController;
 
         private void Update()
         {
@@ -18,15 +20,17 @@ namespace CarLotJam.ClickModule
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
+                if (_stickmanController) _stickmanController.IsHold = false;
+                if (_carController) _carController.Release();
+
                 if (Physics.Raycast(ray, out hit))
                 {
                     if (hit.transform.TryGetComponent(out IClickable iClickable))
                     {
-                        if (iClickable.IsGround())
+                        if (hit.transform.TryGetComponent(out Ground ground))
                         {
                             if (_stickmanController && _stickmanController.IsHold)
                             {
-                                Ground ground = hit.transform.GetComponent<Ground>();
                                 if (_stickmanController.SetTargetPoint(iClickable.OnClick()))
                                 {
                                     ground.SetColorAnim(SelectedColor.Green);
@@ -40,16 +44,18 @@ namespace CarLotJam.ClickModule
                                 }
                             }
                         }
-                        else
+                        if (hit.transform.TryGetComponent(out StickmanController stickmanController))
                         {
-                            if (_stickmanController)
-                            {
-                                _stickmanController.IsHold = false;
-                            }
-                            _stickmanController = hit.transform.GetComponent<StickmanController>();
+                            _stickmanController = stickmanController;
                             _stickmanController.IsHold = true;
-                            iClickable.OnClick();
                         }
+                        if (hit.transform.TryGetComponent(out CarController carController))
+                        {
+                            Debug.Log("selamdfsgdsfgh");
+                            _carController = carController;
+                            _carController.Hold();
+                        }
+                        iClickable.OnClick();
                     }
                 }
             }

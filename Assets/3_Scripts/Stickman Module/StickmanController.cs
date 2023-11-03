@@ -9,7 +9,7 @@ using Random = System.Random;
 
 namespace CarLotJam.StickmanModule
 {
-    public class StickmanController : MonoBehaviour, IClickable,IElement
+    public class StickmanController : MonoBehaviour, IClickable, IElement
     {
         [SerializeField] private AnimationController animationController;
         [SerializeField] private EmotionController emotionController;
@@ -18,18 +18,13 @@ namespace CarLotJam.StickmanModule
         [SerializeField] private ColorSetter colorSetter;
         
         public List<Point> targetPath;
-
         private Point _stickmanPoint;
         private Point _targetPoint;
-
         private bool _onHold;
         private bool _onMove;
         public bool IsHold
         {
-            get
-            {
-                return _onHold;
-            }
+            get { return _onHold; }
             set
             {
                 if (!_onMove)
@@ -41,50 +36,33 @@ namespace CarLotJam.StickmanModule
                 
             }
         }
-
+        
         private void Hold()
         {
             outlineObject.layer = LayerMask.NameToLayer("Outline");
             animationController.PlayAnim(AnimTypes.WAVE);
         }
-
         private void Release()
         {
             outlineObject.layer = LayerMask.NameToLayer("NoOutline");
             animationController.PlayAnim(AnimTypes.IDLE, 2);
         }
-
         public void SetEmotion(SelectedEmotion selectedEmotion) => emotionController.ShowEmotion(selectedEmotion);
 
-
-        public void InitializeElement(SelectedColor selectedColor)
+        public void InitializeElement(SelectedColor selectedColor, Point elementPoint)
         {
+            _stickmanPoint = elementPoint;
             colorSetter.SetMeshMaterials(colorData.Colors[selectedColor]);
         }
-
-        public Point OnClick()
-        {
-            return _stickmanPoint;
-        }
-
-        public bool IsGround()
-        {
-            return false;
-        }
-
-        public void SetStickmanPoint(Point stickmanPoint)
-        {
-            _stickmanPoint = stickmanPoint;
-        }
-
+        public Point OnClick() => _stickmanPoint;
+        public bool IsGround() => false;
+        public void SetStickmanPoint(Point stickmanPoint) => _stickmanPoint = stickmanPoint;
         public bool SetTargetPoint(Point targetPoint)
         {
             if (!GridController.Instance.GetWaypoint(targetPoint)) return false;
             _targetPoint = targetPoint;
             return FindPath();
         }
-
-
         public bool FindPath()
         {
             List<Point> newPath = Pathfinding.FindPath(GridController.Instance.GetMatrix(), _stickmanPoint, _targetPoint);
@@ -98,10 +76,8 @@ namespace CarLotJam.StickmanModule
             animationController.PlayAnim(AnimTypes.RUN);
             return true;
         }
-
         private int currentTargetIndex = 0;
         public float moveSpeed = 1;
-
         void Update()
         {
             if (targetPath.Count == 0)
@@ -125,7 +101,6 @@ namespace CarLotJam.StickmanModule
                 SetNextTarget();
             }
         }
-
         void SetNextTarget()
         {
             currentTargetIndex++;
@@ -138,6 +113,5 @@ namespace CarLotJam.StickmanModule
                 IsHold = false;
             }
         }
-
     }
 }
