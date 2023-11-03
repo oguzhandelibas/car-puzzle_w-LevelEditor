@@ -146,7 +146,7 @@ MonoBehaviour:
     SelectedColor: 3
     hasElement: 0
     GuiContent:
-      m_Text: 4, 1
+      m_Text: 4, 2
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 0.20784307, g: 0.8, b: 0.8666667, a: 1}
@@ -191,7 +191,7 @@ MonoBehaviour:
     SelectedColor: 3
     hasElement: 0
     GuiContent:
-      m_Text: 4, 1
+      m_Text: 4, 3
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 0.20784307, g: 0.8, b: 0.8666667, a: 1}

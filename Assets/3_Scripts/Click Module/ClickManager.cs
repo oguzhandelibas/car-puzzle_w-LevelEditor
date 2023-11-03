@@ -20,8 +20,7 @@ namespace CarLotJam.ClickModule
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (_stickmanController) _stickmanController.IsHold = false;
-                if (_carController) _carController.Release();
+                
 
                 if (Physics.Raycast(ray, out hit))
                 {
@@ -44,18 +43,27 @@ namespace CarLotJam.ClickModule
                                 }
                             }
                         }
+                        
+                        if (_stickmanController) _stickmanController.IsHold = false;
+                        if (_carController) _carController.Release();
+                        
+                        if (hit.transform.TryGetComponent(out CarController carController))
+                        {
+                            _carController = carController;
+                            _carController.Hold();
+                        }
+
                         if (hit.transform.TryGetComponent(out StickmanController stickmanController))
                         {
                             _stickmanController = stickmanController;
                             _stickmanController.IsHold = true;
                         }
-                        if (hit.transform.TryGetComponent(out CarController carController))
-                        {
-                            Debug.Log("selamdfsgdsfgh");
-                            _carController = carController;
-                            _carController.Hold();
-                        }
+
+                        
+
                         iClickable.OnClick();
+
+                        
                     }
                 }
             }

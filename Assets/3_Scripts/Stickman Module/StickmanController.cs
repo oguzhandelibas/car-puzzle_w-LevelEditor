@@ -11,7 +11,7 @@ namespace CarLotJam.StickmanModule
 {
     public class StickmanController : MonoBehaviour, IClickable, IElement
     {
-        [SerializeField] private AnimationController animationController;
+        [SerializeField] private StickmanAnimationController _stickmanAnimationController;
         [SerializeField] private EmotionController emotionController;
         [SerializeField] private GameObject outlineObject;
         [SerializeField] private ColorData colorData;
@@ -40,12 +40,12 @@ namespace CarLotJam.StickmanModule
         private void Hold()
         {
             outlineObject.layer = LayerMask.NameToLayer("Outline");
-            animationController.PlayAnim(AnimTypes.WAVE);
+            _stickmanAnimationController.PlayAnim(StickmanAnimTypes.WAVE);
         }
         private void Release()
         {
             outlineObject.layer = LayerMask.NameToLayer("NoOutline");
-            animationController.PlayAnim(AnimTypes.IDLE, 2);
+            _stickmanAnimationController.PlayAnim(StickmanAnimTypes.IDLE, 2);
         }
         public void SetEmotion(SelectedEmotion selectedEmotion) => emotionController.ShowEmotion(selectedEmotion);
 
@@ -73,7 +73,7 @@ namespace CarLotJam.StickmanModule
             targetPath = newPath;
             IsHold = false;
             _onMove = true;
-            animationController.PlayAnim(AnimTypes.RUN);
+            _stickmanAnimationController.PlayAnim(StickmanAnimTypes.RUN);
             return true;
         }
         private int currentTargetIndex = 0;

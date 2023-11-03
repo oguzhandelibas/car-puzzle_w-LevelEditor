@@ -1,6 +1,6 @@
 namespace CarLotJam.StickmanModule
 {
-    public enum AnimTypes
+    public enum StickmanAnimTypes
     {
         IDLE,
         RUN,
