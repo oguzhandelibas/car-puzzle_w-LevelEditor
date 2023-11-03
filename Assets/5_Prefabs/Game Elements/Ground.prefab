@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828cc63d65bd01e4ca564cd8f8c90efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundRenderer: {fileID: 1025526818766927621}
   point:
     x: 0
     y: 0
@@ -161,6 +162,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a65ca469bc8bc26489fdb0ad6e223fd3, type: 3}
+--- !u!23 &1025526818766927621 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: a65ca469bc8bc26489fdb0ad6e223fd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1872075315256208257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2193336486389271658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a65ca469bc8bc26489fdb0ad6e223fd3,

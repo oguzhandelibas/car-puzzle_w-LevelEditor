@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CarLotJam.GridModule;
 using CarLotJam.StickmanModule;
+using ODProjects.LevelEditor;
 using UnityEngine;
 
 namespace CarLotJam.ClickModule
@@ -9,7 +10,6 @@ namespace CarLotJam.ClickModule
     public class ClickManager : MonoBehaviour
     {
         private StickmanController _stickmanController;
-        private Ground _ground;
 
         private void Update()
         {
@@ -24,8 +24,21 @@ namespace CarLotJam.ClickModule
                     {
                         if (iClickable.IsGround())
                         {
-                            if(_stickmanController && _stickmanController.IsHold) 
-                                _stickmanController.SetTargetPoint(iClickable.OnClick());
+                            if (_stickmanController && _stickmanController.IsHold)
+                            {
+                                Ground ground = hit.transform.GetComponent<Ground>();
+                                if (_stickmanController.SetTargetPoint(iClickable.OnClick()))
+                                {
+                                    ground.SetColorAnim(SelectedColor.Green);
+                                    _stickmanController.SetEmotion(SelectedEmotion.COOL);
+                                }
+                                else
+                                {
+                                    ground.SetColorAnim(SelectedColor.Red);
+                                    _stickmanController.IsHold = false;
+                                    _stickmanController.SetEmotion(SelectedEmotion.ANGRY);
+                                }
+                            }
                         }
                         else
                         {

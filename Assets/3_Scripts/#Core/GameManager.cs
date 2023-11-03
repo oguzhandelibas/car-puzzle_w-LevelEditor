@@ -12,6 +12,8 @@ namespace CarLotJam.GameManagementModule
         [SerializeField] private GridController gridController;
         [SerializeField] private LevelData[] levelDatas;
 
+        [SerializeField] private ColorData colorData;
+
         #region SUBSCRIBE EVENTS
 
         private void Start()
@@ -56,6 +58,8 @@ namespace CarLotJam.GameManagementModule
             // MATRIX SÝSTEMÝ ENTEGRE EDÝLECEK
             return levelDatas[LevelSignals.Instance.onGetLevelCount()];
         }
+
+        public ColorData GetColorData() => colorData;
 
 
         #region GUI BUTTON

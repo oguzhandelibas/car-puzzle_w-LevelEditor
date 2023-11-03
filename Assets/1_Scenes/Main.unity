@@ -2838,10 +2838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridController: {fileID: 1106915935}
   levelDatas:
-  - {fileID: 11400000, guid: c78d4f7ba40df1c4fbab0de7e69eb87e, type: 2}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: 217ba800ebba1ef42a4658577cf4f48e, type: 2}
-  - {fileID: 11400000, guid: 8eb951a718ec05644bb78019c91161b1, type: 2}
+  - {fileID: 11400000, guid: edf3a5e2cf4023248ad5070c89b5bcc2, type: 2}
+  - {fileID: 11400000, guid: 37f86956846d0f04695d24b6d2626b5a, type: 2}
+  colorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
 --- !u!1 &1353223464
 GameObject:
   m_ObjectHideFlags: 0

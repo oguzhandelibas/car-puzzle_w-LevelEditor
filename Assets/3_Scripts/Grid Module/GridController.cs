@@ -31,14 +31,6 @@ namespace CarLotJam.GridModule
         public void UpdateMatrix(int x, int y, bool value)
         {
             levelWaypoint[x, y] = value;
-            /*
-            for (int i = 0; i < levelWaypoint.GetLength(0); i++)
-            {
-                for (int j = 0; j < levelWaypoint.GetLength(1); j++)
-                {
-                    Debug.Log(i + " , " + j +": " + levelWaypoint[i, j]);
-                }
-            }*/
         }
 
         public Matrix GetMatrix()

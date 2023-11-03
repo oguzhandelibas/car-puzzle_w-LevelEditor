@@ -277,20 +277,22 @@ namespace ODProjects.LevelEditor
                 GUILayout.Space((position.width - totalWidth) / 2);
                 for (int x = 0; x < _currentLevelData.gridSize.x; x++)
                 {
-                    int index = x * _currentLevelData.gridSize.x + y;
+                    int index = y * _currentLevelData.gridSize.x + x;
 
                     if (index >= 0 && index < _currentLevelData.ArrayLength())
                     {
                         GUI.color = _currentLevelData.GetColor(index);
                         content = _currentLevelData.GetContent(index);
-                        content.text = x + ", " + y;
+                        //content.text = x + ", " + y;
                         if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
                         {
                             // TIKLANDIÐINDA GEREKLÝ KUTULARI BOYASIN
                             // TIKLANDIÐINDA ÖNÜNÜN MÜSAÝT OLDUÐUNU BÝLSÝN
+
+                            bool hasNeighbour = true;
                             for (int i = 1; i < _requiredSize; i++)
                             {// ÞU AN NULL CHECK YOK
-                                bool hasNeighbour = false;
+                                
                                 switch (_selectedDirection)
                                 {
                                     case SelectedDirection.Forward:
@@ -306,16 +308,78 @@ namespace ODProjects.LevelEditor
                                         hasNeighbour = IsSameRow(index, index + i);
                                         break;
                                 }
-                                if(!hasNeighbour) return;
-
                             }
-
+                            if (!hasNeighbour) return;
+                            
                             if (_selectedColor == SelectedColor.Null || _selectedElement == SelectedElement.Null)
                             {
                                 content.text = "N/A";
                             }
                             else
                             {
+                                List<int> indexes = new List<int>();
+                                int indexTemp;
+                                for (int i = 0; i < _requiredSize; i++)
+                                {
+                                    switch (_selectedDirection)
+                                    {
+                                        case SelectedDirection.Forward:
+                                            indexTemp = index + _currentLevelData.gridSize.y * i;
+                                            Debug.Log("amk" + indexTemp);
+                                            if (_currentLevelData.ElementIsAvailable(indexTemp))
+                                            {
+                                                indexes.Add(indexTemp);
+                                            }
+                                            else
+                                            {
+                                                indexes.Clear();
+                                            }
+                                            break;
+                                        case SelectedDirection.Back:
+                                            indexTemp = index - _currentLevelData.gridSize.y * i;
+                                            if (_currentLevelData.ElementIsAvailable(indexTemp))
+                                            {
+                                                indexes.Add(indexTemp);
+                                            }
+                                            else
+                                            {
+                                                indexes.Clear();
+                                            }
+                                            break;
+                                        case SelectedDirection.Left:
+                                            indexTemp = index - 1;
+                                            if (_currentLevelData.ElementIsAvailable(indexTemp))
+                                            {
+                                                indexes.Add(indexTemp);
+                                            }
+                                            else
+                                            {
+                                                indexes.Clear();
+                                            }
+                                            break;
+                                        case SelectedDirection.Right:
+                                            indexTemp = index + 1;
+                                            if (_currentLevelData.ElementIsAvailable(indexTemp))
+                                            {
+                                                indexes.Add(indexTemp);
+                                            }
+                                            else
+                                            {
+                                                indexes.Clear();
+                                            }
+                                            break;
+                                    }
+                                }
+
+                                if (indexes.Count > 0)
+                                {
+                                    _currentLevelData.SetButtonColor(index, _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
+                                    for (int i = 1; i < indexes.Count; i++)
+                                    {
+                                        _currentLevelData.SetFakeButtonColor(indexes[i], _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
+                                    }
+                                }
+
                                 _currentLevelData.SetMatrix();
                                 _currentLevelData.Elements[index].SelectedDirection = _selectedDirection;
                                 string temp = _selectedElement.ToString();
@@ -324,7 +388,8 @@ namespace ODProjects.LevelEditor
                                 //content.image = _elementData.Elements[_selectedElement];
                             }
 
-                            _currentLevelData.SetButtonColor(index, _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
+                            
+                            
                         }
                     }
                 }
@@ -347,7 +412,7 @@ namespace ODProjects.LevelEditor
 
         private bool IsSameColumn(int currentIndex, int targetIndex)
         {
-            if ((targetIndex > _currentLevelData.gridSize.x * _currentLevelData.gridSize.y) || targetIndex < 0) return false;
+            if ((targetIndex >= _currentLevelData.gridSize.x * _currentLevelData.gridSize.y) || targetIndex < 0) return false;
             int currentColumn = currentIndex % _currentLevelData.gridSize.x;
             int targetColumn = targetIndex % _currentLevelData.gridSize.x;
             Debug.Log("Zbab: " + currentIndex + " ve: " + targetIndex + " oldu sana: " + (currentColumn == targetColumn));

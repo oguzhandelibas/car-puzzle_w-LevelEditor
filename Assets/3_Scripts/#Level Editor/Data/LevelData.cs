@@ -12,7 +12,7 @@ namespace CarLotJam
         public SelectedDirection SelectedDirection;
         public SelectedColor SelectedColor;
 
-        public int RequiredSize;
+        public bool hasElement;
 
         public GUIContent GuiContent;
         public Color Color;
@@ -55,7 +55,10 @@ namespace CarLotJam
 
         public SelectedColor GetSelectedColor(int index) => Elements[index].SelectedColor;
 
-        public SelectedElement GetSelectedElement(int index) => Elements[index].SelectedElement;
+        public SelectedElement GetSelectedElement(int index)
+        {
+            return Elements[index].hasElement ? Elements[index].SelectedElement : SelectedElement.Null;
+        }
 
         #endregion
 
@@ -67,6 +70,7 @@ namespace CarLotJam
             ClearPath();
         }
         public int ArrayLength() => Elements.Length;
+        public bool ElementIsAvailable(int index) => Elements[index].SelectedElement == SelectedElement.Null;
         public void SetButtonColor(int index, SelectedColor selectedColor, Color color, GUIContent guiContent, SelectedElement selectedElement)
         {
             if (!_hasPath) _hasPath = true;
@@ -74,6 +78,17 @@ namespace CarLotJam
             Elements[index].SelectedColor = selectedColor;
             Elements[index].SelectedElement = selectedElement;
             Elements[index].GuiContent = guiContent;
+            Elements[index].hasElement = true;
+        }
+
+        public void SetFakeButtonColor(int index, SelectedColor selectedColor, Color color, GUIContent guiContent, SelectedElement selectedElement)
+        {
+            if (!_hasPath) _hasPath = true;
+            Elements[index].Color = color;
+            Elements[index].SelectedColor = selectedColor;
+            Elements[index].SelectedElement = selectedElement;
+            Elements[index].GuiContent = guiContent;
+            Elements[index].hasElement = false;
         }
         public GUIContent GetContent(int index) => Elements[index].GuiContent;
         public Color GetColor(int index)
@@ -107,7 +122,7 @@ namespace CarLotJam
             {
                 for (int j = 0; j < gridSize.y; j++)
                 {
-                    waypoint[i, j] = Elements[index].SelectedElement == SelectedElement.Null;
+                    waypoint[j, i] = Elements[index].SelectedElement == SelectedElement.Null;
                     index++;
                 }
             }
