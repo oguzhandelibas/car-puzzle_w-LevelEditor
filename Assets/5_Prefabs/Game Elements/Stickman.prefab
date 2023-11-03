@@ -209,13 +209,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619628867eb84db49a387fb24a8a08e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 4779319571215391810}
+  _stickmanAnimationController: {fileID: 4779319571215391810}
   emotionController: {fileID: 1544989964757399295}
   outlineObject: {fileID: 4867871314194678515}
   colorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
   colorSetter: {fileID: 7059919068289557454}
   targetPath: []
-  moveSpeed: 20
+  moveSpeed: 15
 --- !u!114 &1544989964757399295
 MonoBehaviour:
   m_ObjectHideFlags: 0
