@@ -39,34 +39,32 @@ namespace CarLotJam.CarModule
                     break;
             }
         }
-
         private void OpenLeftDoor()
         {
-            leftDoor.DOLocalRotate(new Vector3(0, 110, 0), 0.5f, RotateMode.Fast).SetEase(Ease.OutBounce);
+            leftDoor.DOLocalRotate(new Vector3(0, 110, 0), 0.5f, RotateMode.Fast).SetEase(Ease.OutBounce)
+                .OnComplete((() => CloseLeftDoor()));
         }
-
         private async Task CloseLeftDoor()
         {
             carBody.DOLocalRotate(new Vector3(0, 0, 12), 0.25f, RotateMode.Fast).OnComplete(
                 (() => carBody.DOLocalRotate(new Vector3(0, 0, -5), 0.25f, RotateMode.Fast)
                     .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), 0.25f, RotateMode.Fast)))));
 
-            await Task.Delay(600);
+            await Task.Delay(500);
             leftDoor.DOLocalRotate(new Vector3(0, 0, 0), 0.30f, RotateMode.Fast);
         }
-
         private void OpenRightDoor()
         {
-            rightDoor.DOLocalRotate(new Vector3(0, -110, 0), 0.5f, RotateMode.Fast).SetEase(Ease.OutBounce);
+            rightDoor.DOLocalRotate(new Vector3(0, -110, 0), 0.5f, RotateMode.Fast).SetEase(Ease.OutBounce)
+                .OnComplete((() => CloseRightDoor()));
         }
-
         private async Task CloseRightDoor()
         {
             carBody.DOLocalRotate(new Vector3(0, 0, -12), 0.25f, RotateMode.Fast).OnComplete(
                 (() => carBody.DOLocalRotate(new Vector3(0, 0, 5), 0.25f, RotateMode.Fast)
                     .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), 0.25f, RotateMode.Fast)))));
 
-            await Task.Delay(600);
+            await Task.Delay(500);
             rightDoor.DOLocalRotate(new Vector3(0, 0, 0), 0.20f, RotateMode.Fast);
         }
     }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CarLotJam.CarModule;
 using CarLotJam.Pathfind;
 using CarLotJam.StickmanModule;
+using ODProjects.LevelEditor;
 using UnityEngine;
 
 namespace CarLotJam.GridModule
@@ -16,26 +17,39 @@ namespace CarLotJam.GridModule
 
         private ElementData _elementData;
         private LevelData _levelData;
-        private bool[,] levelWaypoint;
+        private Ground[,] _grounds;
+        private bool[,] _levelWaypoint;
         private Vector2Int _gridSize;
 
+        public void SetGroundColor(Point point, SelectedColor selectedColor)
+        {
+            _grounds[point.x, point.y].SetColorAnim(selectedColor);
+        }
         public void SetGridController(LevelData levelData)
         {
             LoadDatas();
             _levelData = levelData;
             _levelData.SetMatrix();
-            levelWaypoint = _levelData.waypoint;
+            _levelWaypoint = _levelData.waypoint;
             _gridSize = new Vector2Int(_levelData.levelMatrix.matrixSizeX,_levelData.levelMatrix.matrixSizeY);
         }
         public void UpdateMatrix(int x, int y, bool value)
         {
-            levelWaypoint[x, y] = value;
+            _levelWaypoint[x, y] = value;
+            return;
+            for (int i = 0; i < _levelWaypoint.GetLength(0); i++)
+            {
+                for (int j = 0; j < _levelWaypoint.GetLength(1); j++)
+                {
+                    Debug.Log(i + " ve " + j + " : " + _levelWaypoint[i,j]);
+                }
+            }
         }
         public Matrix GetMatrix()
         {
-            return new Matrix(_gridSize.x, _gridSize.y, levelWaypoint);
+            return new Matrix(_gridSize.x, _gridSize.y, _levelWaypoint);
         }
-        public bool GetWaypoint(Point point) => levelWaypoint[point.x, point.y];
+        public bool GetWaypoint(Point point) => _levelWaypoint[point.x, point.y];
         private void LoadDatas()
         {
             _elementData = Resources.Load<ElementData>("ElementData");
@@ -47,6 +61,7 @@ namespace CarLotJam.GridModule
         }
         public void InitializeGrid()
         {
+            _grounds = new Ground[_gridSize.x, _gridSize.y];
             for (int y = 0; y < _gridSize.x; y++)
             {
                 for (int x = 0; x < _gridSize.y; x++)
@@ -54,7 +69,8 @@ namespace CarLotJam.GridModule
                     var worldPosition = grid.GetCellCenterWorld(new Vector3Int(x, y));
                     var obj = Instantiate(groundObject, worldPosition, Quaternion.identity, transform);
                     obj.name = x + "," + y;
-                    obj.GetComponent<Ground>().SetPoint(x,y);
+                    _grounds[x,y] = obj.GetComponent<Ground>();
+                    _grounds[x, y].SetPoint(x, y);
 
                     CreateRoadSide(x, y, obj);
                     CreateRoadCorner(x, y, obj);

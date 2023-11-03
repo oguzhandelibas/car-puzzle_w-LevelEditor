@@ -11,17 +11,20 @@ namespace CarLotJam.CarModule
     public class CarController : MonoBehaviour, IElement, IClickable
     {
         public CarType carType;
+        public CarAnimationController carAnimationController;
+        public Transform carTransform;
         [SerializeField] private CarData carData;
         [SerializeField] private GameObject outlineObject;
         [SerializeField] private GameObject carObject;
 
-
+        public SelectedColor selectedColor;
         public Point carPoint;
         public List<Point> _boardingPoints;
 
         public void InitializeElement(SelectedColor selectedColor, Point elementPoint)
         {
             //carObject.transform.position += transform.forward * 3f;
+            this.selectedColor = selectedColor;
             carObject.GetComponent<ColorSetter>().SetMeshMaterials(carData.ColorData.Colors[selectedColor]);
             carPoint = elementPoint;
         }
@@ -48,6 +51,11 @@ namespace CarLotJam.CarModule
         public Point OnClick()
         {
             return _boardingPoints[0];
+        }
+
+        public List<Point> PointsList()
+        {
+            return _boardingPoints;
         }
     }
 }

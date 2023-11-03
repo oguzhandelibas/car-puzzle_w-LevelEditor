@@ -48,9 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carType: 1
+  carAnimationController: {fileID: 6218044217986964523}
+  carTransform: {fileID: 3400036873795006249}
   carData: {fileID: 11400000, guid: a2a21be62c908364bb2141156bfdfc61, type: 2}
   outlineObject: {fileID: 1864008906705680043}
   carObject: {fileID: 5827668575795378012}
+  selectedColor: 0
   carPoint:
     x: 0
     y: 0
@@ -83,6 +86,37 @@ MonoBehaviour:
   carBody: {fileID: 6607408044382184069}
   leftDoor: {fileID: 4278400430508773665}
   rightDoor: {fileID: 166942037155692480}
+--- !u!1 &5749814023586583223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3400036873795006249}
+  m_Layer: 0
+  m_Name: CarTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3400036873795006249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5749814023586583223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.78, z: -0.718}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6605611997487508966}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8646086766111425672
 PrefabInstance:
   m_ObjectHideFlags: 0

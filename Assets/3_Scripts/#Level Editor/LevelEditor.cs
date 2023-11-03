@@ -325,7 +325,6 @@ namespace ODProjects.LevelEditor
                                     {
                                         case SelectedDirection.Forward:
                                             indexTemp = index + _currentLevelData.gridSize.y * i;
-                                            Debug.Log("amk" + indexTemp);
                                             if (_currentLevelData.ElementIsAvailable(indexTemp))
                                             {
                                                 indexes.Add(indexTemp);

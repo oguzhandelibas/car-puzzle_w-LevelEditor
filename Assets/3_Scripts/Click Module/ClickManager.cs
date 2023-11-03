@@ -15,12 +15,10 @@ namespace CarLotJam.ClickModule
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0)) // Sol týklama
+            if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-
-                
 
                 if (Physics.Raycast(ray, out hit))
                 {
@@ -44,14 +42,27 @@ namespace CarLotJam.ClickModule
                             }
                         }
                         
-                        if (_stickmanController) _stickmanController.IsHold = false;
-                        if (_carController) _carController.Release();
-                        
+
                         if (hit.transform.TryGetComponent(out CarController carController))
                         {
+                            if (_stickmanController)
+                            {
+                                if (carController.selectedColor == _stickmanController.selectedColor)
+                                {
+                                    _stickmanController.FindBestCarPosition(iClickable.PointsList(), carController);
+                                }
+                                else
+                                {
+                                    _stickmanController.IsHold = false;
+                                    _stickmanController.SetEmotion(SelectedEmotion.ANGRY);
+                                }
+                            }
                             _carController = carController;
                             _carController.Hold();
                         }
+
+                        if (_stickmanController) _stickmanController.IsHold = false;
+                        if (_carController) _carController.Release();
 
                         if (hit.transform.TryGetComponent(out StickmanController stickmanController))
                         {
@@ -59,11 +70,7 @@ namespace CarLotJam.ClickModule
                             _stickmanController.IsHold = true;
                         }
 
-                        
-
                         iClickable.OnClick();
-
-                        
                     }
                 }
             }
