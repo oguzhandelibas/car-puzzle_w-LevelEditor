@@ -18,6 +18,7 @@ namespace ODProjects.LevelEditor
         private ElementData _elementData;
 
         #endregion
+
         #region ENUMS
 
         private SelectedElement _selectedElement;
@@ -25,6 +26,7 @@ namespace ODProjects.LevelEditor
         private SelectedDirection _selectedDirection;
 
         #endregion
+
         #region VARIABLES
 
         private int _boxSize = 25;
@@ -131,12 +133,8 @@ namespace ODProjects.LevelEditor
 
             EditorGUILayout.EndScrollView(); // Scrollview'ý sonlandýr
 
-            
-
             GUI.color = Color.green;
             
-            
-
             if (GUILayout.Button("CREATE NEW LEVEL", GUILayout.Height(40)))
             {
                 _currentLevelData = ScriptableObject.CreateInstance<LevelData>();
@@ -163,6 +161,7 @@ namespace ODProjects.LevelEditor
                 _hasInitialize = true;
             }
         }
+        
         private void Content()
         {
             EditorGUILayout.Space();
@@ -206,6 +205,7 @@ namespace ODProjects.LevelEditor
             GUI.color = Color.white;
             EditorUtility.SetDirty(_currentLevelData);
         }
+
         private void LevelDropdown()
         {
             GUILayout.Label("Dropdown Example", EditorStyles.boldLabel);
@@ -219,6 +219,7 @@ namespace ODProjects.LevelEditor
                 _hasInitialize = false;
             }
         }
+        
         private void GridArea()
         {
             EditorGUILayout.BeginHorizontal();
@@ -256,6 +257,7 @@ namespace ODProjects.LevelEditor
             EditorGUILayout.Space();
 
         }
+
         private void CreateGrid()
         {
             if (_currentLevelData.gridSize.x < 1)
@@ -267,9 +269,6 @@ namespace ODProjects.LevelEditor
             float startX = (position.width - totalWidth) / 2;
             GUIContent content = new GUIContent("N/A");
 
-            // GRID CREATION
-            //int y = 0; y < _currentLevelData.gridSize.x; y++
-            //int y = _currentLevelData.gridSize.y - 1; y >= 0; y--
 
             for (int y = _currentLevelData.gridSize.y - 1; y >= 0; y--)
             {
@@ -281,118 +280,9 @@ namespace ODProjects.LevelEditor
 
                     if (index >= 0 && index < _currentLevelData.ArrayLength())
                     {
-                        GUI.color = _currentLevelData.GetColor(index);
-                        content = _currentLevelData.GetContent(index);
-                        content.text = x + ", " + y;
-                        if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
-                        {
-                            // TIKLANDIÐINDA GEREKLÝ KUTULARI BOYASIN
-                            // TIKLANDIÐINDA ÖNÜNÜN MÜSAÝT OLDUÐUNU BÝLSÝN
-
-                            bool hasNeighbour = true;
-                            for (int i = 1; i < _requiredSize; i++)
-                            {// ÞU AN NULL CHECK YOK
-                                
-                                switch (_selectedDirection)
-                                {
-                                    case SelectedDirection.Forward:
-                                        hasNeighbour = IsSameColumn(index, index + (_currentLevelData.gridSize.y * i));
-                                        break;
-                                    case SelectedDirection.Back:
-                                        hasNeighbour = IsSameColumn(index, index - (_currentLevelData.gridSize.y * i));
-                                        break;
-                                    case SelectedDirection.Left:
-                                        hasNeighbour = IsSameRow(index, index - i);
-                                        break;
-                                    case SelectedDirection.Right:
-                                        hasNeighbour = IsSameRow(index, index + i);
-                                        break;
-                                }
-                            }
-                            if (!hasNeighbour) return;
-                            
-                            if (_selectedColor == SelectedColor.Null || _selectedElement == SelectedElement.Null)
-                            {
-                                content.text = "N/A";
-                            }
-                            else
-                            {
-                                List<int> indexes = new List<int>();
-                                int indexTemp;
-                                for (int i = 0; i < _requiredSize; i++)
-                                {
-                                    switch (_selectedDirection)
-                                    {
-                                        case SelectedDirection.Forward:
-                                            indexTemp = index + _currentLevelData.gridSize.y * i;
-                                            if (_currentLevelData.ElementIsAvailable(indexTemp))
-                                            {
-                                                indexes.Add(indexTemp);
-                                            }
-                                            else
-                                            {
-                                                indexes.Clear();
-                                            }
-                                            break;
-                                        case SelectedDirection.Back:
-                                            indexTemp = index - _currentLevelData.gridSize.y * i;
-                                            if (_currentLevelData.ElementIsAvailable(indexTemp))
-                                            {
-                                                indexes.Add(indexTemp);
-                                            }
-                                            else
-                                            {
-                                                indexes.Clear();
-                                            }
-                                            break;
-                                        case SelectedDirection.Left:
-                                            indexTemp = index - i;
-                                            if (_currentLevelData.ElementIsAvailable(indexTemp))
-                                            {
-                                                indexes.Add(indexTemp);
-                                            }
-                                            else
-                                            {
-                                                indexes.Clear();
-                                            }
-                                            break;
-                                        case SelectedDirection.Right:
-                                            indexTemp = index + i;
-                                            if (_currentLevelData.ElementIsAvailable(indexTemp))
-                                            {
-                                                indexes.Add(indexTemp);
-                                            }
-                                            else
-                                            {
-                                                indexes.Clear();
-                                            }
-                                            break;
-                                    }
-                                }
-
-                                if (indexes.Count > 0)
-                                {
-                                    _currentLevelData.SetButtonColor(index, _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
-                                    for (int i = 1; i < indexes.Count; i++)
-                                    {
-                                        _currentLevelData.SetFakeButtonColor(indexes[i], _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
-                                    }
-                                }
-
-                                _currentLevelData.SetMatrix();
-                                _currentLevelData.Elements[index].SelectedDirection = _selectedDirection;
-                                string temp = _selectedElement.ToString();
-                                string temp2 = _selectedDirection.ToString();
-                                content.text = temp[0].ToString() + temp[1].ToString() + "_" + temp2[0];
-                                //content.image = _elementData.Elements[_selectedElement];
-                            }
-
-                            
-                            
-                        }
+                        GridButton(content, index);
                     }
                 }
-
 
                 GUI.color = Color.white;
                 GUILayout.Space((position.width - totalWidth) / 2);
@@ -400,6 +290,85 @@ namespace ODProjects.LevelEditor
             }
         }
 
+        private void GridButton(GUIContent content, int index)
+        {
+            GUI.color = _currentLevelData.GetColor(index);
+            content = _currentLevelData.GetContent(index);
+            //content.text = x + ", " + y;
+            if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
+            {
+                bool hasNeighbour = true;
+                for (int i = 1; i < _requiredSize; i++)
+                {
+                    switch (_selectedDirection)
+                    {
+                        case SelectedDirection.Forward:
+                            hasNeighbour = IsSameColumn(index, index + (_currentLevelData.gridSize.y * i));
+                            break;
+                        case SelectedDirection.Back:
+                            hasNeighbour = IsSameColumn(index, index - (_currentLevelData.gridSize.y * i));
+                            break;
+                        case SelectedDirection.Left:
+                            hasNeighbour = IsSameRow(index, index - i);
+                            break;
+                        case SelectedDirection.Right:
+                            hasNeighbour = IsSameRow(index, index + i);
+                            break;
+                    }
+                }
+                if (!hasNeighbour) return;
+
+                if (_selectedColor == SelectedColor.Null || _selectedElement == SelectedElement.Null)
+                {
+                    content.text = "N/A";
+                }
+                else
+                {
+                    List<int> indexes = new List<int>();
+                    int indexTemp;
+                    for (int i = 0; i < _requiredSize; i++)
+                    {
+                        switch (_selectedDirection)
+                        {
+                            case SelectedDirection.Forward:
+                                indexTemp = index + _currentLevelData.gridSize.y * i;
+                                if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
+                                else indexes.Clear();
+                                break;
+                            case SelectedDirection.Back:
+                                indexTemp = index - _currentLevelData.gridSize.y * i;
+                                if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
+                                else indexes.Clear();
+                                break;
+                            case SelectedDirection.Left:
+                                indexTemp = index - i;
+                                if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
+                                else indexes.Clear();
+                                break;
+                            case SelectedDirection.Right:
+                                indexTemp = index + i;
+                                if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
+                                else indexes.Clear();
+                                break;
+                        }
+                    }
+                    if (indexes.Count > 0)
+                    {
+                        _currentLevelData.SetButtonColor(index, _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
+                        for (int i = 1; i < indexes.Count; i++)
+                        {
+                            _currentLevelData.SetFakeButtonColor(indexes[i], _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
+                        }
+                    }
+                    _currentLevelData.SetMatrix();
+                    _currentLevelData.Elements[index].SelectedDirection = _selectedDirection;
+                    string temp = _selectedElement.ToString();
+                    string temp2 = _selectedDirection.ToString();
+                    content.text = temp[0].ToString() + temp[1].ToString() + "_" + temp2[0];
+                    //content.image = _elementData.Elements[_selectedElement];
+                }
+            }
+        }
 
         private bool IsSameRow(int currentIndex, int targetIndex)
         {
@@ -414,21 +383,7 @@ namespace ODProjects.LevelEditor
             if ((targetIndex >= _currentLevelData.gridSize.x * _currentLevelData.gridSize.y) || targetIndex < 0) return false;
             int currentColumn = currentIndex % _currentLevelData.gridSize.x;
             int targetColumn = targetIndex % _currentLevelData.gridSize.x;
-            Debug.Log("Zbab: " + currentIndex + " ve: " + targetIndex + " oldu sana: " + (currentColumn == targetColumn));
             return currentColumn == targetColumn;
-        }
-
-        private Texture2D MakeTex(int width, int height, Color color)
-        {
-            Color[] pix = new Color[width * height];
-            for (int i = 0; i < pix.Length; i++)
-            {
-                pix[i] = color;
-            }
-            Texture2D result = new Texture2D(width, height);
-            result.SetPixels(pix);
-            result.Apply();
-            return result;
         }
 
         #endregion

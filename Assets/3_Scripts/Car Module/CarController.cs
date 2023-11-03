@@ -10,6 +10,8 @@ namespace CarLotJam.CarModule
 {
     public class CarController : MonoBehaviour, IElement, IClickable
     {
+        #region FIELDS
+
         public CarType carType;
         public CarAnimationController carAnimationController;
         public Transform carTransform;
@@ -21,6 +23,10 @@ namespace CarLotJam.CarModule
         public Point carPoint;
         public List<Point> _boardingPoints;
 
+        #endregion
+
+        #region INITIALIZATION
+
         public void InitializeElement(SelectedColor selectedColor, Point elementPoint)
         {
             //carObject.transform.position += transform.forward * 3f;
@@ -28,6 +34,10 @@ namespace CarLotJam.CarModule
             carObject.GetComponent<ColorSetter>().SetMeshMaterials(carData.ColorData.Colors[selectedColor]);
             carPoint = elementPoint;
         }
+
+        #endregion
+
+        #region CAR FUNCTIONS
 
         public void Hold()
         {
@@ -42,20 +52,10 @@ namespace CarLotJam.CarModule
         }
 
         public void Release() => outlineObject.layer = LayerMask.NameToLayer("NoOutline");
+        public void SetBoardingPoints(List<Point> boardingPoints) => _boardingPoints = boardingPoints;
+        public Point OnClick() => _boardingPoints[0];
+        public List<Point> PointsList() => _boardingPoints;
 
-        public void SetBoardingPoints(List<Point> boardingPoints)
-        {
-            _boardingPoints = boardingPoints;
-        }
-
-        public Point OnClick()
-        {
-            return _boardingPoints[0];
-        }
-
-        public List<Point> PointsList()
-        {
-            return _boardingPoints;
-        }
+        #endregion
     }
 }

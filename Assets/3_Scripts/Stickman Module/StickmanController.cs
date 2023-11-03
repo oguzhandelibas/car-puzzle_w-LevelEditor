@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using CarLotJam.CarModule;
 using CarLotJam.ClickModule;
@@ -7,12 +6,13 @@ using ODProjects.LevelEditor;
 using CarLotJam.Pathfind;
 using DG.Tweening;
 using UnityEngine;
-using Random = System.Random;
 
 namespace CarLotJam.StickmanModule
 {
     public class StickmanController : MonoBehaviour, IClickable, IElement
     {
+        #region FIELDS
+
         [SerializeField] private StickmanAnimationController _stickmanAnimationController;
         [SerializeField] private EmotionController emotionController;
         [SerializeField] private GameObject outlineObject;
@@ -27,8 +27,17 @@ namespace CarLotJam.StickmanModule
         private CarController _carController;
         private CarAnimType _carAnimType;
 
+        #endregion
+
+        #region VARIABLES
+
         private bool _onHold;
         private bool _onMove;
+
+        #endregion
+
+        #region PROPERTIES
+
         public bool IsHold
         {
             get { return _onHold; }
@@ -36,14 +45,26 @@ namespace CarLotJam.StickmanModule
             {
                 if (!_onMove)
                 {
+                    print("selam " + value);
                     if (value) Hold();
                     else Release();
                     _onHold = value;
                 }
-                
+
             }
         }
-        
+
+        #endregion
+
+        #region STICKMAN FUNCTIONS
+
+        public void InitializeElement(SelectedColor selectedColor, Point elementPoint)
+        {
+            _stickmanPoint = elementPoint;
+            this.selectedColor = selectedColor;
+            colorSetter.SetMeshMaterials(colorData.Colors[selectedColor]);
+        }
+
         private void Hold()
         {
             outlineObject.layer = LayerMask.NameToLayer("Outline");
@@ -54,18 +75,10 @@ namespace CarLotJam.StickmanModule
             outlineObject.layer = LayerMask.NameToLayer("NoOutline");
             _stickmanAnimationController.PlayAnim(StickmanAnimTypes.IDLE, 2);
         }
-        public void SetEmotion(SelectedEmotion selectedEmotion) => emotionController.ShowEmotion(selectedEmotion);
 
-        public void InitializeElement(SelectedColor selectedColor, Point elementPoint)
-        {
-            _stickmanPoint = elementPoint;
-            this.selectedColor = selectedColor;
-            colorSetter.SetMeshMaterials(colorData.Colors[selectedColor]);
-        }
         public Point OnClick() => _stickmanPoint;
         public List<Point> PointsList() => new List<Point>(1) { _stickmanPoint };
 
-        public bool IsGround() => false;
         public void SetStickmanPoint(Point stickmanPoint) => _stickmanPoint = stickmanPoint;
         public bool SetTargetPoint(Point targetPoint)
         {
@@ -74,13 +87,40 @@ namespace CarLotJam.StickmanModule
             return FindPath();
         }
 
+
+        private void SetNextTarget()
+        {
+            currentTargetIndex++;
+            if (currentTargetIndex >= targetPath.Count)
+            {
+                if (_carController)
+                {
+                    _carController.carAnimationController.PlayAnim(_carAnimType);
+                    GetInCar(_carController.carTransform);
+                    GridController.Instance.UpdateMatrix(_stickmanPoint.x, _stickmanPoint.y, true);
+                }
+                else
+                {
+                    GridController.Instance.UpdateMatrix(_stickmanPoint.x, _stickmanPoint.y, false);
+                }
+                targetPath.Clear();
+                currentTargetIndex = 0;
+                _onMove = false;
+                IsHold = false;
+            }
+        }
+
+        #endregion
+
+        #region PATHFINDING
+
         public void FindBestCarPosition(List<Point> points, CarController carController)
         {
             List<Point> bestPath = new List<Point>();
             int bestPointIndex = 0;
             for (int i = 0; i < points.Count; i++)
             {
-                if(!GridController.Instance.GetWaypoint(points[i])) continue;
+                if (!GridController.Instance.GetWaypoint(points[i])) continue;
                 if (bestPath.Count == 0)
                 {
                     bestPointIndex = i;
@@ -155,32 +195,24 @@ namespace CarLotJam.StickmanModule
                 SetNextTarget();
             }
         }
-        private void SetNextTarget()
-        {
-            currentTargetIndex++;
-            if (currentTargetIndex >= targetPath.Count)
-            {
-                if (_carController)
-                {
-                    _carController.carAnimationController.PlayAnim(_carAnimType);
-                    GetInCar(_carController.carTransform);
-                    GridController.Instance.UpdateMatrix(_stickmanPoint.x, _stickmanPoint.y, true);
-                }
-                else
-                {
-                    GridController.Instance.UpdateMatrix(_stickmanPoint.x, _stickmanPoint.y, false);
-                }
-                targetPath.Clear();
-                currentTargetIndex = 0;
-                _onMove = false;
-                IsHold = false;
-            }
-        }
+
+        #endregion
+
+        #region CAR INTERACTIONS
 
         private void GetInCar(Transform carTransfrom)
         {
             transform.DOLocalMove(carTransfrom.position, 1.5f);
             transform.DOScale(new Vector3(0.33f, 0.3f, 0.3f), 1.0f);
         }
+
+        #endregion
+
+        #region EMOTION CONTROL
+
+        public void SetEmotion(SelectedEmotion selectedEmotion) => emotionController.ShowEmotion(selectedEmotion);
+
+
+        #endregion
     }
 }

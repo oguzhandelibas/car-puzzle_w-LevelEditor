@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using CarLotJam.ClickModule;
 using CarLotJam.GameManagementModule;
 using CarLotJam.Pathfind;
@@ -17,7 +16,6 @@ namespace CarLotJam.GridModule
         public void SetPoint(int x, int y) => point = new Point(x, y);
         public Point OnClick() => point;
         public List<Point> PointsList() => new List<Point>(1) { point };
-
         public void SetColorAnim(SelectedColor selectedColor)
         {
             Material groundMaterial = groundRenderer.materials[0];
