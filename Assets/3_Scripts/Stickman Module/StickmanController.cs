@@ -93,27 +93,34 @@ namespace CarLotJam.StickmanModule
         {
             List<Point> bestPath = new List<Point>();
             int bestPointIndex = 0;
-            for (int i = 0; i < points.Count; i++)
+
+            if (points[0] == _stickmanPoint) bestPath.Add(points[0]);
+            else if(points[1] == _stickmanPoint) bestPath.Add(points[1]);
+            else
             {
-                if (!GridController.Instance.IsWaypointAvailable(points[i]))
+                for (int i = 0; i < points.Count; i++)
                 {
-                    continue;
-                }
-                if (bestPath.Count == 0)
-                {
-                    bestPointIndex = i;
-                    bestPath = Pathfinding.FindPath(GridController.Instance.GetMatrix(), _stickmanPoint, points[i]);
-                }
-                else
-                {
-                    List<Point> newPath = Pathfinding.FindPath(GridController.Instance.GetMatrix(), _stickmanPoint, points[i]);
-                    if (newPath.Count > 0 && newPath.Count < bestPath.Count)
+                    if (!GridController.Instance.IsWaypointAvailable(points[i]))
+                    {
+                        continue;
+                    }
+                    if (bestPath.Count == 0)
                     {
                         bestPointIndex = i;
-                        bestPath = newPath;
+                        bestPath = Pathfinding.FindPath(GridController.Instance.GetMatrix(), _stickmanPoint, points[i]);
+                    }
+                    else
+                    {
+                        List<Point> newPath = Pathfinding.FindPath(GridController.Instance.GetMatrix(), _stickmanPoint, points[i]);
+                        if (newPath.Count > 0 && newPath.Count < bestPath.Count)
+                        {
+                            bestPointIndex = i;
+                            bestPath = newPath;
+                        }
                     }
                 }
             }
+            
 
             targetPath = bestPath;
 

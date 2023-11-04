@@ -202,7 +202,6 @@ namespace CarLotJam.CarModule
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4,0,4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
             }
-            print(hasElement);
             return hasElement;
         }
         private bool IsBackAvailable()
