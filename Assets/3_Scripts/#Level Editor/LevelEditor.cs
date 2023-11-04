@@ -186,6 +186,7 @@ namespace ODProjects.LevelEditor
             _selectedDirection = (SelectedDirection)EditorGUILayout.EnumPopup("Selected Direction", _selectedDirection);
             _selectedColor = (SelectedColor)EditorGUILayout.EnumPopup("Selected Color", _selectedColor);
 
+            if (_selectedElement == SelectedElement.Null) _selectedColor = SelectedColor.Null;
             EditorGUILayout.Space();
 
             GridArea();
@@ -268,7 +269,7 @@ namespace ODProjects.LevelEditor
             float totalWidth = _currentLevelData.gridSize.x * _boxSize;
             float startX = (position.width - totalWidth) / 2;
             GUIContent content = new GUIContent("N/A");
-
+            GUI.color = Color.white;
 
             for (int y = _currentLevelData.gridSize.y - 1; y >= 0; y--)
             {
@@ -294,7 +295,7 @@ namespace ODProjects.LevelEditor
         {
             GUI.color = _currentLevelData.GetColor(index);
             content = _currentLevelData.GetContent(index);
-            content.text = x + ", " + y;
+            //content.text = x + ", " + y;
 
             if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
             {
@@ -319,56 +320,63 @@ namespace ODProjects.LevelEditor
                 }
                 if (!hasNeighbour) return;
 
-                if (_selectedColor == SelectedColor.Null || _selectedElement == SelectedElement.Null)
+                if (_selectedColor == SelectedColor.Null || _selectedElement == SelectedElement.Null) // ERASE
                 {
                     content.text = "N/A";
+                    _currentLevelData.SetButtonColor(index, SelectedColor.Null, _colorData.Colors[SelectedColor.Null].color, content, SelectedElement.Null);
                 }
-                else
+                else // ADD
                 {
-                    List<int> indexes = new List<int>();
-                    int indexTemp;
-                    for (int i = 0; i < _requiredSize; i++)
-                    {
-                        switch (_selectedDirection)
-                        {
-                            case SelectedDirection.Forward:
-                                indexTemp = index + _currentLevelData.gridSize.y * i;
-                                if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
-                                else indexes.Clear();
-                                break;
-                            case SelectedDirection.Back:
-                                indexTemp = index - _currentLevelData.gridSize.y * i;
-                                if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
-                                else indexes.Clear();
-                                break;
-                            case SelectedDirection.Left:
-                                indexTemp = index - i;
-                                if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
-                                else indexes.Clear();
-                                break;
-                            case SelectedDirection.Right:
-                                indexTemp = index + i;
-                                if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
-                                else indexes.Clear();
-                                break;
-                        }
-                    }
-                    if (indexes.Count > 0)
-                    {
-                        _currentLevelData.SetButtonColor(index, _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
-                        for (int i = 1; i < indexes.Count; i++)
-                        {
-                            _currentLevelData.SetFakeButtonColor(indexes[i], _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
-                        }
-                    }
-                    _currentLevelData.SetMatrix();
-                    _currentLevelData.Elements[index].SelectedDirection = _selectedDirection;
-                    string temp = _selectedElement.ToString();
-                    string temp2 = _selectedDirection.ToString();
-                    content.text = temp[0].ToString() + temp[1].ToString() + "_" + temp2[0];
+                    ChangeButtonState(content, index);
+                    
                     //content.image = _elementData.Elements[_selectedElement];
                 }
             }
+        }
+
+        private void ChangeButtonState(GUIContent content, int index)
+        {
+            List<int> indexes = new List<int>();
+            int indexTemp;
+            for (int i = 0; i < _requiredSize; i++)
+            {
+                switch (_selectedDirection)
+                {
+                    case SelectedDirection.Forward:
+                        indexTemp = index + _currentLevelData.gridSize.y * i;
+                        if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
+                        else indexes.Clear();
+                        break;
+                    case SelectedDirection.Back:
+                        indexTemp = index - _currentLevelData.gridSize.y * i;
+                        if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
+                        else indexes.Clear();
+                        break;
+                    case SelectedDirection.Left:
+                        indexTemp = index - i;
+                        if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
+                        else indexes.Clear();
+                        break;
+                    case SelectedDirection.Right:
+                        indexTemp = index + i;
+                        if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
+                        else indexes.Clear();
+                        break;
+                }
+            }
+            if (indexes.Count > 0)
+            {
+                _currentLevelData.SetButtonColor(index, _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
+                for (int i = 1; i < indexes.Count; i++)
+                {
+                    _currentLevelData.SetFakeButtonColor(indexes[i], _selectedColor, _colorData.Colors[_selectedColor].color, content, _selectedElement);
+                }
+                string temp = _selectedElement.ToString();
+                string temp2 = _selectedDirection.ToString();
+                content.text = temp[0].ToString() + temp[1].ToString() + "_" + temp2[0];
+            }
+            _currentLevelData.SetMatrix();
+            _currentLevelData.Elements[index].SelectedDirection = _selectedDirection;
         }
 
         private bool IsSameRow(int currentIndex, int targetIndex)
