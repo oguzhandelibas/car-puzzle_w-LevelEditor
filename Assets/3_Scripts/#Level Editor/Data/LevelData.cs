@@ -118,9 +118,9 @@ namespace CarLotJam
         {
             int index = 0;
             waypoint = new bool[gridSize.x, gridSize.y];
-            for (int i = 0; i < gridSize.x; i++)
+            for (int i = 0; i < gridSize.y; i++)
             {
-                for (int j = 0; j < gridSize.y; j++)
+                for (int j = 0; j < gridSize.x; j++)
                 {
                     waypoint[j, i] = Elements[index].SelectedElement == SelectedElement.Null;
                     index++;

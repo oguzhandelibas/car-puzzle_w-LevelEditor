@@ -38,9 +38,9 @@ namespace CarLotJam.GridModule
         public void InitializeGrid()
         {
             _grounds = new Ground[_gridSize.x, _gridSize.y];
-            for (int y = 0; y < _gridSize.x; y++)
+            for (int x = 0; x < _gridSize.x; x++)
             {
-                for (int x = 0; x < _gridSize.y; x++)
+                for (int y = 0; y < _gridSize.y; y++)
                 {
                     var worldPosition = grid.GetCellCenterWorld(new Vector3Int(x, y));
                     var obj = Instantiate(groundObject, worldPosition, Quaternion.identity, transform);
@@ -184,11 +184,11 @@ namespace CarLotJam.GridModule
         }
         private void CreateRoadSide(int x, int y, GameObject obj)
         {
-            if (x != 0 && x != _gridSize.x - 1 && y == 0) // Alt kenar
+            if (x != 0 && x != _gridSize.y - 1 && y == 0) // Alt kenar
             {
                 CreateRoad(roadData.road_default, obj, Vector3.back * 4f, Quaternion.Euler(0, 90, 0));
             }
-            else if (x != 0 && x != _gridSize.x - 1 && y == _gridSize.x - 1) // Üst kenar
+            else if (x != 0 && x != _gridSize.y - 1 && y == _gridSize.y - 1) // Üst kenar
             {
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));
             }
@@ -196,7 +196,7 @@ namespace CarLotJam.GridModule
             {
                 CreateRoad(roadData.road_default, obj, Vector3.left * 4f, Quaternion.Euler(0, 0, 0));
             }
-            else if (y != 0 && y != _gridSize.y - 1 && x == _gridSize.y - 1) // Sað kenar
+            else if (y != 0 && y != _gridSize.y - 1 && x == _gridSize.x - 1) // Sað kenar
             {
                 CreateRoad(roadData.road_default, obj, Vector3.right * 4f, Quaternion.Euler(0, 0, 0));
             }
@@ -213,19 +213,19 @@ namespace CarLotJam.GridModule
                 CreateRoad(roadData.road_default, obj, Vector3.back * 4f, Quaternion.Euler(0, 90, 0));
                 CreateRoad(roadData.road_corner, obj, Vector3.back * 4f + Vector3.left * 4f, Quaternion.Euler(0, 270, 0));
             }
-            else if (y == 0 && x == _gridSize.y - 1) // (0,1) sað ve alt
+            else if (y == 0 && x == _gridSize.x - 1) // (0,1) sað ve alt
             {
                 CreateRoad(roadData.road_default, obj, Vector3.right * 4f, Quaternion.Euler(0, 0, 0));
                 CreateRoad(roadData.road_default, obj, Vector3.back * 4f, Quaternion.Euler(0, 90, 0));
                 CreateRoad(roadData.road_corner, obj, Vector3.back * 4f + Vector3.right * 4f, Quaternion.Euler(0, 180, 0));
             }
-            else if (y == _gridSize.x - 1 && x == 0) // (1,0) sol ve üst
+            else if (y == _gridSize.y - 1 && x == 0) // (1,0) sol ve üst
             {
                 CreateRoad(roadData.road_default, obj, Vector3.left * 4f, Quaternion.Euler(0, 0, 0));
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));
                 CreateRoad(roadData.road_triple, obj, Vector3.forward * 4f + Vector3.left * 4f, Quaternion.Euler(0, 360, 0));
             }
-            else if (y == _gridSize.x - 1 && x == _gridSize.y - 1) // (1,1) sað ve üst
+            else if (y == _gridSize.y - 1 && x == _gridSize.x - 1) // (1,1) sað ve üst
             {
                 CreateRoad(roadData.road_default, obj, Vector3.right * 4f, Quaternion.Euler(0, 0, 0));
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));

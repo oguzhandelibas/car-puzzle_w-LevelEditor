@@ -281,7 +281,7 @@ namespace ODProjects.LevelEditor
                     
                     if (index >= 0 && index < _currentLevelData.ArrayLength())
                     {
-                        GridButton(content, index, x,y);
+                        GridButton(content, index, x, y);
                     }
                 }
 
@@ -296,6 +296,7 @@ namespace ODProjects.LevelEditor
             GUI.color = _currentLevelData.GetColor(index);
             content = _currentLevelData.GetContent(index);
             //content.text = x + ", " + y;
+            content.text = index.ToString();
 
             if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
             {
@@ -305,10 +306,10 @@ namespace ODProjects.LevelEditor
                     switch (_selectedDirection)
                     {
                         case SelectedDirection.Forward:
-                            hasNeighbour = IsSameColumn(index, index + (_currentLevelData.gridSize.y * i));
+                            hasNeighbour = IsSameColumn(index, index + (_currentLevelData.gridSize.x * i));
                             break;
                         case SelectedDirection.Back:
-                            hasNeighbour = IsSameColumn(index, index - (_currentLevelData.gridSize.y * i));
+                            hasNeighbour = IsSameColumn(index, index - (_currentLevelData.gridSize.x * i));
                             break;
                         case SelectedDirection.Left:
                             hasNeighbour = IsSameRow(index, index - i);
@@ -343,12 +344,12 @@ namespace ODProjects.LevelEditor
                 switch (_selectedDirection)
                 {
                     case SelectedDirection.Forward:
-                        indexTemp = index + _currentLevelData.gridSize.y * i;
+                        indexTemp = index + _currentLevelData.gridSize.x * i;
                         if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
                         else indexes.Clear();
                         break;
                     case SelectedDirection.Back:
-                        indexTemp = index - _currentLevelData.gridSize.y * i;
+                        indexTemp = index - _currentLevelData.gridSize.x * i;
                         if (_currentLevelData.ElementIsAvailable(indexTemp)) indexes.Add(indexTemp);
                         else indexes.Clear();
                         break;
@@ -389,9 +390,14 @@ namespace ODProjects.LevelEditor
 
         private bool IsSameColumn(int currentIndex, int targetIndex)
         {
-            if ((targetIndex >= _currentLevelData.gridSize.x * _currentLevelData.gridSize.y) || targetIndex < 0) return false;
-            int currentColumn = currentIndex % _currentLevelData.gridSize.x;
-            int targetColumn = targetIndex % _currentLevelData.gridSize.x;
+            if (currentIndex < 0 || targetIndex < 0) return false;
+            if (currentIndex >= _currentLevelData.ArrayLength() || targetIndex >= _currentLevelData.ArrayLength()) return false;
+
+            int columns = _currentLevelData.gridSize.x;
+            int currentColumn = currentIndex % columns;
+            int targetColumn = targetIndex % columns;
+            Debug.Log("Current Index: " + currentIndex + " Target Index: " + targetIndex + "Is Same Column: " +
+                      (currentColumn == targetColumn));
             return currentColumn == targetColumn;
         }
 
