@@ -52,7 +52,7 @@ namespace CarLotJam
         public bool[,] waypoint;
 
         #region GET LEVEL DATA
-
+        public SelectedDirection GetSelectedDirection(int index) => Elements[index].SelectedDirection;
         public SelectedColor GetSelectedColor(int index) => Elements[index].SelectedColor;
 
         public SelectedElement GetSelectedElement(int index)

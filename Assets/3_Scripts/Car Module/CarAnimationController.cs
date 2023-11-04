@@ -21,6 +21,19 @@ namespace CarLotJam.CarModule
             PlayAnim(CarAnimType.RIGHT_DOOR_CLOSING);
         }*/
 
+        public void FindNearestDoor(Vector3 stickmanPos)
+        {
+            float distance = Vector3.Distance(leftDoor.position, stickmanPos);
+            if(Vector3.Distance(rightDoor.position, stickmanPos) < distance)
+            {
+                PlayAnim(CarAnimType.RIGHT_DOOR_OPENING);
+            }
+            else
+            {
+                PlayAnim(CarAnimType.LEFT_DOOR_OPENING);
+            }
+        }
+
         public void PlayAnim(CarAnimType carAnimType)
         {
             switch (carAnimType)

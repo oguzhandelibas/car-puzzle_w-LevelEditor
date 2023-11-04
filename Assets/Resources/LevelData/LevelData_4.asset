@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 455b08186d5470946883ccffc27b754f, type: 3}
-  m_Name: LevelData 1
+  m_Name: LevelData_4
   m_EditorClassIdentifier: 
   gridSize: {x: 5, y: 5}
   _hasPath: 1
@@ -24,24 +24,24 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 5
-    SelectedDirection: 0
-    SelectedColor: 5
-    hasElement: 1
-    GuiContent:
-      m_Text: 1, 0
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 0, b: 0.6170216, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
     hasElement: 0
     GuiContent:
-      m_Text: 2, 0
+      m_Text: 1, 0
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
+  - SelectedElement: 1
+    SelectedDirection: 2
+    SelectedColor: 1
+    hasElement: 1
+    GuiContent:
+      m_Text: 2, 0
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
@@ -60,51 +60,51 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: 0, 1
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 1
+  - SelectedElement: 2
     SelectedDirection: 3
     SelectedColor: 1
     hasElement: 1
     GuiContent:
-      m_Text: 1, 1
+      m_Text: 0, 1
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
   - SelectedElement: 2
     SelectedDirection: 0
-    SelectedColor: 6
+    SelectedColor: 1
     hasElement: 0
+    GuiContent:
+      m_Text: 1, 1
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
+  - SelectedElement: 1
+    SelectedDirection: 2
+    SelectedColor: 1
+    hasElement: 1
     GuiContent:
       m_Text: 2, 1
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 0.9921568, g: 0.7727113, b: 0.1411764, a: 1}
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
   - SelectedElement: 2
-    SelectedDirection: 2
-    SelectedColor: 6
+    SelectedDirection: 3
+    SelectedColor: 1
     hasElement: 1
     GuiContent:
       m_Text: 3, 1
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 0.9921568, g: 0.7727113, b: 0.1411764, a: 1}
-  - SelectedElement: 5
-    SelectedDirection: 2
-    SelectedColor: 6
-    hasElement: 1
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
+  - SelectedElement: 2
+    SelectedDirection: 0
+    SelectedColor: 1
+    hasElement: 0
     GuiContent:
       m_Text: 4, 1
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 0.9921568, g: 0.7727113, b: 0.1411764, a: 1}
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
@@ -114,33 +114,33 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 2
-    SelectedDirection: 0
-    SelectedColor: 5
-    hasElement: 1
-    GuiContent:
-      m_Text: 1, 2
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 0, b: 0.6170216, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
     hasElement: 0
     GuiContent:
-      m_Text: 2, 2
+      m_Text: 1, 2
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 1
-    SelectedDirection: 3
-    SelectedColor: 5
+    SelectedDirection: 2
+    SelectedColor: 1
     hasElement: 1
+    GuiContent:
+      m_Text: 2, 2
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
+  - SelectedElement: 0
+    SelectedDirection: 0
+    SelectedColor: 0
+    hasElement: 0
     GuiContent:
       m_Text: 3, 2
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 1, g: 0, b: 0.6170216, a: 1}
+    Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
@@ -150,33 +150,33 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
+  - SelectedElement: 2
     SelectedDirection: 0
-    SelectedColor: 0
+    SelectedColor: 1
     hasElement: 0
     GuiContent:
       m_Text: 0, 3
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
   - SelectedElement: 2
-    SelectedDirection: 0
-    SelectedColor: 5
-    hasElement: 0
+    SelectedDirection: 2
+    SelectedColor: 1
+    hasElement: 1
     GuiContent:
       m_Text: 1, 3
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 1, g: 0, b: 0.6170216, a: 1}
-  - SelectedElement: 2
-    SelectedDirection: 3
-    SelectedColor: 1
-    hasElement: 1
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
+  - SelectedElement: 0
+    SelectedDirection: 0
+    SelectedColor: 0
+    hasElement: 0
     GuiContent:
       m_Text: 2, 3
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
+    Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 2
     SelectedDirection: 0
     SelectedColor: 1
@@ -186,15 +186,15 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
+  - SelectedElement: 2
+    SelectedDirection: 2
+    SelectedColor: 1
+    hasElement: 1
     GuiContent:
       m_Text: 4, 3
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
@@ -214,14 +214,14 @@ MonoBehaviour:
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 1
-    SelectedDirection: 3
-    SelectedColor: 6
+    SelectedDirection: 2
+    SelectedColor: 1
     hasElement: 1
     GuiContent:
       m_Text: 2, 4
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 0.9921568, g: 0.7727113, b: 0.1411764, a: 1}
+    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0

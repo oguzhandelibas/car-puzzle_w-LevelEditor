@@ -53,11 +53,13 @@ MonoBehaviour:
   carData: {fileID: 11400000, guid: a2a21be62c908364bb2141156bfdfc61, type: 2}
   outlineObject: {fileID: 1864008906705680043}
   carObject: {fileID: 5827668575795378012}
+  selectedDirection: 0
   selectedColor: 0
   carPoint:
     x: 0
     y: 0
   _boardingPoints: []
+  moveSpeed: 15
 --- !u!65 &4557629137693077968
 BoxCollider:
   m_ObjectHideFlags: 0

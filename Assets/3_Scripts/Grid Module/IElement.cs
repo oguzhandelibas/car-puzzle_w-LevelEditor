@@ -5,6 +5,6 @@ namespace CarLotJam.GridModule
 {
     public interface IElement
     {
-        public void InitializeElement(SelectedColor selectedColor, Point elementPoint);
+        public void InitializeElement(SelectedDirection selectedDirection, SelectedColor selectedColor, Point elementPoint);
     }
 }

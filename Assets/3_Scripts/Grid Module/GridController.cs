@@ -70,6 +70,7 @@ namespace CarLotJam.GridModule
 
         #region GRID
 
+        public Vector2Int GridSize() => _gridSize;
         public void SetGridController(LevelData levelData)
         {
             LoadDatas();
@@ -85,13 +86,17 @@ namespace CarLotJam.GridModule
             return worldPoint;
         }
 
-        private bool IsOnGrid(Point point) => (point.x >= 0 && point.x < _gridSize.x && point.y >= 0 && point.y < _gridSize.y);
+        public bool IsOnGrid(Point point) => (point.x >= 0 && point.x < _gridSize.x && point.y >= 0 && point.y < _gridSize.y);
 
+        public Vector3 GetLeftTopCorner() => GridToWorlPosition(new Point(0, _gridSize.y-1));
+        public Vector3 GetRightTopCorner() => GridToWorlPosition(new Point(_gridSize.x-1, _gridSize.y-1));
+        public Vector3 GetLeftBottomCorner() => GridToWorlPosition(new Point(0, 0));
+        public Vector3 GetRightBottomCorner() => GridToWorlPosition(new Point(_gridSize.x-1, 0));
         #endregion
 
         #region MATRIX
 
-        public bool GetWaypoint(Point point) => _levelWaypoint[point.x, point.y];
+        public bool IsWaypointAvailable(Point point) => _levelWaypoint[point.x, point.y];
         public void UpdateMatrix(int x, int y, bool value)
         {
             _levelWaypoint[x, y] = value;
@@ -123,7 +128,7 @@ namespace CarLotJam.GridModule
                 elementObj.transform.rotation = Quaternion.Euler(_levelData.Elements[index].GetDirection());
                 if (elementObj.TryGetComponent(out IElement IElement))
                 {
-                    IElement.InitializeElement(_levelData.GetSelectedColor(index), new Point(x, y));
+                    IElement.InitializeElement(_levelData.GetSelectedDirection(index), _levelData.GetSelectedColor(index), new Point(x, y));
                 }
 
                 if (elementObj.TryGetComponent(out StickmanController stickmanController))

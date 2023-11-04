@@ -1463,12 +1463,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b51c5785de9ea24ca917061ab418131, type: 3}
---- !u!4 &417307654 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1382249070247407241, guid: 5b51c5785de9ea24ca917061ab418131,
-    type: 3}
-  m_PrefabInstance: {fileID: 417307653}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &418797484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,6 +1674,12 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!4 &484100920 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3194964220031150446, guid: 5b51c5785de9ea24ca917061ab418131,
+    type: 3}
+  m_PrefabInstance: {fileID: 417307653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &507419378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,6 +2149,7 @@ Transform:
   - {fileID: 418797485}
   - {fileID: 1297010393}
   - {fileID: 81840255}
+  - {fileID: 942578569}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2476,6 +2477,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900855054}
   m_CullTransparentMesh: 0
+--- !u!1 &942578568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 942578569}
+  m_Layer: 0
+  m_Name: Car Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &942578569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942578568}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 627346789}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1106915932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,7 +2679,7 @@ Transform:
   - {fileID: 2074486588}
   - {fileID: 1521863984}
   - {fileID: 1899474717}
-  - {fileID: 417307654}
+  - {fileID: 484100920}
   - {fileID: 2107438569}
   - {fileID: 318505053}
   - {fileID: 1792915416}
@@ -2840,6 +2872,8 @@ MonoBehaviour:
   levelDatas:
   - {fileID: 11400000, guid: edf3a5e2cf4023248ad5070c89b5bcc2, type: 2}
   - {fileID: 11400000, guid: 37f86956846d0f04695d24b6d2626b5a, type: 2}
+  - {fileID: 11400000, guid: 5ec853be027a9674eb30727a8f2f0f5b, type: 2}
+  - {fileID: 11400000, guid: fe59e80b54c9c1844ad6010f5c342598, type: 2}
   colorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
 --- !u!1 &1353223464
 GameObject:

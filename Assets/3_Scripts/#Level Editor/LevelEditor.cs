@@ -277,10 +277,10 @@ namespace ODProjects.LevelEditor
                 for (int x = 0; x < _currentLevelData.gridSize.x; x++)
                 {
                     int index = y * _currentLevelData.gridSize.x + x;
-
+                    
                     if (index >= 0 && index < _currentLevelData.ArrayLength())
                     {
-                        GridButton(content, index);
+                        GridButton(content, index, x,y);
                     }
                 }
 
@@ -290,11 +290,12 @@ namespace ODProjects.LevelEditor
             }
         }
 
-        private void GridButton(GUIContent content, int index)
+        private void GridButton(GUIContent content, int index, int x, int y)
         {
             GUI.color = _currentLevelData.GetColor(index);
             content = _currentLevelData.GetContent(index);
-            //content.text = x + ", " + y;
+            content.text = x + ", " + y;
+
             if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
             {
                 bool hasNeighbour = true;

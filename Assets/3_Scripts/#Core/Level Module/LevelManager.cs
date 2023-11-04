@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using CarLotJam.GameManagementModule;
 using CarLotJam.UIModule;
 using UnityEngine;

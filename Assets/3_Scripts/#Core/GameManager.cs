@@ -55,7 +55,6 @@ namespace CarLotJam.GameManagementModule
 
         public LevelData GetCurrentLevelData()
         {
-            // MATRIX SÝSTEMÝ ENTEGRE EDÝLECEK
             return levelDatas[LevelSignals.Instance.onGetLevelCount()];
         }
 

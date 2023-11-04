@@ -68,7 +68,6 @@ namespace CarLotJam.ClickModule
                     else
                     {
                         ground.SetColorAnim(SelectedColor.Red);
-                        print("yok burada");
                         _stickmanController.IsHold = false;
                         _stickmanController.SetEmotion(SelectedEmotion.ANGRY);
                     }
@@ -97,7 +96,6 @@ namespace CarLotJam.ClickModule
                     }
                     else
                     {
-                        print("durum burda usta");
                         _stickmanController.IsHold = false;
                         _stickmanController.SetEmotion(SelectedEmotion.ANGRY);
                     }
