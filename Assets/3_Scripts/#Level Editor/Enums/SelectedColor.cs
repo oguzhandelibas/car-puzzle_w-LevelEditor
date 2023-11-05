@@ -9,5 +9,6 @@ namespace ODProjects.LevelEditor
         Orange,
         Purple,
         Yellow,
+        Gray
     }
 }

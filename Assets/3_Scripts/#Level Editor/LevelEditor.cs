@@ -159,6 +159,7 @@ namespace ODProjects.LevelEditor
                     _currentLevelData.SetArray(_currentLevelData.gridSize.x * _currentLevelData.gridSize.y);
                 }
                 _hasInitialize = true;
+                _selectedColor = SelectedColor.Red;
             }
         }
         
@@ -186,7 +187,15 @@ namespace ODProjects.LevelEditor
             _selectedDirection = (SelectedDirection)EditorGUILayout.EnumPopup("Selected Direction", _selectedDirection);
             _selectedColor = (SelectedColor)EditorGUILayout.EnumPopup("Selected Color", _selectedColor);
 
+            if ((_selectedElement != SelectedElement.BO_BarrierObstacle ||
+                 _selectedElement != SelectedElement.TC_TrafficConeObsctacle) &&
+                _selectedColor == SelectedColor.Gray) _selectedColor = SelectedColor.Red;
+
             if (_selectedElement == SelectedElement.Null) _selectedColor = SelectedColor.Null;
+            else if (_selectedElement == SelectedElement.BO_BarrierObstacle ||
+                     _selectedElement == SelectedElement.TC_TrafficConeObsctacle) _selectedColor = SelectedColor.Gray;
+
+            
             EditorGUILayout.Space();
 
             GridArea();
