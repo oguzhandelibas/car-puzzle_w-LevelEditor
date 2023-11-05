@@ -1090,7 +1090,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.47018406, y: -0.12542924, z: 0.06771072, w: 0.87098205}
+  m_LocalRotation: {x: 0.470184, y: -0.12542926, z: 0.06771073, w: 0.8709821}
   m_LocalPosition: {x: 10, y: 54, z: -34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2555,7 +2555,7 @@ GameObject:
   m_Layer: 0
   m_Name: Car Manager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2586,6 +2586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313a4bfb8d766cc4d9fe8a585e55699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitingCars: []
 --- !u!1 &1106915932
 GameObject:
   m_ObjectHideFlags: 0

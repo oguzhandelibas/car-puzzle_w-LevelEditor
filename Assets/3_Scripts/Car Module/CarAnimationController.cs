@@ -8,6 +8,7 @@ namespace CarLotJam.CarModule
 {
     public class CarAnimationController : MonoBehaviour
     {
+        [SerializeField] private CarController carController;
         [SerializeField] private Transform carBody;
         [SerializeField] private Transform leftDoor;
         [SerializeField] private Transform rightDoor;
@@ -24,64 +25,51 @@ namespace CarLotJam.CarModule
         public void FindNearestDoor(Vector3 stickmanPos)
         {
             float distance = Vector3.Distance(leftDoor.position, stickmanPos);
-            if(Vector3.Distance(rightDoor.position, stickmanPos) < distance) PlayAnim(CarAnimType.RIGHT_DOOR_OPENING);
-            else PlayAnim(CarAnimType.LEFT_DOOR_OPENING);
+            if(Vector3.Distance(rightDoor.position, stickmanPos) < distance) PlayAnim(CarAnimType.DOOR_OPENING, -1);
+            else PlayAnim(CarAnimType.DOOR_OPENING, 1);
         }
 
-        public void PlayAnim(CarAnimType carAnimType)
+        public void PlayAnim(CarAnimType carAnimType, int multiplier)
         {
             switch (carAnimType)
             {
-                case CarAnimType.LEFT_DOOR_OPENING:
-                    OpenLeftDoor();
+                case CarAnimType.DOOR_OPENING:
+                    OpenDoor(multiplier);
                     break;
-                case CarAnimType.LEFT_DOOR_CLOSING:
-                    CloseLeftDoor();
-                    break;
-                case CarAnimType.RIGHT_DOOR_OPENING:
-                    OpenRightDoor();
-                    break;
-                case CarAnimType.RIGHT_DOOR_CLOSING:
-                    CloseRightDoor();
+                case CarAnimType.DOOR_CLOSING:
+                    CloseDoor(multiplier);
                     break;
                 case CarAnimType.MOVE:
-                    MoveAcceleration();
+                    MoveAcceleration(multiplier);
                     break;
             }
         }
 
-        private void MoveAcceleration()
+        private void MoveAcceleration(int multiplier)
         {
-            carBody.DOLocalRotate(new Vector3(-15, 0, 0), 0.15f, RotateMode.Fast).SetEase(Ease.InBack)
-                .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.Fast)));
+            carBody.DOLocalRotate(new Vector3(multiplier * 10, 0, 0), 0.2f).SetEase(Ease.InOutBack)
+                .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), .4f).SetEase(Ease.InBounce)));
         }
-        private void OpenLeftDoor()
+        private void OpenDoor(int multiplier)
         {
-            leftDoor.DOLocalRotate(new Vector3(0, 110, 0), 0.5f, RotateMode.Fast).SetEase(Ease.OutBounce)
-                .OnComplete((() => CloseLeftDoor()));
+            Transform door = multiplier == 1 ? leftDoor : rightDoor;
+            door.DOLocalRotate(new Vector3(0, 110 * multiplier, 0), 0.5f).SetEase(Ease.OutBounce)
+                .OnComplete((() => CloseDoor(multiplier)));
         }
-        private async Task CloseLeftDoor()
+        private async Task CloseDoor(int multiplier)
         {
-            carBody.DOLocalRotate(new Vector3(0, 0, 12), 0.25f, RotateMode.Fast).OnComplete(
-                (() => carBody.DOLocalRotate(new Vector3(0, 0, -5), 0.25f, RotateMode.Fast)
-                    .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), 0.25f, RotateMode.Fast)))));
+            carBody.DOLocalRotate(new Vector3(0, 0, multiplier*12), 0.35f).OnComplete(
+                (() => carBody.DOLocalRotate(new Vector3(carBody.transform.rotation.x, 0, multiplier*5), 0.15f)
+                    .OnComplete(((delegate
+                    {
+                        carBody.DOLocalRotate(new Vector3(carBody.transform.rotation.x, 0, 0), 0.15f);
+                        carController.MoveFinish();
+                        MoveAcceleration(carController.GetMoveValue());
+                    })))));
 
+            Transform door = multiplier == 1 ? leftDoor : rightDoor;
             await Task.Delay(500);
-            leftDoor.DOLocalRotate(new Vector3(0, 0, 0), 0.30f, RotateMode.Fast);
-        }
-        private void OpenRightDoor()
-        {
-            rightDoor.DOLocalRotate(new Vector3(0, -110, 0), 0.5f, RotateMode.Fast).SetEase(Ease.OutBounce)
-                .OnComplete((() => CloseRightDoor()));
-        }
-        private async Task CloseRightDoor()
-        {
-            carBody.DOLocalRotate(new Vector3(0, 0, -12), 0.25f, RotateMode.Fast).OnComplete(
-                (() => carBody.DOLocalRotate(new Vector3(0, 0, 5), 0.25f, RotateMode.Fast)
-                    .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), 0.25f, RotateMode.Fast)))));
-
-            await Task.Delay(500);
-            rightDoor.DOLocalRotate(new Vector3(0, 0, 0), 0.20f, RotateMode.Fast);
+            door.DOLocalRotate(new Vector3(0, 0, 0), 0.30f);
         }
     }
 }

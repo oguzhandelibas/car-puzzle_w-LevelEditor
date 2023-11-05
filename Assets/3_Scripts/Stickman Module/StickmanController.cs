@@ -194,20 +194,22 @@ namespace CarLotJam.StickmanModule
             currentTargetIndex++;
             if (currentTargetIndex >= targetPath.Count)
             {
+                targetPath.Clear();
+                currentTargetIndex = 0;
+                _onMove = false;
+                IsHold = false;
                 if (_carController)
                 {
-                    _carController.carAnimationController.FindNearestDoor(transform.position);
                     GetInCar(_carController.carTransform);
+                    _carController.carAnimationController.FindNearestDoor(transform.position);
+                    
                     GridController.Instance.UpdateMatrix(_stickmanPoint.x, _stickmanPoint.y, true);
                 }
                 else
                 {
                     GridController.Instance.UpdateMatrix(_stickmanPoint.x, _stickmanPoint.y, false);
                 }
-                targetPath.Clear();
-                currentTargetIndex = 0;
-                _onMove = false;
-                IsHold = false;
+                
             }
         }
 
@@ -217,9 +219,10 @@ namespace CarLotJam.StickmanModule
 
         private void GetInCar(Transform carTransfrom)
         {
-            transform.DOLocalMove(carTransfrom.position, 1.5f).OnComplete((() => Destroy(gameObject)));
-            transform.DOScale(new Vector3(0.33f, 0.3f, 0.3f), 1.0f)
-                .OnComplete((() => _carController.MoveFinish()));
+            transform.DOLookAt(carTransfrom.position, 0.2f);
+            _stickmanAnimationController.PlayAnim(StickmanAnimTypes.ENTER_CAR);
+            transform.DOLocalMove(carTransfrom.position, 1f).OnComplete((() => Destroy(gameObject)));
+            transform.DOScale(new Vector3(0.33f, 0.3f, 0.3f), 1.0f);
         }
 
         #endregion

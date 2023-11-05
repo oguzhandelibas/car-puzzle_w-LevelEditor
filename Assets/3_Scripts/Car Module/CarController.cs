@@ -73,6 +73,7 @@ namespace CarLotJam.CarModule
         private List<Vector3> targetPath = new List<Vector3>();
         private int currentTargetIndex = 0;
         public float moveSpeed = 10;
+        private SelectedDirection targetDirection;
         private void Update()
         {
             if (targetPath.Count == 0)
@@ -137,6 +138,15 @@ namespace CarLotJam.CarModule
             return canMove;
         }
 
+        public int GetMoveValue()
+        {
+            int value = (selectedDirection == targetDirection) ? -1 : 1;
+            return (selectedDirection == SelectedDirection.Left && targetDirection == SelectedDirection.Right) ||
+                   (selectedDirection == SelectedDirection.Right && targetDirection == SelectedDirection.Left)
+                ? -value
+                : value;
+        }
+
         public bool MoveFinish(bool outside = false)
         {
             bool canMove = false;
@@ -185,10 +195,10 @@ namespace CarLotJam.CarModule
         {
             List<Point> wayPointList = new List<Point>();
             bool hasObstacle = false;
-
             for (int i = iTemp; i < maxTemp; i++)
             {
                 Point point = new Point(carPoint.x + (direction.x * i), carPoint.y + (direction.y * i));
+
                 if (GridController.Instance.IsOnGrid(point))
                 {
                     if (!hasObstacle && GridController.Instance.IsWaypointAvailable(point))
@@ -212,12 +222,14 @@ namespace CarLotJam.CarModule
             {
                 Vector3 pos = GridController.Instance.GridToWorlPosition(wayPointList[^1]) + moveDirection;
                 targetPath.Add(pos);
+
                 GameManager.Instance.IncreaseCompletedCarCount();
-                carAnimationController.PlayAnim(CarAnimType.MOVE);
+
                 UpdateMatrix();
             }
             return hasElement;
         }
+
         private bool IsForwardAvailable()
         {
             int value = 0;
@@ -227,7 +239,8 @@ namespace CarLotJam.CarModule
             if (moveAvailable)
             {
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
-                targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
+                targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 50));
+                targetDirection = SelectedDirection.Forward;
             }
 
             return moveAvailable;
@@ -242,7 +255,8 @@ namespace CarLotJam.CarModule
             {
                 targetPath.Add(GridController.Instance.GetLeftBottomCorner() + new Vector3(-4, 0, -4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
-                targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
+                targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 50));
+                targetDirection = SelectedDirection.Back;
             }
 
             return moveAvailable;
@@ -257,7 +271,8 @@ namespace CarLotJam.CarModule
             {
                 targetPath.Add(GridController.Instance.GetRightTopCorner() + new Vector3(4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
-                targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
+                targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 50));
+                targetDirection = SelectedDirection.Right;
             }
 
             return moveAvailable;
@@ -266,12 +281,13 @@ namespace CarLotJam.CarModule
         {
             int value = 0;
             if (selectedDirection == SelectedDirection.Right) value = 1;
-            bool moveAvailable = IsMoveAvailable(Vector2Int.left, Vector3.left * 4, carWidth-value, (GridController.Instance.GridSize().x - carPoint.x)+1);
+            bool moveAvailable = IsMoveAvailable(Vector2Int.left, Vector3.left * 4, carWidth-value, GridController.Instance.GridSize().x);
 
             if (moveAvailable)
             {
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
-                targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
+                targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 50));
+                targetDirection = SelectedDirection.Left;
             }
 
             return moveAvailable;
