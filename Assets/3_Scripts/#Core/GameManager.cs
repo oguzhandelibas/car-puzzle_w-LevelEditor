@@ -4,6 +4,7 @@ using CarLotJam.GridModule;
 using CarLotJam.LevelModule;
 using UnityEditor;
 using UnityEngine;
+using Zenject;
 
 namespace CarLotJam.GameManagementModule
 {
@@ -12,6 +13,8 @@ namespace CarLotJam.GameManagementModule
         [SerializeField] private GridController gridController;
         [SerializeField] private LevelData[] levelDatas;
         [SerializeField] private ColorData colorData;
+
+        [Inject] private LevelSignals _levelSignals;
 
         private int completedCarCount;
 
@@ -30,8 +33,7 @@ namespace CarLotJam.GameManagementModule
         public void IncreaseCompletedCarCount()
         {
             completedCarCount++;
-            print(completedCarCount + " ve " + CheckLevelStatus());
-            if (CheckLevelStatus()) LevelSignals.Instance.onLevelSuccessful?.Invoke();
+            if (CheckLevelStatus()) _levelSignals.onLevelSuccessful?.Invoke();
         }
 
         private bool CheckLevelStatus() => completedCarCount >= levelDatas[GetLevelIndex()].CarCount;
@@ -47,15 +49,15 @@ namespace CarLotJam.GameManagementModule
 
         private void SubscribeEvents()
         {
-            LevelSignals.Instance.onLevelInitialize += StartGame;
-            LevelSignals.Instance.onLevelInitialize += LoadLevelDatas;
+            _levelSignals.onLevelInitialize += StartGame;
+            _levelSignals.onLevelInitialize += LoadLevelDatas;
 
         }
 
         private void UnsubscribeEvents()
         {
-            LevelSignals.Instance.onLevelInitialize -= StartGame;
-            LevelSignals.Instance.onLevelInitialize -= LoadLevelDatas;
+            _levelSignals.onLevelInitialize -= StartGame;
+            _levelSignals.onLevelInitialize -= LoadLevelDatas;
 
         }
 

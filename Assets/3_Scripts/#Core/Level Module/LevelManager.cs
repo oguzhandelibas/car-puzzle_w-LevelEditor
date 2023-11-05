@@ -1,6 +1,7 @@
 using CarLotJam.GameManagementModule;
 using CarLotJam.UIModule;
 using UnityEngine;
+using Zenject;
 
 namespace CarLotJam.LevelModule
 {
@@ -8,6 +9,8 @@ namespace CarLotJam.LevelModule
     {
         #region FIELDS
 
+        [Inject] private GameManager _gameManager;
+        [Inject] private LevelSignals _levelSignals;
         private LevelData currentLevelData;
 
         #endregion
@@ -22,7 +25,7 @@ namespace CarLotJam.LevelModule
         private void Start()
         {
             UIManager.Instance.Show<HomeUI>();
-            levelIndex = GameManager.Instance.GetLevelIndex();
+            levelIndex = _gameManager.GetLevelIndex();
         }
 
         #endregion
@@ -37,20 +40,20 @@ namespace CarLotJam.LevelModule
 
         private void SubscribeEvents()
         {
-            LevelSignals.Instance.onLevelInitialize += OnInitializeLevel;
-            LevelSignals.Instance.onNextLevel += OnNextLevel;
-            LevelSignals.Instance.onRestartLevel += OnRestartLevel;
-            LevelSignals.Instance.onGetLevelCount += GetLevelCount;
-            LevelSignals.Instance.onGetLevelGridSize += GetLevelGridSize;
+            _levelSignals.onLevelInitialize += OnInitializeLevel;
+            _levelSignals.onNextLevel += OnNextLevel;
+            _levelSignals.onRestartLevel += OnRestartLevel;
+            _levelSignals.onGetLevelCount += GetLevelCount;
+            _levelSignals.onGetLevelGridSize += GetLevelGridSize;
         }
 
         private void UnsubscribeEvents()
         {
-            LevelSignals.Instance.onLevelInitialize -= OnInitializeLevel;
-            LevelSignals.Instance.onNextLevel -= OnNextLevel;
-            LevelSignals.Instance.onRestartLevel -= OnRestartLevel;
-            LevelSignals.Instance.onGetLevelCount -= GetLevelCount;
-            LevelSignals.Instance.onGetLevelGridSize -= GetLevelGridSize;
+            _levelSignals.onLevelInitialize -= OnInitializeLevel;
+            _levelSignals.onNextLevel -= OnNextLevel;
+            _levelSignals.onRestartLevel -= OnRestartLevel;
+            _levelSignals.onGetLevelCount -= GetLevelCount;
+            _levelSignals.onGetLevelGridSize -= GetLevelGridSize;
         }
 
         private void OnDisable()
@@ -64,15 +67,14 @@ namespace CarLotJam.LevelModule
 
         private void OnInitializeLevel()
         {
-            currentLevelData = GameManager.Instance.GetCurrentLevelData();
+            currentLevelData = _gameManager.GetCurrentLevelData();
         }
 
         private void OnNextLevel()
         {
-            print("durumkiþs");
-            levelIndex = GameManager.Instance.NextLevel();
-            currentLevelData = GameManager.Instance.GetCurrentLevelData();
-            GameManager.Instance.StartGame();
+            levelIndex = _gameManager.NextLevel();
+            currentLevelData = _gameManager.GetCurrentLevelData();
+            _gameManager.StartGame();
         }
 
         private void OnRestartLevel()
@@ -82,7 +84,7 @@ namespace CarLotJam.LevelModule
 
         private int GetLevelCount()
         {
-            return GameManager.Instance.GetLevelIndex();
+            return _gameManager.GetLevelIndex();
         }
 
         private Vector2Int GetLevelGridSize()

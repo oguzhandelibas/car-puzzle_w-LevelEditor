@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CarLotJam.LevelModule;
 using Cinemachine;
 using UnityEngine;
+using Zenject;
 
 namespace CarLotJam.CameraModule
 {
@@ -12,6 +13,7 @@ namespace CarLotJam.CameraModule
         [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
         private CinemachineTransposer cinemachineTransposer;
+        [Inject] private LevelSignals _levelSignals;
         #region EVENT SUBSCRIPTION
 
         private void Start()
@@ -22,12 +24,12 @@ namespace CarLotJam.CameraModule
 
         private void Subscribe()
         {
-            LevelSignals.Instance.onLevelInitialize += SetCamera;
+            _levelSignals.onLevelInitialize += SetCamera;
         }
 
         private void Unsubscribe()
         {
-            LevelSignals.Instance.onLevelInitialize -= SetCamera;
+            _levelSignals.onLevelInitialize -= SetCamera;
         }
 
         private void OnDisable()
@@ -40,7 +42,7 @@ namespace CarLotJam.CameraModule
 
         public void SetCamera()
         { 
-            Vector2Int gridSize = LevelSignals.Instance.onGetLevelGridSize.Invoke();
+            Vector2Int gridSize = _levelSignals.onGetLevelGridSize.Invoke();
 
             if (gridSize.y >= 6)
             {

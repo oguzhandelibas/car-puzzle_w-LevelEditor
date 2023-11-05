@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace CarLotJam.LevelModule
 {
-    public class LevelSignals : AbstractSingleton<LevelSignals>
+    public class LevelSignals : MonoBehaviour
     {
         public UnityAction onLevelInitialize = delegate { };
         public UnityAction onLevelSuccessful = delegate { };

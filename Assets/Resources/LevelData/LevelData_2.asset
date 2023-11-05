@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: LevelData_2
   m_EditorClassIdentifier: 
   gridSize: {x: 5, y: 6}
-  _hasPath: 1
   Elements:
   - SelectedElement: 0
     SelectedDirection: 0
@@ -261,7 +260,7 @@ MonoBehaviour:
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
-    hasElement: 0
+    hasElement: 1
     GuiContent:
       m_Text: 2, 5
       m_Image: {fileID: 0}

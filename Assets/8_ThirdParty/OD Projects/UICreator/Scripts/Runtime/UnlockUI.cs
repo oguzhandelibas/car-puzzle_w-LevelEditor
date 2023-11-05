@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CarLotJam.UIModule
 {
@@ -16,11 +17,12 @@ namespace CarLotJam.UIModule
         [SerializeField] private TextMeshProUGUI unlockPercentageText;
         [SerializeField] private Transform unlockedTextHolder;
 
+        [Inject] private LevelSignals _levelSignals;
         private float progressValue;
 
         public void _ContinueButton()
         {
-            LevelSignals.Instance.onNextLevel?.Invoke();
+            _levelSignals.onNextLevel?.Invoke();
         }
 
         public void UnlockShine()
