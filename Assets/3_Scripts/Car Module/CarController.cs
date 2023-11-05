@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CarLotJam.ClickModule;
 using CarLotJam.GridModule;
 using CarLotJam.Pathfind;
+using DG.Tweening;
 using ODProjects.LevelEditor;
 using UnityEngine;
 
@@ -80,13 +81,12 @@ namespace CarLotJam.CarModule
 
             Vector3 targetPosition = new Vector3(targetPath[currentTargetIndex].x, transform.position.y, targetPath[currentTargetIndex].z);
 
-            if(currentTargetIndex != 0)transform.LookAt(targetPosition);
+            if(currentTargetIndex != 0) transform.DOLookAt(targetPosition, 0.2f, AxisConstraint.None, Vector3.up);
 
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
             {
-                //GridController.Instance.UpdateMatrix(carPoint.x, carPoint.y, true);
                 SetNextTarget();
             }
         }
