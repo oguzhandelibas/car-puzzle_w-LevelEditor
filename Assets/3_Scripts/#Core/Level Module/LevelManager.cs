@@ -13,7 +13,7 @@ namespace CarLotJam.LevelModule
         #endregion
         #region VARIBLES
 
-        private int levelCount;
+        private int levelIndex;
 
         #endregion
 
@@ -22,8 +22,7 @@ namespace CarLotJam.LevelModule
         private void Start()
         {
             UIManager.Instance.Show<HomeUI>();
-            levelCount = PlayerPrefs.GetInt("LevelCount", 0);
-            SubscribeEvents();
+            levelIndex = GameManager.Instance.GetLevelIndex();
         }
 
         #endregion
@@ -31,7 +30,10 @@ namespace CarLotJam.LevelModule
 
         #region SUBSCRIBE EVENTS
 
-
+        private void OnEnable()
+        {
+            SubscribeEvents();
+        }
 
         private void SubscribeEvents()
         {
@@ -67,18 +69,20 @@ namespace CarLotJam.LevelModule
 
         private void OnNextLevel()
         {
-            levelCount++;
-            PlayerPrefs.SetInt("LevelCount", levelCount);
+            print("durumkiþs");
+            levelIndex = GameManager.Instance.NextLevel();
+            currentLevelData = GameManager.Instance.GetCurrentLevelData();
+            GameManager.Instance.StartGame();
         }
 
         private void OnRestartLevel()
         {
-            PlayerPrefs.SetInt("LevelCount", levelCount);
+            
         }
 
         private int GetLevelCount()
         {
-            return levelCount;
+            return GameManager.Instance.GetLevelIndex();
         }
 
         private Vector2Int GetLevelGridSize()

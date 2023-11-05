@@ -47,6 +47,11 @@ namespace CarLotJam.CameraModule
                 camera.orthographic = true;
                 virtualCamera.m_Lens.OrthographicSize = 30 + gridSize.y;
             }
+            else if (gridSize.x >= 6)
+            {
+                camera.orthographic = true;
+                virtualCamera.m_Lens.OrthographicSize = 30 + gridSize.x;
+            }
             else
             {
                 cinemachineTransposer.m_FollowOffset = new Vector3(10, 50 + gridSize.y, -30 - gridSize.y);

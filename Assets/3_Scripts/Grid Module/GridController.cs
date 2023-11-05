@@ -13,6 +13,7 @@ namespace CarLotJam.GridModule
 
         [SerializeField] private RoadData roadData;
         [SerializeField] private Transform gridLookTransform;
+        [SerializeField] private Transform elementParent;
         [SerializeField] private Grid grid;
         [SerializeField] private GameObject groundObject;
 
@@ -33,6 +34,24 @@ namespace CarLotJam.GridModule
         private void LoadDatas()
         {
             _elementData = Resources.Load<ElementData>("ElementData");
+        }
+
+        public void ClearElements()
+        {
+            if (elementParent.childCount > 0)
+            {
+                for (int i = 0; i < elementParent.childCount; i++)
+                {
+                    Destroy(elementParent.GetChild(i));
+                }
+            }
+            if (transform.childCount > 1)
+            {
+                for (int i = 1; i < elementParent.childCount; i++)
+                {
+                    Destroy(transform.GetChild(i));
+                }
+            }
         }
 
         public void InitializeGrid()
@@ -124,7 +143,7 @@ namespace CarLotJam.GridModule
             GameObject testElementObj = _elementData.Elements[_levelData.GetSelectedElement(index)];
             if (testElementObj)
             {
-                GameObject elementObj = Instantiate(testElementObj, worldPosition, Quaternion.identity);
+                GameObject elementObj = Instantiate(testElementObj, worldPosition, Quaternion.identity, elementParent);
                 elementObj.transform.rotation = Quaternion.Euler(_levelData.Elements[index].GetDirection());
                 if (elementObj.TryGetComponent(out IElement IElement))
                 {
@@ -184,7 +203,7 @@ namespace CarLotJam.GridModule
         }
         private void CreateRoad(GameObject prefabObject, GameObject parent, Vector3 positionOffset, Quaternion rotation)
         {
-            var road = Instantiate(prefabObject, parent.transform.position + positionOffset, rotation, parent.transform);
+            var road = Instantiate(prefabObject, parent.transform.position + positionOffset, rotation, elementParent);
         }
         private void CreateRoadSide(int x, int y, GameObject obj)
         {

@@ -11,8 +11,32 @@ namespace CarLotJam.GameManagementModule
     {
         [SerializeField] private GridController gridController;
         [SerializeField] private LevelData[] levelDatas;
-
         [SerializeField] private ColorData colorData;
+
+        private int completedCarCount;
+
+        #region LEVEL MANAGEMENT
+
+        public void SetLevelIndex(int index = 0) => PlayerPrefs.SetInt("LevelIndex", index);
+        public int GetLevelIndex() => PlayerPrefs.GetInt("LevelIndex", 0);
+
+        public int NextLevel()
+        {
+            int nextLevel = PlayerPrefs.GetInt("LevelIndex") + 1;
+            PlayerPrefs.SetInt("LevelIndex", nextLevel);
+            return nextLevel;
+        }
+
+        public void IncreaseCompletedCarCount()
+        {
+            completedCarCount++;
+            print(completedCarCount + " ve " + CheckLevelStatus());
+            if (CheckLevelStatus()) LevelSignals.Instance.onLevelSuccessful?.Invoke();
+        }
+
+        private bool CheckLevelStatus() => completedCarCount >= levelDatas[GetLevelIndex()].CarCount;
+
+        #endregion
 
         #region SUBSCRIBE EVENTS
 
@@ -44,20 +68,15 @@ namespace CarLotJam.GameManagementModule
 
         public void StartGame()
         {
+            gridController.ClearElements();
+            SetLevelIndex();
             LoadLevelDatas();
 
-            // MATRIX SÝSTEMÝ ENTEGRE EDÝLECEK
             gridController.SetGridController(GetCurrentLevelData());
             gridController.InitializeGrid();
         }
-
         private void LoadLevelDatas() => LoadLevelDatasFromFolder();
-
-        public LevelData GetCurrentLevelData()
-        {
-            return levelDatas[LevelSignals.Instance.onGetLevelCount()];
-        }
-
+        public LevelData GetCurrentLevelData() => levelDatas[GetLevelIndex()];
         public ColorData GetColorData() => colorData;
 
 

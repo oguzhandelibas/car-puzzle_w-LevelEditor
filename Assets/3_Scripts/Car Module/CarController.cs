@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CarLotJam.ClickModule;
+using CarLotJam.GameManagementModule;
 using CarLotJam.GridModule;
 using CarLotJam.Pathfind;
 using DG.Tweening;
@@ -196,6 +197,7 @@ namespace CarLotJam.CarModule
             {
                 Vector3 pos = GridController.Instance.GridToWorlPosition(wayPointList[^1]) + moveDirection;
                 targetPath.Add(pos);
+                GameManager.Instance.IncreaseCompletedCarCount();
                 carAnimationController.PlayAnim(CarAnimType.MOVE);
                 UpdateMatrix();
             }

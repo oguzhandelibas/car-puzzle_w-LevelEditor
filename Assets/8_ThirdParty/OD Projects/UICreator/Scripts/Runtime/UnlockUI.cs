@@ -1,4 +1,6 @@
 ﻿using System;
+using CarLotJam.GameManagementModule;
+using CarLotJam.LevelModule;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -15,6 +17,11 @@ namespace CarLotJam.UIModule
         [SerializeField] private Transform unlockedTextHolder;
 
         private float progressValue;
+
+        public void _ContinueButton()
+        {
+            LevelSignals.Instance.onNextLevel?.Invoke();
+        }
 
         public void UnlockShine()
         {
@@ -46,9 +53,6 @@ namespace CarLotJam.UIModule
 
             itemIcon.DOFillAmount(progressValue, .1f);
             unlockPercentageText.text = "% " + ((int)(progressValue * 100));
-
-
-
         }
 
         public float GetUnlockItemProgressValue()
