@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CarLotJam.CarModule;
 using CarLotJam.Pathfind;
 using CarLotJam.StickmanModule;
+using DG.Tweening;
 using ODProjects.LevelEditor;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace CarLotJam.GridModule
         [SerializeField] private Grid grid;
         [SerializeField] private GameObject groundObject;
 
+        private GameObject barrier;
         private ElementData _elementData;
         private LevelData _levelData;
         private Ground[,] _grounds;
@@ -247,6 +249,12 @@ namespace CarLotJam.GridModule
                 CreateRoad(roadData.road_default, obj, Vector3.left * 4f, Quaternion.Euler(0, 0, 0));
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));
                 CreateRoad(roadData.road_triple, obj, Vector3.forward * 4f + Vector3.left * 4f, Quaternion.Euler(0, 360, 0));
+                CreateRoad(roadData.road_default, obj, (Vector3.forward * 8) + Vector3.left * 4f, Quaternion.Euler(0, 360, 0));
+                barrier = Instantiate(roadData.barrier, obj.transform.position + ((Vector3.forward * 8) + Vector3.left * 2f) , Quaternion.Euler(0,180,0), elementParent);
+                for (int i = 3; i < 20; i++)
+                {
+                    CreateRoad(roadData.road_default, obj, (Vector3.forward * 3.69f * i) + Vector3.left * 4f, Quaternion.Euler(0, 360, 0));
+                }
             }
             else if (y == _gridSize.y - 1 && x == _gridSize.x - 1) // (1,1) sað ve üst
             {
@@ -254,6 +262,15 @@ namespace CarLotJam.GridModule
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));
                 CreateRoad(roadData.road_corner, obj, Vector3.forward * 4f + Vector3.right * 4f, Quaternion.Euler(0, 90, 0));
             }
+        }
+
+        #endregion
+
+        #region BARRIER
+
+        public void OpenBarrier()
+        {
+            barrier.transform.GetChild(1).DORotate(new Vector3(0, -180, 90), 0.2f).OnComplete((() => barrier.transform.GetChild(1).DORotate(new Vector3(0, -180, 0), 1.0f)));
         }
 
         #endregion

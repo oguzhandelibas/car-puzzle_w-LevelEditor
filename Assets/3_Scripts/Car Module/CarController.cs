@@ -95,8 +95,15 @@ namespace CarLotJam.CarModule
 
         private void SetNextTarget()
         {
+            if (targetPath.Count == 0) return;
             currentTargetIndex++;
-            if (currentTargetIndex >= targetPath.Count)
+            
+            if (currentTargetIndex == targetPath.Count - 1)
+            {
+                moveSpeed *= 2;
+                GridController.Instance.OpenBarrier();
+            }
+            else if (currentTargetIndex >= targetPath.Count)
             {
                 targetPath.Clear();
                 currentTargetIndex = 0;

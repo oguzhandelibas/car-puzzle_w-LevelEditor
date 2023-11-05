@@ -10,5 +10,6 @@ namespace CarLotJam
         public GameObject road_default;
         public GameObject road_corner;
         public GameObject road_triple;
+        public GameObject barrier;
     }
 }

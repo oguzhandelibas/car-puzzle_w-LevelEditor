@@ -18,3 +18,4 @@ MonoBehaviour:
     type: 3}
   road_triple: {fileID: 4565406670825531119, guid: f5c39dd26fa7d1a40805697673b97ec9,
     type: 3}
+  barrier: {fileID: 5246440590711962777, guid: f5a03b9c81ab9e74ea60b0cb9382c520, type: 3}
