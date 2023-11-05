@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: {x: 5, y: 5}
   Elements:
-  - SelectedElement: 0
+  - SelectedElement: 1
     SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
+    SelectedColor: 4
+    hasElement: 1
     GuiContent:
       m_Text: 0, 0
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
+    Color: {r: 0.9882353, g: 0.490196, b: 0.12549013, a: 1}
   - SelectedElement: 5
     SelectedDirection: 0
     SelectedColor: 5
@@ -203,15 +203,15 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 1
+  - SelectedElement: 0
     SelectedDirection: 0
-    SelectedColor: 5
+    SelectedColor: 0
     hasElement: 1
     GuiContent:
       m_Text: 1, 4
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 1, g: 0, b: 0.6170216, a: 1}
+    Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 1
     SelectedDirection: 3
     SelectedColor: 6
