@@ -209,11 +209,11 @@ namespace CarLotJam.GridModule
         }
         private void CreateRoadSide(int x, int y, GameObject obj)
         {
-            if (x != 0 && x != _gridSize.y - 1 && y == 0) // Alt kenar
+            if (x != 0 && x != _gridSize.y && y == 0) // Alt kenar
             {
                 CreateRoad(roadData.road_default, obj, Vector3.back * 4f, Quaternion.Euler(0, 90, 0));
             }
-            else if (x != 0 && x != _gridSize.y - 1 && y == _gridSize.y - 1) // Üst kenar
+            else if (x != 0 && x != _gridSize.y && y == _gridSize.y - 1) // Üst kenar
             {
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));
             }
