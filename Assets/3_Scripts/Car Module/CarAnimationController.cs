@@ -57,7 +57,6 @@ namespace CarLotJam.CarModule
         }
         private void OpenLeftDoor()
         {
-            print("devams");
             leftDoor.DOLocalRotate(new Vector3(0, 110, 0), 0.5f, RotateMode.Fast).SetEase(Ease.OutBounce)
                 .OnComplete((() => CloseLeftDoor()));
         }

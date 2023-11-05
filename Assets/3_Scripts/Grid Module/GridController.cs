@@ -140,7 +140,7 @@ namespace CarLotJam.GridModule
                 {
                     List<Point> boardingPoints = new List<Point>();
                     CarType carType = carController.carType;
-                    Point carFront;
+                    
                     int increaseValue = 1;
                     if (carType == CarType.LongCar)
                     {
@@ -154,24 +154,28 @@ namespace CarLotJam.GridModule
                             if (IsOnGrid(point)) boardingPoints.Add(point);
                             point = new Point(carController.carPoint.x - 1, carController.carPoint.y + increaseValue);
                             if (IsOnGrid(point)) boardingPoints.Add(point);
+                            elementObj.transform.position += new Vector3(0, 0, 3);
                             break;
                         case SelectedDirection.Back:
                             point = new Point(carController.carPoint.x + 1, carController.carPoint.y - increaseValue);
                             if (IsOnGrid(point)) boardingPoints.Add(point);
                             point = new Point(carController.carPoint.x - 1, carController.carPoint.y - increaseValue);
                             if (IsOnGrid(point)) boardingPoints.Add(point);
+                            elementObj.transform.position -= new Vector3(0, 0, 3);
                             break;
                         case SelectedDirection.Left:
                             point = new Point(carController.carPoint.x - increaseValue, carController.carPoint.y + 1);
                             if (IsOnGrid(point)) boardingPoints.Add(point);
                             point = new Point(carController.carPoint.x - increaseValue, carController.carPoint.y - 1);
                             if (IsOnGrid(point)) boardingPoints.Add(point);
+                            elementObj.transform.position -= new Vector3(3, 0, 0);
                             break;
                         case SelectedDirection.Right:
                             point = new Point(carController.carPoint.x + increaseValue, carController.carPoint.y + 1);
                             if (IsOnGrid(point)) boardingPoints.Add(point);
                             point = new Point(carController.carPoint.x + increaseValue, carController.carPoint.y - 1);
                             if (IsOnGrid(point)) boardingPoints.Add(point);
+                            elementObj.transform.position += new Vector3(3, 0, 0);
                             break;
                     }
                     carController.SetBoardingPoints(boardingPoints);
