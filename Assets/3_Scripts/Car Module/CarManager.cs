@@ -1,21 +1,25 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CarLotJam
+namespace CarLotJam.CarModule
 {
-    public class CarManager : MonoBehaviour
+    public class CarManager : AbstractSingleton<CarManager>
     {
-        // Start is called before the first frame update
-        void Start()
+        public List<CarController> waitingCars = new List<CarController>();
+
+        public void AddWaitingList(CarController carController)
         {
-        
+            waitingCars.Add(carController);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-        
+            if(waitingCars.Count == 0) return;
+
+            for (int i = 0; i < waitingCars.Count; i++)
+            {
+                if (waitingCars[i].CanMove()) waitingCars.Remove(waitingCars[i]);
+            }
         }
     }
 }

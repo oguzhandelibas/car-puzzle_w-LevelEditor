@@ -52,8 +52,8 @@ namespace CarLotJam.CarModule
 
         private void MoveAcceleration()
         {
-            carBody.DOLocalRotate(new Vector3(-15, 0, 0), 0.15f, RotateMode.FastBeyond360).SetEase(Ease.InBack)
-                .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.FastBeyond360)));
+            carBody.DOLocalRotate(new Vector3(-15, 0, 0), 0.15f, RotateMode.Fast).SetEase(Ease.InBack)
+                .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.Fast)));
         }
         private void OpenLeftDoor()
         {

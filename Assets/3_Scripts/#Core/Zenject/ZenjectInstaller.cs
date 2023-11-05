@@ -1,4 +1,5 @@
 using CarLotJam.CameraModule;
+using CarLotJam.CarModule;
 using CarLotJam.ClickModule;
 using CarLotJam.GameManagementModule;
 using CarLotJam.LevelModule;
@@ -15,6 +16,7 @@ namespace CarLotJam
             Container.Bind<LevelSignals>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ClickManager>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CameraManager>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CarManager>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

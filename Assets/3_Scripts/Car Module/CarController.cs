@@ -131,16 +131,25 @@ namespace CarLotJam.CarModule
             }
         }
 
-        public void MoveFinish()
+        public bool CanMove()
         {
+            bool canMove = MoveFinish(true);
+            return canMove;
+        }
+
+        public bool MoveFinish(bool outside = false)
+        {
+            bool canMove = false;
             if (selectedDirection == SelectedDirection.Forward || selectedDirection == SelectedDirection.Back)
             {
                 if (IsForwardAvailable())
                 {
+                    canMove = true;
                     Debug.Log("You Can Go Forward");
                 }
                 else if (IsBackAvailable())
                 {
+                    canMove = true;
                     Debug.Log("You Can Go Backward");
                 }
                 else
@@ -152,31 +161,37 @@ namespace CarLotJam.CarModule
             {
                 if (IsLeftAvailable())
                 {
-                    Debug.Log("You Can Go Right");
+                    canMove = true;
+                    Debug.Log("You Can Go Left");
                 }
                 else if (IsRightAvailable())
                 {
-                    Debug.Log("You Can Go Left");
+                    canMove = true;
+                    Debug.Log("You Can Go Right");
                 }
                 else
                 {
                     Debug.LogError("You Cannot Go Anywhere, Just Wait");
                 }
             }
+            if (!outside && !canMove)
+            {
+                CarManager.Instance.AddWaitingList(this);
+            }
+            return canMove;
         }
 
-        private bool IsMoveAvailable(Vector2 direction, Vector3 moveDirection)
+        private bool IsMoveAvailable(Vector2Int direction, Vector3 moveDirection, int iTemp, int maxTemp)
         {
             List<Point> wayPointList = new List<Point>();
-            Vector2Int gridSize = GridController.Instance.GridSize();
             bool hasObstacle = false;
 
-            for (int i = 1; i <= Mathf.Max(gridSize.x, gridSize.y); i++)
+            for (int i = iTemp; i < maxTemp; i++)
             {
-                Point point = new Point(carPoint.x + Mathf.RoundToInt(direction.x * i), carPoint.y + Mathf.RoundToInt(direction.y * i));
+                Point point = new Point(carPoint.x + (direction.x * i), carPoint.y + (direction.y * i));
                 if (GridController.Instance.IsOnGrid(point))
                 {
-                    if (GridController.Instance.IsWaypointAvailable(point))
+                    if (!hasObstacle && GridController.Instance.IsWaypointAvailable(point))
                     {
                         wayPointList.Add(point);
                     }
@@ -186,9 +201,9 @@ namespace CarLotJam.CarModule
                         hasObstacle = true;
                     }
                 }
-                else if (!hasObstacle && GridController.Instance.IsOnGrid(new Point(point.x - Mathf.RoundToInt(direction.x), point.y - Mathf.RoundToInt(direction.y))))
+                else if (!hasObstacle && GridController.Instance.IsOnGrid(new Point(point.x - direction.x, point.y - direction.y)))
                 {
-                    wayPointList.Add(new Point(point.x - Mathf.RoundToInt(direction.x), point.y - Mathf.RoundToInt(direction.y)));
+                    wayPointList.Add(new Point(point.x - direction.x, point.y - direction.y));
                 }
             }
 
@@ -205,7 +220,9 @@ namespace CarLotJam.CarModule
         }
         private bool IsForwardAvailable()
         {
-            bool moveAvailable = IsMoveAvailable(Vector2.up, Vector3.forward * 4);
+            int value = 0;
+            if (selectedDirection == SelectedDirection.Back) value = 1;
+            bool moveAvailable = IsMoveAvailable(Vector2Int.up, Vector3.forward * 4, carWidth-value, GridController.Instance.GridSize().y);
 
             if (moveAvailable)
             {
@@ -217,7 +234,9 @@ namespace CarLotJam.CarModule
         }
         private bool IsBackAvailable()
         {
-            bool moveAvailable = IsMoveAvailable(Vector2.down, Vector3.back * 4);
+            int value = 0;
+            if (selectedDirection == SelectedDirection.Forward) value = 1;
+            bool moveAvailable = IsMoveAvailable(Vector2Int.down, Vector3.back * 4, carWidth-value, GridController.Instance.GridSize().y);
 
             if (moveAvailable)
             {
@@ -230,7 +249,9 @@ namespace CarLotJam.CarModule
         }
         private bool IsRightAvailable()
         {
-            bool moveAvailable = IsMoveAvailable(Vector2.right, Vector3.right * 4);
+            int value = 0;
+            if (selectedDirection == SelectedDirection.Left) value = 1;
+            bool moveAvailable = IsMoveAvailable(Vector2Int.right, Vector3.right * 4, carWidth-value, (GridController.Instance.GridSize().x - carPoint.x));
 
             if (moveAvailable)
             {
@@ -243,7 +264,9 @@ namespace CarLotJam.CarModule
         }
         private bool IsLeftAvailable()
         {
-            bool moveAvailable = IsMoveAvailable(Vector2.left, Vector3.left * 4);
+            int value = 0;
+            if (selectedDirection == SelectedDirection.Right) value = 1;
+            bool moveAvailable = IsMoveAvailable(Vector2Int.left, Vector3.left * 4, carWidth-value, (GridController.Instance.GridSize().x - carPoint.x)+1);
 
             if (moveAvailable)
             {

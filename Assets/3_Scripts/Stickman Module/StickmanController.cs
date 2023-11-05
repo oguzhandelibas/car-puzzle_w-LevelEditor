@@ -219,7 +219,7 @@ namespace CarLotJam.StickmanModule
         {
             transform.DOLocalMove(carTransfrom.position, 1.5f).OnComplete((() => Destroy(gameObject)));
             transform.DOScale(new Vector3(0.33f, 0.3f, 0.3f), 1.0f)
-                .OnComplete(_carController.MoveFinish);
+                .OnComplete((() => _carController.MoveFinish()));
         }
 
         #endregion
