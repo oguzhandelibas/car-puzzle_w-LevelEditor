@@ -1106,7 +1106,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.47018403, y: -0.12542932, z: 0.067710765, w: 0.8709821}
+  m_LocalRotation: {x: 0.470184, y: -0.12542926, z: 0.06771073, w: 0.8709821}
   m_LocalPosition: {x: 10, y: 54, z: -34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2113,7 +2113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9725491, g: 0.86274517, b: 0.18039216, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3103,8 +3103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridController: {fileID: 1106915935}
   levelDatas:
+  - {fileID: 11400000, guid: 581ea2073e65f0e47835f5b900a9a24f, type: 2}
   - {fileID: 11400000, guid: edf3a5e2cf4023248ad5070c89b5bcc2, type: 2}
-  - {fileID: 11400000, guid: 37f86956846d0f04695d24b6d2626b5a, type: 2}
+  - {fileID: 11400000, guid: fe59e80b54c9c1844ad6010f5c342598, type: 2}
   - {fileID: 11400000, guid: 5ec853be027a9674eb30727a8f2f0f5b, type: 2}
   colorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
 --- !u!1 &1353223464
@@ -5382,7 +5383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2146566702
 RectTransform:
   m_ObjectHideFlags: 0
