@@ -295,8 +295,8 @@ namespace ODProjects.LevelEditor
         {
             GUI.color = _currentLevelData.GetColor(index);
             content = _currentLevelData.GetContent(index);
-            //content.text = x + ", " + y;
-            content.text = index.ToString();
+            content.text = x + ", " + y;
+            //content.text = index.ToString();
 
             if (GUI.Button(GUILayoutUtility.GetRect(_boxSize, _boxSize), content, GUI.skin.button))
             {

@@ -14,7 +14,6 @@ namespace CarLotJam.StickmanModule
             animator.SetFloat("Blend", blend);
             if (_stickmanAnimNowSelect == stickmanAnimName)
                 return;
-
             foreach (StickmanAnimTypes item in (StickmanAnimTypes[])Enum.GetValues(typeof(StickmanAnimTypes)))
                 animator.SetBool(item.ToString(), item == stickmanAnimName);
 

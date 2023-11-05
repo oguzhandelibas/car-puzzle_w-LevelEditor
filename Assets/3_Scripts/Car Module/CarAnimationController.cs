@@ -24,14 +24,8 @@ namespace CarLotJam.CarModule
         public void FindNearestDoor(Vector3 stickmanPos)
         {
             float distance = Vector3.Distance(leftDoor.position, stickmanPos);
-            if(Vector3.Distance(rightDoor.position, stickmanPos) < distance)
-            {
-                PlayAnim(CarAnimType.RIGHT_DOOR_OPENING);
-            }
-            else
-            {
-                PlayAnim(CarAnimType.LEFT_DOOR_OPENING);
-            }
+            if(Vector3.Distance(rightDoor.position, stickmanPos) < distance) PlayAnim(CarAnimType.RIGHT_DOOR_OPENING);
+            else PlayAnim(CarAnimType.LEFT_DOOR_OPENING);
         }
 
         public void PlayAnim(CarAnimType carAnimType)
@@ -50,10 +44,20 @@ namespace CarLotJam.CarModule
                 case CarAnimType.RIGHT_DOOR_CLOSING:
                     CloseRightDoor();
                     break;
+                case CarAnimType.MOVE:
+                    MoveAcceleration();
+                    break;
             }
+        }
+
+        private void MoveAcceleration()
+        {
+            carBody.DOLocalRotate(new Vector3(-15, 0, 0), 0.15f, RotateMode.FastBeyond360).SetEase(Ease.InBack)
+                .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), 1.5f, RotateMode.FastBeyond360)));
         }
         private void OpenLeftDoor()
         {
+            print("devams");
             leftDoor.DOLocalRotate(new Vector3(0, 110, 0), 0.5f, RotateMode.Fast).SetEase(Ease.OutBounce)
                 .OnComplete((() => CloseLeftDoor()));
         }

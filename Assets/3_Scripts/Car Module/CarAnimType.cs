@@ -6,5 +6,6 @@ namespace CarLotJam.CarModule
         LEFT_DOOR_CLOSING,
         RIGHT_DOOR_OPENING,
         RIGHT_DOOR_CLOSING,
+        MOVE
     }
 }

@@ -94,8 +94,16 @@ namespace CarLotJam.StickmanModule
             List<Point> bestPath = new List<Point>();
             int bestPointIndex = 0;
 
-            if (points[0] == _stickmanPoint) bestPath.Add(points[0]);
-            else if(points[1] == _stickmanPoint) bestPath.Add(points[1]);
+
+            //HATA VERER BURASI AKTÝF OLARAK
+            if (points[0] != null && points[0] == _stickmanPoint)
+            {
+                bestPath.Add(points[0]);
+            }
+            else if(points.Count > 1 && points[1] != null && points[1] == _stickmanPoint)
+            {
+                bestPath.Add(points[1]);
+            }
             else
             {
                 for (int i = 0; i < points.Count; i++)
@@ -131,6 +139,8 @@ namespace CarLotJam.StickmanModule
                 GridController.Instance.UpdateMatrix(_stickmanPoint.x, _stickmanPoint.y, true);
                 GridController.Instance.SetGroundColor(points[bestPointIndex], SelectedColor.Green);
                 IsHold = false;
+
+                _stickmanAnimationController.PlayAnim(StickmanAnimTypes.RUN);
                 SetEmotion(SelectedEmotion.HAPPY);
             }
             else

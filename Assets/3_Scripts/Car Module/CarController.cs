@@ -78,7 +78,6 @@ namespace CarLotJam.CarModule
                 return;
             }
 
-
             Vector3 targetPosition = new Vector3(targetPath[currentTargetIndex].x, transform.position.y, targetPath[currentTargetIndex].z);
 
             if(currentTargetIndex != 0)transform.LookAt(targetPosition);
@@ -133,20 +132,24 @@ namespace CarLotJam.CarModule
 
         public void MoveFinish()
         {
+            bool canMove = false;
             if (selectedDirection == SelectedDirection.Forward || selectedDirection == SelectedDirection.Back)
             {
                 if (IsForwardAvailable())
                 {
+                    canMove = true;
                     UpdateMatrix();
                     Debug.Log("You Can Go Forward");
                 }
                 else if (IsBackAvailable())
                 {
+                    canMove = true;
                     UpdateMatrix();
                     Debug.Log("You Can Go Backward");
                 }
                 else
                 {
+                    canMove = false;
                     Debug.LogError("You Cannot Go Anywhere, Just Wait");
                 }
             }
@@ -154,16 +157,19 @@ namespace CarLotJam.CarModule
             {
                 if (IsLeftAvailable())
                 {
+                    canMove = true;
                     UpdateMatrix();
                     Debug.Log("You Can Go Right");
                 }
                 else if (IsRightAvailable())
                 {
+                    canMove = true;
                     UpdateMatrix();
                     Debug.Log("You Can Go Left");
                 }
                 else
                 {
+                    canMove = false;
                     Debug.LogError("You Cannot Go Anywhere, Just Wait");
                 }
             }
@@ -173,10 +179,11 @@ namespace CarLotJam.CarModule
         {
             List<Point> wayPointList = new List<Point>();
             Vector2Int gridSize = GridController.Instance.GridSize();
+            bool hasObstacle = false;
+
             for (int i = 2; i < gridSize.y; i++)
             {
                 Point point = new Point(carPoint.x, carPoint.y+i);
-
                 if (GridController.Instance.IsOnGrid(point))
                 {
                     if (GridController.Instance.IsWaypointAvailable(point))
@@ -185,15 +192,15 @@ namespace CarLotJam.CarModule
                     }
                     else
                     {
+                        hasObstacle = true;
                         wayPointList.Clear();
                     }
                 }
-                else if (GridController.Instance.IsOnGrid(new Point(point.x, point.y-1)))
+                else if (!hasObstacle && GridController.Instance.IsOnGrid(new Point(point.x, point.y-1)))
                 {
                     wayPointList.Add(new Point(point.x, point.y - 1));
                 }
             }
-
             bool hasElement = wayPointList.Count > 0;
             if (hasElement)
             {
@@ -201,16 +208,21 @@ namespace CarLotJam.CarModule
                 targetPath.Add(pos);
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4,0,4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
+                carAnimationController.PlayAnim(CarAnimType.MOVE);
             }
+            Debug.Log("Forward Has Element :: " + hasElement);
             return hasElement;
         }
         private bool IsBackAvailable()
         {
             List<Point> wayPointList = new List<Point>();
             Vector2Int gridSize = GridController.Instance.GridSize();
+            bool hasObstacle = false;
+
             for (int i = 1; i <= carPoint.y; i++)
             {
                 Point point = new Point(carPoint.x, carPoint.y - i);
+                Debug.Log("Back -> X: " + point.x + " Y: " + point.y + " Is On Ground: " + GridController.Instance.IsOnGrid(point) + " Is Available: " + GridController.Instance.IsWaypointAvailable(point));
 
                 if (GridController.Instance.IsOnGrid(point))
                 {
@@ -223,7 +235,7 @@ namespace CarLotJam.CarModule
                         wayPointList.Clear();
                     }
                 }
-                else if (GridController.Instance.IsOnGrid(new Point(point.x, point.y + 1)))
+                else if (!hasObstacle && GridController.Instance.IsOnGrid(new Point(point.x, point.y + 1)))
                 {
                     wayPointList.Add(new Point(point.x, point.y + 1));
                 }
@@ -238,13 +250,18 @@ namespace CarLotJam.CarModule
                 targetPath.Add(GridController.Instance.GetLeftBottomCorner() + new Vector3(-4, 0, -4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
+                carAnimationController.PlayAnim(CarAnimType.MOVE);
             }
+
+            Debug.Log("Back Has Element :: " + hasElement);
             return hasElement;
         }
         private bool IsRightAvailable()
         {
             List<Point> wayPointList = new List<Point>();
             Vector2Int gridSize = GridController.Instance.GridSize();
+            bool hasObstacle = false;
+
             for (int i = carWidth; i < gridSize.x - carPoint.x; i++)
             {
                 Point point = new Point(carPoint.x+i, carPoint.y);
@@ -260,7 +277,7 @@ namespace CarLotJam.CarModule
                         wayPointList.Clear();
                     }
                 }
-                else if (GridController.Instance.IsOnGrid(new Point(point.x-1, point.y)))
+                else if (!hasObstacle && GridController.Instance.IsOnGrid(new Point(point.x-1, point.y)))
                 {
                     wayPointList.Add(new Point(point.x-1, point.y + 1));
                 }
@@ -274,14 +291,16 @@ namespace CarLotJam.CarModule
                 targetPath.Add(GridController.Instance.GetRightTopCorner() + new Vector3(4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
+                carAnimationController.PlayAnim(CarAnimType.MOVE);
             }
             return hasElement;
         }
-
         private bool IsLeftAvailable()
         {
             List<Point> wayPointList = new List<Point>();
             Vector2Int gridSize = GridController.Instance.GridSize();
+            bool hasObstacle = false;
+
             for (int i = carWidth; i <= 1+(gridSize.x - carPoint.x); i++)
             {
                 Point point = new Point(carPoint.x-i, carPoint.y);
@@ -297,7 +316,7 @@ namespace CarLotJam.CarModule
                         wayPointList.Clear();
                     }
                 }
-                else if (GridController.Instance.IsOnGrid(new Point(point.x+1, point.y)))
+                else if (!hasObstacle && GridController.Instance.IsOnGrid(new Point(point.x+1, point.y)))
                 {
                     wayPointList.Add(new Point(point.x+1, point.y));
                 }
@@ -311,6 +330,7 @@ namespace CarLotJam.CarModule
                 targetPath.Add(pos);
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 30));
+                carAnimationController.PlayAnim(CarAnimType.MOVE);
             }
             return hasElement;
         }

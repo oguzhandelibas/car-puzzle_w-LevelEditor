@@ -45,8 +45,6 @@ namespace CarLotJam.ClickModule
                     if (_carController) _carController.Release();
 
                     StickmanCheck(hit);
-
-
                     CarCheck(hit, iClickable);
 
                     iClickable.OnClick();
