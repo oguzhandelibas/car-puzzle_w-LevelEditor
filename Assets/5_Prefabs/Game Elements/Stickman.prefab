@@ -214,6 +214,7 @@ MonoBehaviour:
   outlineObject: {fileID: 4867871314194678515}
   colorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
   colorSetter: {fileID: 7059919068289557454}
+  selectedColor: 0
   targetPath: []
   moveSpeed: 15
 --- !u!114 &1544989964757399295

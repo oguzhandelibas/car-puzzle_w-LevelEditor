@@ -793,6 +793,7 @@ GameObject:
   - component: {fileID: 312660942}
   - component: {fileID: 312660941}
   - component: {fileID: 312660940}
+  - component: {fileID: 312660946}
   m_Layer: 5
   m_Name: Unlock UI
   m_TagString: Untagged
@@ -835,6 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc02a1f4facae4764b7df23a93f031df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinSpawner: {fileID: 312660946}
   shineHolder: {fileID: 873743469}
   itemBackgroundIcon: {fileID: 1124721465}
   itemIcon: {fileID: 1844460612}
@@ -921,6 +923,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &312660946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312660938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97124610f3256c944b6516875d39f4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 5701209820723975816, guid: 27a8736acf30c724999872f83ad177da,
+    type: 3}
 --- !u!1001 &318505052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1090,7 +1106,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.47018406, y: -0.12542924, z: 0.06771072, w: 0.87098205}
+  m_LocalRotation: {x: 0.470184, y: -0.12542926, z: 0.06771073, w: 0.8709821}
   m_LocalPosition: {x: 10, y: 54, z: -34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1460,6 +1476,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Small-Car-2-Tile Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194964220031150446, guid: 5b51c5785de9ea24ca917061ab418131,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b51c5785de9ea24ca917061ab418131, type: 3}
@@ -3357,12 +3378,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2128405120}
-  m_RootOrder: 3
+  m_Father: {fileID: 1844460611}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 0}
+  m_AnchoredPosition: {x: -128.97461, y: 0}
   m_SizeDelta: {x: 219.4875, y: 167.4}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1465100837
@@ -4161,13 +4182,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 312660940}
+        m_TargetAssemblyTypeName: CarLotJam.UIModule.UnlockUI, Assembly-CSharp
+        m_MethodName: _ContinueButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4675,7 +4696,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1465100836}
   m_Father: {fileID: 2128405120}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5326,7 +5348,6 @@ RectTransform:
   - {fileID: 873743469}
   - {fileID: 1124721464}
   - {fileID: 1844460611}
-  - {fileID: 1465100836}
   m_Father: {fileID: 312660939}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

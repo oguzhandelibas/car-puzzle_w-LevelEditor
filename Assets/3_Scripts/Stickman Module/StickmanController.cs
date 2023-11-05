@@ -6,6 +6,7 @@ using ODProjects.LevelEditor;
 using CarLotJam.Pathfind;
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 namespace CarLotJam.StickmanModule
 {

@@ -11,6 +11,7 @@ namespace CarLotJam.UIModule
 {
     public class UnlockUI : View
     {
+        [SerializeField] private CoinSpawner coinSpawner;
         [SerializeField] private RectTransform shineHolder;
         [SerializeField] private Image itemBackgroundIcon;
         [SerializeField] private Image itemIcon;
@@ -22,7 +23,9 @@ namespace CarLotJam.UIModule
 
         public void _ContinueButton()
         {
-            _levelSignals.onNextLevel?.Invoke();
+            itemIcon.gameObject.SetActive(false);
+            coinSpawner.CreateCoins(25);
+            //_levelSignals.onNextLevel?.Invoke();
         }
 
         public void UnlockShine()

@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 public class ScreenSpaceOutlines : ScriptableRendererFeature {
 
     [System.Serializable]
-    private class ScreenSpaceOutlineSettings {
+    public class ScreenSpaceOutlineSettings {
 
         [Header("General Outline Settings")]
         public Color outlineColor = Color.black;
@@ -182,7 +182,7 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature {
     [SerializeField] private LayerMask outlinesLayerMask;
     [SerializeField] private LayerMask outlinesOccluderLayerMask;
     
-    [SerializeField] private ScreenSpaceOutlineSettings outlineSettings = new ScreenSpaceOutlineSettings();
+    public ScreenSpaceOutlineSettings outlineSettings = new ScreenSpaceOutlineSettings();
     [SerializeField] private ViewSpaceNormalsTextureSettings viewSpaceNormalsTextureSettings = new ViewSpaceNormalsTextureSettings();
 
     private ViewSpaceNormalsTexturePass viewSpaceNormalsTexturePass;
