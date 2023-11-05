@@ -328,13 +328,13 @@ namespace ODProjects.LevelEditor
                             break;
                     }
                 }
-                if (!hasNeighbour) return;
-
                 if (_selectedColor == SelectedColor.Null || _selectedElement == SelectedElement.Null) // ERASE
                 {
                     content.text = "N/A";
                     _currentLevelData.SetButtonColor(index, SelectedColor.Null, _colorData.Colors[SelectedColor.Null].color, content, SelectedElement.Null);
                 }
+
+                if (!hasNeighbour) return;
                 else // ADD
                 {
                     ChangeButtonState(content, index);
@@ -405,8 +405,6 @@ namespace ODProjects.LevelEditor
             int columns = _currentLevelData.gridSize.x;
             int currentColumn = currentIndex % columns;
             int targetColumn = targetIndex % columns;
-            Debug.Log("Current Index: " + currentIndex + " Target Index: " + targetIndex + "Is Same Column: " +
-                      (currentColumn == targetColumn));
             return currentColumn == targetColumn;
         }
 

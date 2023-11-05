@@ -101,6 +101,7 @@ namespace CarLotJam.CarModule
             if (currentTargetIndex == targetPath.Count - 1)
             {
                 moveSpeed *= 2;
+                GameManager.Instance.IncreaseCompletedCarCount();
                 GridController.Instance.OpenBarrier();
             }
             else if (currentTargetIndex >= targetPath.Count)
@@ -229,9 +230,7 @@ namespace CarLotJam.CarModule
             {
                 Vector3 pos = GridController.Instance.GridToWorlPosition(wayPointList[^1]) + moveDirection;
                 targetPath.Add(pos);
-
-                GameManager.Instance.IncreaseCompletedCarCount();
-
+                carAnimationController.MoveAcceleration(GetMoveValue());
                 UpdateMatrix();
             }
             return hasElement;

@@ -57,7 +57,6 @@ namespace CarLotJam
             Elements[index].SelectedElement = selectedElement;
             Elements[index].GuiContent = guiContent;
             Elements[index].hasElement = false;
-            Debug.Log(_carCount);
         }
         public GUIContent GetContent(int index) => Elements[index].GuiContent;
         public Color GetColor(int index)

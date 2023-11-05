@@ -16,20 +16,31 @@ namespace CarLotJam.GameManagementModule
 
         [Inject] private LevelSignals _levelSignals;
 
+        public bool GameHasContinue { get => _gameHasContinue; set => _gameHasContinue = value; }
+        private bool _gameHasContinue;
+        private int _levelIndex;
         private int completedCarCount;
+
 
         #region LEVEL MANAGEMENT
 
-        public void SetLevelIndex(int index = 0) => PlayerPrefs.SetInt("LevelIndex", index);
-        public int GetLevelIndex() => PlayerPrefs.GetInt("LevelIndex", 0);
+        public void SetLevelIndex(int index = 0)
+        {
+            _levelIndex = index;
+            PlayerPrefs.SetInt("LevelIndex", _levelIndex);
+        }
+
+        public int GetLevelIndex()
+        {
+            return _levelIndex;
+        }
 
         public int NextLevel()
         {
-            int nextLevel = PlayerPrefs.GetInt("LevelIndex") + 1;
-            PlayerPrefs.SetInt("LevelIndex", nextLevel);
-            return nextLevel;
+            _levelIndex++;
+            PlayerPrefs.SetInt("LevelIndex", _levelIndex);
+            return _levelIndex;
         }
-
         public void IncreaseCompletedCarCount()
         {
             completedCarCount++;
@@ -70,10 +81,15 @@ namespace CarLotJam.GameManagementModule
 
         public void StartGame()
         {
-            gridController.ClearElements();
-            SetLevelIndex();
-            LoadLevelDatas();
+            _levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
+            if (_levelIndex >= levelDatas.Length)
+            {
+                SetLevelIndex(0);
+            }
 
+            completedCarCount = 0;
+            gridController.ClearElements();
+            LoadLevelDatas();
             gridController.SetGridController(GetCurrentLevelData());
             gridController.InitializeGrid();
         }

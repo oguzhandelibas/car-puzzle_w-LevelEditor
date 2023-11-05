@@ -1,8 +1,10 @@
 using CarLotJam.CarModule;
+using CarLotJam.GameManagementModule;
 using CarLotJam.GridModule;
 using CarLotJam.StickmanModule;
 using ODProjects.LevelEditor;
 using UnityEngine;
+using Zenject;
 
 namespace CarLotJam.ClickModule
 {
@@ -10,6 +12,7 @@ namespace CarLotJam.ClickModule
     {
         #region FIELDS
 
+        [Inject] private GameManager _gameManager;
         private StickmanController _stickmanController;
         private CarController _carController;
 
@@ -19,6 +22,7 @@ namespace CarLotJam.ClickModule
 
         private void Update()
         {
+            if(!_gameManager.GameHasContinue) return;
             if (Input.GetMouseButtonDown(0))
             {
                 ClickableControl();

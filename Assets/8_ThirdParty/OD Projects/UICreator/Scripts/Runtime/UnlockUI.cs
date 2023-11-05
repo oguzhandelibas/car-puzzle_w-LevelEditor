@@ -21,11 +21,15 @@ namespace CarLotJam.UIModule
         [Inject] private LevelSignals _levelSignals;
         private float progressValue;
 
+        private void Start()
+        {
+            itemIcon.gameObject.SetActive(true);
+        }
+
         public void _ContinueButton()
         {
             itemIcon.gameObject.SetActive(false);
             coinSpawner.CreateCoins(25);
-            //_levelSignals.onNextLevel?.Invoke();
         }
 
         public void UnlockShine()

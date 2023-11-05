@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using CarLotJam.LevelModule;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using Zenject;
 
 namespace CarLotJam.UIModule
 {
     public class CoinSpawner : MonoBehaviour
     {
+        [Inject] private LevelSignals _levelSignals;
         [SerializeField] private GameObject coinPrefab;
         private List<Transform> coins = new List<Transform>();
         private int _coinAmount;
@@ -47,22 +51,24 @@ namespace CarLotJam.UIModule
 
                 coins[i].transform.DOScale(0f, 0.3f).SetDelay(delay + 1.3f)
                     .SetEase(Ease.OutBack)
-                    .OnComplete((() => Destroy(coins[i].gameObject)));
-
+                    .OnComplete((delegate
+                    {
+                        Destroy(coins[i].gameObject);
+                    }));
+                
                 delay += 0.1f;
 
                // counter.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
             }
-            coins.Clear();
-            StartCoroutine(CountDollars());
+
+            CoinProcessDone(delay + 1.5f);
         }
 
-        IEnumerator CountDollars()
+        private async Task CoinProcessDone(float delay)
         {
-            yield return new WaitForSecondsRealtime(0.5f);
-            PlayerPrefs.SetInt("CountDollar", PlayerPrefs.GetInt("CountDollar") + 50 + PlayerPrefs.GetInt("BPrize"));
-            //counter.text = PlayerPrefs.GetInt("CountDollar").ToString();
-            PlayerPrefs.SetInt("BPrize", 0);
+            await Task.Delay(Mathf.RoundToInt(delay * 1000));
+            _levelSignals.onNextLevel?.Invoke();
+            coins.Clear();
         }
     }
 }

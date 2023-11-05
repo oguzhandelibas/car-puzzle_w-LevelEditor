@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CarLotJam.GameManagementModule;
 using CarLotJam.LevelModule;
 using Cinemachine;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace CarLotJam.CameraModule
 
         private CinemachineTransposer cinemachineTransposer;
         [Inject] private LevelSignals _levelSignals;
+        [Inject] private GameManager _gameManager;
         #region EVENT SUBSCRIPTION
 
         private void Start()

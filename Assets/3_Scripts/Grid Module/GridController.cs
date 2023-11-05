@@ -44,14 +44,14 @@ namespace CarLotJam.GridModule
             {
                 for (int i = 0; i < elementParent.childCount; i++)
                 {
-                    Destroy(elementParent.GetChild(i));
+                    Destroy(elementParent.GetChild(i).gameObject);
                 }
             }
             if (transform.childCount > 1)
             {
-                for (int i = 1; i < elementParent.childCount; i++)
+                for (int i = 1; i < transform.childCount; i++)
                 {
-                    Destroy(transform.GetChild(i));
+                    Destroy(transform.GetChild(i).gameObject);
                 }
             }
         }

@@ -45,7 +45,7 @@ namespace CarLotJam.CarModule
             }
         }
 
-        private void MoveAcceleration(int multiplier)
+        public void MoveAcceleration(int multiplier)
         {
             carBody.DOLocalRotate(new Vector3(multiplier * 10, 0, 0), 0.2f).SetEase(Ease.InOutBack)
                 .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), .4f).SetEase(Ease.InBounce)));
@@ -64,7 +64,6 @@ namespace CarLotJam.CarModule
                     {
                         carBody.DOLocalRotate(new Vector3(carBody.transform.rotation.x, 0, 0), 0.15f);
                         carController.MoveFinish();
-                        MoveAcceleration(carController.GetMoveValue());
                     })))));
 
             Transform door = multiplier == 1 ? leftDoor : rightDoor;

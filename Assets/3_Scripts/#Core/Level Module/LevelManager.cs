@@ -10,22 +10,19 @@ namespace CarLotJam.LevelModule
         #region FIELDS
 
         [Inject] private GameManager _gameManager;
+        [Inject] private UIManager _uiManager;
         [Inject] private LevelSignals _levelSignals;
         private LevelData currentLevelData;
 
         #endregion
-        #region VARIBLES
 
-        private int levelIndex;
-
-        #endregion
 
         #region UNITY FUNCTIONS
 
         private void Start()
         {
-            UIManager.Instance.Show<HomeUI>();
-            levelIndex = _gameManager.GetLevelIndex();
+            UIManager.Instance.Show<GameUI>();
+            _levelSignals.onLevelInitialize.Invoke();
         }
 
         #endregion
@@ -41,15 +38,18 @@ namespace CarLotJam.LevelModule
         private void SubscribeEvents()
         {
             _levelSignals.onLevelInitialize += OnInitializeLevel;
+            _levelSignals.onLevelSuccessful += OnLevelSuccesful;
             _levelSignals.onNextLevel += OnNextLevel;
             _levelSignals.onRestartLevel += OnRestartLevel;
             _levelSignals.onGetLevelCount += GetLevelCount;
             _levelSignals.onGetLevelGridSize += GetLevelGridSize;
         }
 
+
         private void UnsubscribeEvents()
         {
             _levelSignals.onLevelInitialize -= OnInitializeLevel;
+            _levelSignals.onLevelSuccessful -= OnLevelSuccesful;
             _levelSignals.onNextLevel -= OnNextLevel;
             _levelSignals.onRestartLevel -= OnRestartLevel;
             _levelSignals.onGetLevelCount -= GetLevelCount;
@@ -67,14 +67,22 @@ namespace CarLotJam.LevelModule
 
         private void OnInitializeLevel()
         {
+            _gameManager.GameHasContinue = true;
             currentLevelData = _gameManager.GetCurrentLevelData();
+        }
+
+        private void OnLevelSuccesful()
+        {
+            _gameManager.GameHasContinue = true;
+            _uiManager.Show<UnlockUI>();
         }
 
         private void OnNextLevel()
         {
-            levelIndex = _gameManager.NextLevel();
+            _gameManager.NextLevel();
             currentLevelData = _gameManager.GetCurrentLevelData();
             _gameManager.StartGame();
+            _uiManager.Show<GameUI>();
         }
 
         private void OnRestartLevel()
