@@ -41,6 +41,7 @@ namespace CarLotJam
         public bool ElementIsAvailable(int index) => Elements[index].SelectedElement == SelectedElement.Null;
         public void SetButtonColor(int index, SelectedColor selectedColor, Color color, GUIContent guiContent, SelectedElement selectedElement)
         {
+            Debug.LogWarning("AGAM NE ALAKA");
             if (!_hasPath) _hasPath = true;
             Elements[index].Color = color;
             Elements[index].SelectedColor = selectedColor;
