@@ -2,6 +2,7 @@ using CarLotJam.CameraModule;
 using CarLotJam.CarModule;
 using CarLotJam.ClickModule;
 using CarLotJam.GameManagementModule;
+using CarLotJam.GridModule;
 using CarLotJam.LevelModule;
 using CarLotJam.UIModule;
 using Zenject;
@@ -19,6 +20,8 @@ namespace CarLotJam
             Container.Bind<ClickManager>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CameraManager>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CarManager>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<TutorialManager>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<GridController>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace CarLotJam.GameManagementModule
         [SerializeField] private LevelData[] levelDatas;
         [SerializeField] private ColorData colorData;
 
+        [Inject] private TutorialManager _tutorialManager;
         [Inject] private LevelSignals _levelSignals;
 
         public bool GameHasContinue { get => _gameHasContinue; set => _gameHasContinue = value; }
@@ -29,12 +30,11 @@ namespace CarLotJam.GameManagementModule
             _levelIndex = index;
             PlayerPrefs.SetInt("LevelIndex", _levelIndex);
         }
-
         public int GetLevelIndex()
         {
+            _levelIndex = _levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
             return _levelIndex;
         }
-
         public int NextLevel()
         {
             _levelIndex++;
@@ -46,7 +46,6 @@ namespace CarLotJam.GameManagementModule
             completedCarCount++;
             if (CheckLevelStatus()) _levelSignals.onLevelSuccessful?.Invoke();
         }
-
         private bool CheckLevelStatus() => completedCarCount >= levelDatas[GetLevelIndex()].CarCount;
 
         #endregion
@@ -81,7 +80,6 @@ namespace CarLotJam.GameManagementModule
 
         public void StartGame()
         {
-            _levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
             if (_levelIndex >= levelDatas.Length)
             {
                 SetLevelIndex(0);
@@ -92,9 +90,14 @@ namespace CarLotJam.GameManagementModule
             LoadLevelDatas();
             gridController.SetGridController(GetCurrentLevelData());
             gridController.InitializeGrid();
+
+            _tutorialManager.CheckTutorialStatus();
         }
         private void LoadLevelDatas() => LoadLevelDatasFromFolder();
-        public LevelData GetCurrentLevelData() => levelDatas[GetLevelIndex()];
+        public LevelData GetCurrentLevelData()
+        {
+            return levelDatas[GetLevelIndex()];
+        }
         public ColorData GetColorData() => colorData;
 
 

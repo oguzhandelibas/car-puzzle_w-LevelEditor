@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CarLotJam.CarModule;
 using CarLotJam.Pathfind;
 using CarLotJam.StickmanModule;
@@ -14,6 +15,7 @@ namespace CarLotJam.GridModule
 
         [SerializeField] private RoadData roadData;
         [SerializeField] private Transform gridLookTransform;
+        [SerializeField] private Transform groundParent;
         [SerializeField] private Transform elementParent;
         [SerializeField] private Grid grid;
         [SerializeField] private GameObject groundObject;
@@ -40,18 +42,18 @@ namespace CarLotJam.GridModule
 
         public void ClearElements()
         {
-            if (elementParent.childCount > 0)
+            if (groundParent.childCount > 0)
             {
-                for (int i = 0; i < elementParent.childCount; i++)
+                for (int i = 0; i < groundParent.childCount; i++)
                 {
-                    Destroy(elementParent.GetChild(i).gameObject);
+                    Destroy(groundParent.GetChild(i).gameObject);
                 }
             }
-            if (transform.childCount > 1)
+            if (elementParent.childCount > 1)
             {
-                for (int i = 1; i < transform.childCount; i++)
+                for (int i = 1; i < elementParent.childCount; i++)
                 {
-                    Destroy(transform.GetChild(i).gameObject);
+                    Destroy(elementParent.GetChild(i).gameObject);
                 }
             }
         }
@@ -64,7 +66,7 @@ namespace CarLotJam.GridModule
                 for (int y = 0; y < _gridSize.y; y++)
                 {
                     var worldPosition = grid.GetCellCenterWorld(new Vector3Int(x, y));
-                    var obj = Instantiate(groundObject, worldPosition, Quaternion.identity, transform);
+                    var obj = Instantiate(groundObject, worldPosition, Quaternion.identity, groundParent);
                     obj.name = x + "," + y;
 
                     _grounds[x, y] = obj.GetComponent<Ground>();
@@ -202,10 +204,12 @@ namespace CarLotJam.GridModule
                     carController.SetBoardingPoints(boardingPoints);
                 }
             }
+
+            FindTutorialElements();
         }
         private void CreateRoad(GameObject prefabObject, GameObject parent, Vector3 positionOffset, Quaternion rotation)
         {
-            var road = Instantiate(prefabObject, parent.transform.position + positionOffset, rotation, elementParent);
+            var road = Instantiate(prefabObject, parent.transform.position + positionOffset, rotation, parent.transform);
         }
         private void CreateRoadSide(int x, int y, GameObject obj)
         {
@@ -273,6 +277,44 @@ namespace CarLotJam.GridModule
             barrier.transform.GetChild(1).DORotate(new Vector3(0, -180, 90), 0.2f).OnComplete((() => barrier.transform.GetChild(1).DORotate(new Vector3(0, -180, 0), 1.0f)));
         }
 
+        #endregion
+
+        #region TUTORIAL DATA CREATION
+
+        public StickmanController stickman;
+        public CarController car;
+
+        private async Task FindTutorialElements()
+        {
+            for (int i = 0; i < elementParent.childCount; i++)
+            {
+                if (elementParent.GetChild(i).TryGetComponent(out StickmanController stickmanController))
+                {
+                    stickman = stickmanController;
+                    break;
+                }
+            }
+
+            await Task.Delay(50);
+            SelectedColor selectedColor = stickman.selectedColor;
+
+            for (int i = 0; i < elementParent.childCount; i++)
+            {
+                if (elementParent.GetChild(i).TryGetComponent(out CarController carController))
+                {
+                    if (carController.selectedColor != selectedColor) continue;
+                    print("aldýk");
+                    car = carController;
+                    break;
+                }
+            }
+
+            await Task.Delay(50);
+        }
+
+
+        public StickmanController GetTutorialStickman() => stickman;
+        public CarController GetTutorialCar() => car;
         #endregion
     }
 }

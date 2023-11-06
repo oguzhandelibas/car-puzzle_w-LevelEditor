@@ -23,6 +23,7 @@ namespace CarLotJam.LevelModule
         {
             UIManager.Instance.Show<GameUI>();
             _levelSignals.onLevelInitialize.Invoke();
+            currentLevelData = _gameManager.GetCurrentLevelData();
         }
 
         #endregion

@@ -95,7 +95,6 @@ namespace CarLotJam
             levelMatrix = new Matrix(gridSize.x, gridSize.y, waypoint);
             return levelMatrix;
         }
-
         private void CalculateCarCount()
         {
             _carCount = 0;

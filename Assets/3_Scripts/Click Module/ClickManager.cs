@@ -12,6 +12,7 @@ namespace CarLotJam.ClickModule
     {
         #region FIELDS
 
+        [Inject] private TutorialManager _tutorialManager;
         [Inject] private GameManager _gameManager;
         private StickmanController _stickmanController;
         private CarController _carController;
@@ -81,8 +82,21 @@ namespace CarLotJam.ClickModule
         {
             if (hit.transform.TryGetComponent(out StickmanController stickmanController))
             {
+                if (!_tutorialManager.tutorialDone)
+                {
+                    if (_tutorialManager.stickmanController.selectedColor != stickmanController.selectedColor)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        _tutorialManager.FirstClick();
+                    }
+                }
+
                 _stickmanController = stickmanController;
                 _stickmanController.IsHold = true;
+
             }
         }
 
@@ -92,6 +106,18 @@ namespace CarLotJam.ClickModule
             {
                 if (_stickmanController)
                 {
+                    if (!_tutorialManager.tutorialDone)
+                    {
+                        if (_tutorialManager.carController.selectedColor != carController.selectedColor)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            _tutorialManager.SecondClick();
+                        }
+                    }
+
                     if (carController.selectedColor == _stickmanController.selectedColor)
                     {
                         _stickmanController.FindBestCarPosition(iClickable.PointsList(), carController);

@@ -45,11 +45,10 @@ namespace CarLotJam.CameraModule
         public void SetCamera()
         { 
             Vector2Int gridSize = _levelSignals.onGetLevelGridSize.Invoke();
-
             if (gridSize.y >= 6)
             {
                 camera.orthographic = true;
-                virtualCamera.m_Lens.OrthographicSize = 25 + gridSize.y;
+                virtualCamera.m_Lens.OrthographicSize = 22 + gridSize.y;
                 cinemachineTransposer.m_FollowOffset = new Vector3(0, 50, -30);
             }
             else
