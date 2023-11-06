@@ -10,20 +10,36 @@ using Zenject;
 
 namespace CarLotJam.UIModule
 {
-    public class CoinSpawner : MonoBehaviour
+    public class CoinController : MonoBehaviour
     {
         [Inject] private LevelSignals _levelSignals;
+        [SerializeField] private Transform coinParent;
+        [SerializeField] private TextMeshProUGUI coinText;
+        
         [SerializeField] private GameObject coinPrefab;
         private List<Transform> coins = new List<Transform>();
-        private int _coinAmount;
+        private int _willCreateCoinAmount;
+        private int _coinCount;
+
+        private void Start()
+        {
+            _coinCount = PlayerPrefs.GetInt("CoinCount", 0);
+            coinText.text = _coinCount.ToString();
+        }
+
+        private void IncreaseCoinText()
+        {
+            _coinCount++;
+            coinText.text = _coinCount.ToString();
+        }
 
         public void CreateCoins(int coinCount)
         {
-            _coinAmount = coinCount;
+            _willCreateCoinAmount = coinCount;
 
-            for (int i = 0; i < _coinAmount; i++)
+            for (int i = 0; i < _willCreateCoinAmount; i++)
             {
-                Transform coinTransform = Instantiate(coinPrefab, transform).transform;
+                Transform coinTransform = Instantiate(coinPrefab, coinParent).transform;
                 coinTransform.GetComponent<RectTransform>()
                     .DOAnchorPos(new Vector2(Random.Range(-150, 150), Random.Range(-150, 150)), 0.2f);
                 coins.Add(coinTransform);
@@ -42,7 +58,7 @@ namespace CarLotJam.UIModule
                 coins[i].transform.DOScale(1f, 0.3f).SetDelay(delay).SetEase(Ease.OutBack);
 
                 coins[i].transform.GetComponent<RectTransform>().DOAnchorPos(new Vector2(400f, 840f), 0.8f)
-                    .SetDelay(delay + 0.5f).SetEase(Ease.InBack);
+                    .SetDelay(delay + 0.5f).SetEase(Ease.InBack).OnComplete(IncreaseCoinText);
 
 
                 coins[i].transform.DORotate(Vector3.zero, 0.5f).SetDelay(delay + 0.5f)
@@ -57,8 +73,8 @@ namespace CarLotJam.UIModule
                     }));
                 
                 delay += 0.1f;
-
-               // counter.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
+                
+                // counter.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
             }
 
             CoinProcessDone(delay + 1.5f);
@@ -69,6 +85,7 @@ namespace CarLotJam.UIModule
             await Task.Delay(Mathf.RoundToInt(delay * 1000));
             _levelSignals.onNextLevel?.Invoke();
             coins.Clear();
+            PlayerPrefs.SetInt("CoinCount", _coinCount);
         }
     }
 }

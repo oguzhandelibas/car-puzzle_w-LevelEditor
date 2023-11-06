@@ -11,11 +11,12 @@ namespace CarLotJam.UIModule
 {
     public class UnlockUI : View
     {
-        [SerializeField] private CoinSpawner coinSpawner;
+        [SerializeField] private CoinController _coinController;
         [SerializeField] private RectTransform shineHolder;
         [SerializeField] private Image itemBackgroundIcon;
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI unlockPercentageText;
+        [SerializeField] private TextMeshProUGUI willGenerateCoinCount;
         [SerializeField] private Transform unlockedTextHolder;
 
         [Inject] private LevelSignals _levelSignals;
@@ -29,7 +30,8 @@ namespace CarLotJam.UIModule
         public void _ContinueButton()
         {
             itemIcon.gameObject.SetActive(false);
-            coinSpawner.CreateCoins(25);
+            willGenerateCoinCount.text = 30.ToString();
+            _coinController.CreateCoins(30);
         }
 
         public void UnlockShine()
