@@ -1,5 +1,5 @@
 # Gameplay:
-https://github.com/oguzhandelibas/car-lot-jam/assets/64430254/710922b8-6a5f-4317-a5df-0ea8d881919d
+https://github.com/oguzhandelibas/car-lot-jam/assets/64430254/859ec864-9d2c-4399-921f-6534d1b05645
 
 # Level Editor:
 https://github.com/oguzhandelibas/car-lot-jam/assets/64430254/60f0dc9c-134d-4ffc-83e8-59f0acfea033
