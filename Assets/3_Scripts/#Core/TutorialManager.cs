@@ -52,9 +52,9 @@ namespace CarLotJam
 
         public bool IsFirstGameplay()
         {
-            firstGameplay = false;
+            firstGameplay = true;
             int status = PlayerPrefs.GetInt("FirstGameplay", 0);
-            if (status == 1) firstGameplay = true;
+            if (status == 1) firstGameplay = false;
             return firstGameplay;
         }
 
@@ -63,9 +63,11 @@ namespace CarLotJam
             if(!IsFirstGameplay())
             {
                 tutorialDone = true;
+                TutorialActiveness(false);
                 return;
             }
 
+            TutorialActiveness(true);
             stickmanController = _gridController.GetTutorialStickman();
             await Task.Delay(150);
             carController = _gridController.GetTutorialCar();
@@ -80,6 +82,8 @@ namespace CarLotJam
             tutorialHand.GetComponent<RectTransform>().position = handPos + new Vector2(70, -30); //DOAnchorPos(handPos, 0.2f);
             HandAnimationIn(handPos, new Vector3(0.5f, 0.5f, 0.5f));
         }
+
+        private void TutorialActiveness(bool activeness) => tutorialPanel.SetActive(activeness);
 
         private void HandAnimationIn(Vector2 handPos, Vector3 scale)
         {
