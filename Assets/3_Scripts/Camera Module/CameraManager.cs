@@ -14,37 +14,18 @@ namespace CarLotJam.CameraModule
         [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
         private CinemachineTransposer cinemachineTransposer;
-        [Inject] private LevelSignals _levelSignals;
         [Inject] private GameManager _gameManager;
-        #region EVENT SUBSCRIPTION
 
-        private void Start()
+        private void OnEnable()
         {
             cinemachineTransposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-            Subscribe();
+            SetCamera();
         }
-
-        private void Subscribe()
-        {
-            _levelSignals.onLevelInitialize += SetCamera;
-        }
-
-        private void Unsubscribe()
-        {
-            _levelSignals.onLevelInitialize -= SetCamera;
-        }
-
-        private void OnDisable()
-        {
-            Unsubscribe();
-        }
-
-        #endregion
 
 
         public void SetCamera()
         { 
-            Vector2Int gridSize = _levelSignals.onGetLevelGridSize.Invoke();
+            Vector2Int gridSize = _gameManager.GetCurrentLevelData().gridSize;
             if (gridSize.y >= 6)
             {
                 camera.orthographic = true;
@@ -53,6 +34,7 @@ namespace CarLotJam.CameraModule
             }
             else
             {
+                camera.orthographic = false;
                 cinemachineTransposer.m_FollowOffset = new Vector3(10, 50 + gridSize.y, -30 - gridSize.y);
             }
         }

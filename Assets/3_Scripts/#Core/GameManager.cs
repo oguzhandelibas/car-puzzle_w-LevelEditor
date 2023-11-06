@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using CarLotJam.CameraModule;
 using CarLotJam.GridModule;
 using CarLotJam.LevelModule;
 using UnityEditor;
@@ -14,6 +15,7 @@ namespace CarLotJam.GameManagementModule
         [SerializeField] private LevelData[] levelDatas;
         [SerializeField] private ColorData colorData;
 
+        [Inject] private CameraManager _cameraManager;
         [Inject] private TutorialManager _tutorialManager;
         [Inject] private LevelSignals _levelSignals;
 
@@ -93,6 +95,7 @@ namespace CarLotJam.GameManagementModule
             gridController.InitializeGrid();
 
             _tutorialManager.CheckTutorialStatus();
+            _cameraManager.SetCamera();
         }
 
         public LevelData GetCurrentLevelData()

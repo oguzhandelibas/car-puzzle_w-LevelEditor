@@ -240,3 +240,4 @@ MonoBehaviour:
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
   HasPath: 1
+  CarCount: 3
