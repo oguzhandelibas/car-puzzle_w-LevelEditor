@@ -18,7 +18,7 @@ namespace CarLotJam.CarModule
         public CarType carType;
         public CarAnimationController carAnimationController;
         public Transform carTransform;
-        [SerializeField] private CarData carData;
+        [SerializeField] private ColorData carColorData;
         [SerializeField] private GameObject outlineObject;
         [SerializeField] private GameObject carObject;
 
@@ -38,7 +38,7 @@ namespace CarLotJam.CarModule
             this.selectedDirection = selectedDirection;
             //carObject.transform.position += transform.forward * 3f;
             this.selectedColor = selectedColor;
-            carObject.GetComponent<ColorSetter>().SetMeshMaterials(carData.ColorData.Colors[selectedColor]);
+            carObject.GetComponent<ColorSetter>().SetMeshMaterials(carColorData.Colors[selectedColor]);
             carPoint = elementPoint;
             carWidth = carType == CarType.LongCar ? 3 : 2;
         }

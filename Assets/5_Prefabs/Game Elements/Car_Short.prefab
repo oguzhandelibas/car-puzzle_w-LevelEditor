@@ -50,7 +50,7 @@ MonoBehaviour:
   carType: 1
   carAnimationController: {fileID: 6218044217986964523}
   carTransform: {fileID: 3400036873795006249}
-  carData: {fileID: 11400000, guid: a2a21be62c908364bb2141156bfdfc61, type: 2}
+  carColorData: {fileID: 11400000, guid: 4a55553bfb4de924d8eab12d828101fa, type: 2}
   outlineObject: {fileID: 1864008906705680043}
   carObject: {fileID: 5827668575795378012}
   selectedDirection: 0
