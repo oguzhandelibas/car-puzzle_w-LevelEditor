@@ -77,7 +77,7 @@ namespace CarLotJam
         public void ResetGrid()
         {
             ClearPath();
-            gridSize = new Vector2Int(4,4);
+            gridSize = new Vector2Int(3,3);
             SetMatrix();
         }
         public Matrix SetMatrix()
