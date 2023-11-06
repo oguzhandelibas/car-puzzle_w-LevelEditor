@@ -152,7 +152,7 @@ namespace CarLotJam.CarModule
             return (selectedDirection == SelectedDirection.Left && targetDirection == SelectedDirection.Right) ||
                    (selectedDirection == SelectedDirection.Right && targetDirection == SelectedDirection.Left)
                 ? -value
-                : value;
+                : value; ;
         }
 
         public bool MoveFinish(bool outside = false)
@@ -163,12 +163,10 @@ namespace CarLotJam.CarModule
                 if (IsForwardAvailable())
                 {
                     canMove = true;
-                    Debug.Log("You Can Go Forward");
                 }
                 else if (IsBackAvailable())
                 {
                     canMove = true;
-                    Debug.Log("You Can Go Backward");
                 }
                 else
                 {
@@ -180,12 +178,10 @@ namespace CarLotJam.CarModule
                 if (IsLeftAvailable())
                 {
                     canMove = true;
-                    Debug.Log("You Can Go Left");
                 }
                 else if (IsRightAvailable())
                 {
                     canMove = true;
-                    Debug.Log("You Can Go Right");
                 }
                 else
                 {
@@ -230,7 +226,6 @@ namespace CarLotJam.CarModule
             {
                 Vector3 pos = GridController.Instance.GridToWorlPosition(wayPointList[^1]) + moveDirection;
                 targetPath.Add(pos);
-                carAnimationController.MoveAcceleration(GetMoveValue());
                 UpdateMatrix();
             }
             return hasElement;
@@ -247,6 +242,7 @@ namespace CarLotJam.CarModule
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 50));
                 targetDirection = SelectedDirection.Forward;
+                carAnimationController.MoveAcceleration(GetMoveValue());
             }
 
             return moveAvailable;
@@ -263,6 +259,7 @@ namespace CarLotJam.CarModule
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 50));
                 targetDirection = SelectedDirection.Back;
+                carAnimationController.MoveAcceleration(GetMoveValue());
             }
 
             return moveAvailable;
@@ -279,6 +276,7 @@ namespace CarLotJam.CarModule
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 50));
                 targetDirection = SelectedDirection.Right;
+                carAnimationController.MoveAcceleration(GetMoveValue());
             }
 
             return moveAvailable;
@@ -294,6 +292,7 @@ namespace CarLotJam.CarModule
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 4));
                 targetPath.Add(GridController.Instance.GetLeftTopCorner() + new Vector3(-4, 0, 50));
                 targetDirection = SelectedDirection.Left;
+                carAnimationController.MoveAcceleration(GetMoveValue());
             }
 
             return moveAvailable;

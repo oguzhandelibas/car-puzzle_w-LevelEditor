@@ -56,6 +56,7 @@ namespace CarLotJam.GridModule
                     Destroy(elementParent.GetChild(i).gameObject);
                 }
             }
+            Destroy(barrier);
         }
 
         public void InitializeGrid()
