@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using CarLotJam.CarModule;
 using CarLotJam.GameManagementModule;
@@ -14,6 +12,8 @@ namespace CarLotJam
 {
     public class TutorialManager : MonoBehaviour
     {
+        #region FIELDS
+
         [Inject] private GameManager _gameManager;
         [Inject] private GridController _gridController;
 
@@ -25,8 +25,16 @@ namespace CarLotJam
         public StickmanController stickmanController;
         public CarController carController;
 
+        #endregion
+
+        #region VARIABLES
+
         private bool firstGameplay;
         public bool tutorialDone;
+
+        #endregion
+
+        #region TUTORIAL CONTROL
 
         private void TutorialDone()
         {
@@ -60,7 +68,7 @@ namespace CarLotJam
 
         public async Task CheckTutorialStatus()
         {
-            if(!IsFirstGameplay())
+            if (!IsFirstGameplay())
             {
                 tutorialDone = true;
                 TutorialActiveness(false);
@@ -87,7 +95,7 @@ namespace CarLotJam
 
         private void HandAnimationIn(Vector2 handPos, Vector3 scale)
         {
-            if(tutorialDone) return;
+            if (tutorialDone) return;
             tutorialHand.transform.DOScale(scale, 0.5f)
                 .SetEase(Ease.InOutQuad)
                 .OnComplete((() => HandAnimationOut(handPos, new Vector3(1f, 1f, 1f))));
@@ -100,5 +108,6 @@ namespace CarLotJam
                 .OnComplete((() => HandAnimationIn(handPos, new Vector3(0.5f, 0.5f, 0.5f))));
         }
 
+        #endregion
     }
 }

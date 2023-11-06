@@ -10,11 +10,16 @@ namespace CarLotJam.CameraModule
 {
     public class CameraManager : MonoBehaviour
     {
+        #region FIELDS
+
+        [Inject] private GameManager _gameManager;
         [SerializeField] private Camera camera;
         [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
         private CinemachineTransposer cinemachineTransposer;
-        [Inject] private GameManager _gameManager;
+
+        #endregion
+
 
         private void OnEnable()
         {

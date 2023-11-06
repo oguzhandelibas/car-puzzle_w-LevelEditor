@@ -8,24 +8,21 @@ namespace CarLotJam.CarModule
 {
     public class CarAnimationController : MonoBehaviour
     {
+        #region FIELDS
+
         [SerializeField] private CarController carController;
         [SerializeField] private Transform carBody;
         [SerializeField] private Transform leftDoor;
         [SerializeField] private Transform rightDoor;
 
-        /*
-        private IEnumerator Start()
-        {
-            yield return new WaitForSeconds(1);
-            PlayAnim(CarAnimType.RIGHT_DOOR_OPENING);
-            yield return new WaitForSeconds(1);
-            PlayAnim(CarAnimType.RIGHT_DOOR_CLOSING);
-        }*/
+        #endregion
+
+        #region CAR ANIMATION CONTROL
 
         public void FindNearestDoor(Vector3 stickmanPos)
         {
             float distance = Vector3.Distance(leftDoor.position, stickmanPos);
-            if(Vector3.Distance(rightDoor.position, stickmanPos) < distance) PlayAnim(CarAnimType.DOOR_OPENING, -1);
+            if (Vector3.Distance(rightDoor.position, stickmanPos) < distance) PlayAnim(CarAnimType.DOOR_OPENING, -1);
             else PlayAnim(CarAnimType.DOOR_OPENING, 1);
         }
 
@@ -58,8 +55,8 @@ namespace CarLotJam.CarModule
         }
         private async Task CloseDoor(int multiplier)
         {
-            carBody.DOLocalRotate(new Vector3(0, 0, multiplier*12), 0.35f).OnComplete(
-                (() => carBody.DOLocalRotate(new Vector3(carBody.transform.rotation.x, 0, multiplier*5), 0.15f)
+            carBody.DOLocalRotate(new Vector3(0, 0, multiplier * 12), 0.35f).OnComplete(
+                (() => carBody.DOLocalRotate(new Vector3(carBody.transform.rotation.x, 0, multiplier * 5), 0.15f)
                     .OnComplete(((delegate
                     {
                         carBody.DOLocalRotate(new Vector3(carBody.transform.rotation.x, 0, 0), 0.15f);
@@ -70,5 +67,7 @@ namespace CarLotJam.CarModule
             await Task.Delay(500);
             door.DOLocalRotate(new Vector3(0, 0, 0), 0.30f);
         }
+
+        #endregion
     }
 }

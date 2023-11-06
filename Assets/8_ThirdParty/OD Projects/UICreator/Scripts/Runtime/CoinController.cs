@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CarLotJam.LevelModule;
 using DG.Tweening;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine;
 using Zenject;
 
@@ -12,14 +10,25 @@ namespace CarLotJam.UIModule
 {
     public class CoinController : MonoBehaviour
     {
+        #region FIELDS
+
         [Inject] private LevelSignals _levelSignals;
         [SerializeField] private Transform coinParent;
         [SerializeField] private TextMeshProUGUI coinText;
-        
+
         [SerializeField] private GameObject coinPrefab;
+
+        #endregion
+
+        #region VARIABLES
+
         private List<Transform> coins = new List<Transform>();
         private int _willCreateCoinAmount;
         private int _coinCount;
+
+        #endregion
+
+        #region COIN CONTROL
 
         private void Start()
         {
@@ -71,9 +80,9 @@ namespace CarLotJam.UIModule
                     {
                         Destroy(coins[i].gameObject);
                     }));
-                
+
                 delay += 0.1f;
-                
+
                 // counter.transform.parent.GetChild(0).transform.DOScale(1.1f, 0.1f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutSine).SetDelay(1.2f);
             }
 
@@ -87,5 +96,6 @@ namespace CarLotJam.UIModule
             coins.Clear();
             PlayerPrefs.SetInt("CoinCount", _coinCount);
         }
+        #endregion
     }
 }

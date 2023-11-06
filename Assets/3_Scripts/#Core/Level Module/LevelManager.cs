@@ -17,7 +17,6 @@ namespace CarLotJam.LevelModule
         
         #endregion
 
-
         #region UNITY FUNCTIONS
 
         private void Start()
@@ -28,7 +27,6 @@ namespace CarLotJam.LevelModule
         }
 
         #endregion
-
 
         #region SUBSCRIBE EVENTS
 

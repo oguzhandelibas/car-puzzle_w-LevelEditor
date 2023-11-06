@@ -11,6 +11,8 @@ namespace CarLotJam.GameManagementModule
 {
     public class GameManager : AbstractSingleton<GameManager>
     {
+        #region FIELDS
+
         [SerializeField] private GridController gridController;
         [SerializeField] private LevelData[] levelDatas;
         [SerializeField] private ColorData colorData;
@@ -19,11 +21,16 @@ namespace CarLotJam.GameManagementModule
         [Inject] private TutorialManager _tutorialManager;
         [Inject] private LevelSignals _levelSignals;
 
+        #endregion
+
+        #region VARIABLES
+
         public bool GameHasContinue { get => _gameHasContinue; set => _gameHasContinue = value; }
-        private bool _gameHasContinue;
         public int levelIndex;
+        private bool _gameHasContinue;
         private int completedCarCount;
 
+        #endregion
 
         #region LEVEL MANAGEMENT
 
@@ -97,7 +104,6 @@ namespace CarLotJam.GameManagementModule
             _tutorialManager.CheckTutorialStatus();
             _cameraManager.SetCamera();
         }
-
         public LevelData GetCurrentLevelData()
         {
             return levelDatas[GetLevelIndex()];
