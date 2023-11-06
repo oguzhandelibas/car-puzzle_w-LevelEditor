@@ -60,14 +60,12 @@ namespace CarLotJam.GameManagementModule
         private void SubscribeEvents()
         {
             _levelSignals.onLevelInitialize += StartGame;
-            _levelSignals.onLevelInitialize += LoadLevelDatas;
 
         }
 
         private void UnsubscribeEvents()
         {
             _levelSignals.onLevelInitialize -= StartGame;
-            _levelSignals.onLevelInitialize -= LoadLevelDatas;
 
         }
 
@@ -80,7 +78,6 @@ namespace CarLotJam.GameManagementModule
 
         public void StartGame()
         {
-            LoadLevelDatas();
             if (_levelIndex >= levelDatas.Length)
             {
                 SetLevelIndex(0);
@@ -94,14 +91,14 @@ namespace CarLotJam.GameManagementModule
 
             _tutorialManager.CheckTutorialStatus();
         }
-        private void LoadLevelDatas() => LoadLevelDatasFromFolder();
+
         public LevelData GetCurrentLevelData()
         {
             return levelDatas[GetLevelIndex()];
         }
         public ColorData GetColorData() => colorData;
 
-
+#if UNITY_EDITOR
         #region GUI BUTTON
 
         public void LoadLevelDatasFromFolder()
@@ -128,6 +125,6 @@ namespace CarLotJam.GameManagementModule
         }
 
         #endregion
-
+#endif
     }
 }
