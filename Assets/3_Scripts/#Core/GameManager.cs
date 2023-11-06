@@ -19,7 +19,7 @@ namespace CarLotJam.GameManagementModule
 
         public bool GameHasContinue { get => _gameHasContinue; set => _gameHasContinue = value; }
         private bool _gameHasContinue;
-        private int _levelIndex;
+        public int levelIndex;
         private int completedCarCount;
 
 
@@ -27,19 +27,23 @@ namespace CarLotJam.GameManagementModule
 
         public void SetLevelIndex(int index = 0)
         {
-            _levelIndex = index;
-            PlayerPrefs.SetInt("LevelIndex", _levelIndex);
+            levelIndex = index;
+            PlayerPrefs.SetInt("LevelIndex", levelIndex);
         }
         public int GetLevelIndex()
         {
-            _levelIndex = _levelIndex = PlayerPrefs.GetInt("LevelIndex", 0);
-            return _levelIndex;
+            levelIndex = PlayerPrefs.GetInt("LevelIndex");
+            return levelIndex;
         }
         public int NextLevel()
         {
-            _levelIndex++;
-            PlayerPrefs.SetInt("LevelIndex", _levelIndex);
-            return _levelIndex;
+            levelIndex++;
+            if (levelIndex >= levelDatas.Length)
+            {
+                levelIndex = 0;
+            }
+            PlayerPrefs.SetInt("LevelIndex", levelIndex);
+            return levelIndex;
         }
         public void IncreaseCompletedCarCount()
         {
@@ -81,13 +85,8 @@ namespace CarLotJam.GameManagementModule
 
         public void StartGame()
         {
-            if (_levelIndex >= levelDatas.Length)
-            {
-                SetLevelIndex(0);
-            }
-
             completedCarCount = 0;
-            levelDatas[_levelIndex].CalculateCarCount();
+            levelDatas[levelIndex].CalculateCarCount();
             gridController.ClearElements();
             
             gridController.SetGridController(GetCurrentLevelData());

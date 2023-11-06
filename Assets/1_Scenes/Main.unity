@@ -920,6 +920,7 @@ MonoBehaviour:
   unlockPercentageText: {fileID: 1465100837}
   willGenerateCoinCount: {fileID: 1465100837}
   unlockedTextHolder: {fileID: 900855055}
+  continueButton: {fileID: 1643767262}
 --- !u!222 &312660941
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace CarLotJam.UIModule
         [Inject] private LevelSignals _levelSignals;
         [SerializeField] private TextMeshProUGUI levelCountText;
 
+
         public void SetLevelCountText()
         {
             levelCountText.text = "Level " + (_gameManager.GetLevelIndex() + 1);
@@ -22,18 +23,19 @@ namespace CarLotJam.UIModule
 
         private void OnEnable()
         {
+            SetLevelCountText();
             SubscribeEvents();
         }
 
         private void SubscribeEvents()
         {
-            _levelSignals.onLevelInitialize += SetLevelCountText;
+            _levelSignals.onNextLevel += SetLevelCountText;
         }
 
 
         private void UnsubscribeEvents()
         {
-            _levelSignals.onLevelInitialize -= SetLevelCountText;
+            _levelSignals.onNextLevel -= SetLevelCountText;
         }
 
         private void OnDisable()

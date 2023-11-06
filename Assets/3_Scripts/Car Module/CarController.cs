@@ -15,6 +15,7 @@ namespace CarLotJam.CarModule
     {
         #region FIELDS
 
+        private GameManager _gameManager;
         public CarType carType;
         public CarAnimationController carAnimationController;
         public Transform carTransform;
@@ -41,6 +42,7 @@ namespace CarLotJam.CarModule
             carObject.GetComponent<ColorSetter>().SetMeshMaterials(carColorData.Colors[selectedColor]);
             carPoint = elementPoint;
             carWidth = carType == CarType.LongCar ? 3 : 2;
+            _gameManager = FindObjectOfType<GameManager>();
         }
 
         #endregion
@@ -101,7 +103,7 @@ namespace CarLotJam.CarModule
             if (currentTargetIndex == targetPath.Count - 1)
             {
                 moveSpeed *= 2;
-                GameManager.Instance.IncreaseCompletedCarCount();
+                _gameManager.IncreaseCompletedCarCount();
                 GridController.Instance.OpenBarrier();
             }
             else if (currentTargetIndex >= targetPath.Count)
