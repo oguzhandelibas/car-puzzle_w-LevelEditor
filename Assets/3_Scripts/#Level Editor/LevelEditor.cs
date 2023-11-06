@@ -338,10 +338,9 @@ namespace ODProjects.LevelEditor
                 }
 
                 if (!hasNeighbour) return;
-                else // ADD
+                else if(_selectedColor != SelectedColor.Null && _selectedElement != SelectedElement.Null)  // ADD
                 {
                     ChangeButtonState(content, index);
-                    
                     //content.image = _elementData.Elements[_selectedElement];
                 }
             }
