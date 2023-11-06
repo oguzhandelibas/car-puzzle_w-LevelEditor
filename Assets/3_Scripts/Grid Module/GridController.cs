@@ -303,7 +303,6 @@ namespace CarLotJam.GridModule
                 if (elementParent.GetChild(i).TryGetComponent(out CarController carController))
                 {
                     if (carController.selectedColor != selectedColor) continue;
-                    print("aldýk");
                     car = carController;
                     break;
                 }

@@ -80,6 +80,7 @@ namespace CarLotJam.GameManagementModule
 
         public void StartGame()
         {
+            LoadLevelDatas();
             if (_levelIndex >= levelDatas.Length)
             {
                 SetLevelIndex(0);
@@ -87,7 +88,7 @@ namespace CarLotJam.GameManagementModule
 
             completedCarCount = 0;
             gridController.ClearElements();
-            LoadLevelDatas();
+            
             gridController.SetGridController(GetCurrentLevelData());
             gridController.InitializeGrid();
 

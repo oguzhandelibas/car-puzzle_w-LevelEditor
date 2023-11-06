@@ -13,8 +13,7 @@ namespace CarLotJam
         public Element[] Elements;
         public bool[,] waypoint;
 
-        public bool HasPath { get => _hasPath; }
-        private bool _hasPath;
+        public bool HasPath;
 
         public int CarCount { get => _carCount; }
         private int _carCount;
@@ -41,8 +40,7 @@ namespace CarLotJam
         public bool ElementIsAvailable(int index) => Elements[index].SelectedElement == SelectedElement.Null;
         public void SetButtonColor(int index, SelectedColor selectedColor, Color color, GUIContent guiContent, SelectedElement selectedElement)
         {
-            Debug.LogWarning("AGAM NE ALAKA");
-            if (!_hasPath) _hasPath = true;
+            if (!HasPath) HasPath = true;
             Elements[index].Color = color;
             Elements[index].SelectedColor = selectedColor;
             Elements[index].SelectedElement = selectedElement;
@@ -52,7 +50,7 @@ namespace CarLotJam
         }
         public void SetFakeButtonColor(int index, SelectedColor selectedColor, Color color, GUIContent guiContent, SelectedElement selectedElement)
         {
-            if (!_hasPath) _hasPath = true;
+            if (!HasPath) HasPath = true;
             Elements[index].Color = color;
             Elements[index].SelectedColor = selectedColor;
             Elements[index].SelectedElement = selectedElement;
@@ -64,6 +62,7 @@ namespace CarLotJam
         {
             return Elements[index].Color;
         }
+        
         public void ClearPath()
         {
             for (int i = 0; i < Elements.Length; i++)
@@ -73,7 +72,7 @@ namespace CarLotJam
                 Elements[i].SelectedElement = SelectedElement.Null;
             }
 
-            _hasPath = false;
+            HasPath = false;
         }
         public void ResetGrid()
         {

@@ -248,6 +248,7 @@ namespace ODProjects.LevelEditor
             if (newGridSize.y < 2) newGridSize.y = 2;
             if (newGridSize.x < 2) newGridSize.x = 2;
 
+
             if (_currentLevelData.gridSize.x != newGridSize.x || _currentLevelData.gridSize.y != newGridSize.y)
             {
                 _currentLevelData.gridSize.x = newGridSize.x;
