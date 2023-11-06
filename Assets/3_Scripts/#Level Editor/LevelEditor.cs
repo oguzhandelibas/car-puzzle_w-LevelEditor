@@ -138,9 +138,11 @@ namespace ODProjects.LevelEditor
             if (GUILayout.Button("CREATE NEW LEVEL", GUILayout.Height(40)))
             {
                 _currentLevelData = ScriptableObject.CreateInstance<LevelData>();
-                _selectedOption++;
+                string levelDataFolder = "Assets/Resources/LevelData";
+                string[] assetPaths = Directory.GetFiles(levelDataFolder, "*.asset");
+                _selectedOption = assetPaths.Length;
 
-                string levelName = "LevelData_" + (_selectedOption + 1);
+                string levelName = "LevelData_" + (assetPaths.Length + 1);
                 string path = "Assets/Resources/LevelData/" + levelName + ".asset";
                 AssetDatabase.CreateAsset(_currentLevelData, path);
                 AssetDatabase.SaveAssets();
