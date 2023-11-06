@@ -15,8 +15,7 @@ namespace CarLotJam
 
         public bool HasPath;
 
-        public int CarCount { get => _carCount; }
-        private int _carCount;
+        public int CarCount;
 
         #region GET LEVEL DATA
         public SelectedDirection GetSelectedDirection(int index) => Elements[index].SelectedDirection;
@@ -46,7 +45,6 @@ namespace CarLotJam
             Elements[index].SelectedElement = selectedElement;
             Elements[index].GuiContent = guiContent;
             Elements[index].hasElement = true;
-            CalculateCarCount();
         }
         public void SetFakeButtonColor(int index, SelectedColor selectedColor, Color color, GUIContent guiContent, SelectedElement selectedElement)
         {
@@ -95,13 +93,13 @@ namespace CarLotJam
             levelMatrix = new Matrix(gridSize.x, gridSize.y, waypoint);
             return levelMatrix;
         }
-        private void CalculateCarCount()
+        public void CalculateCarCount()
         {
-            _carCount = 0;
+            CarCount = 0;
             foreach (Element element in Elements)
             {
                 if (element.hasElement && (element.SelectedElement == SelectedElement.LC_LongCar ||
-                                           element.SelectedElement == SelectedElement.SC_ShortCar)) _carCount++;
+                                           element.SelectedElement == SelectedElement.SC_ShortCar)) CarCount++;
             }
         }
 

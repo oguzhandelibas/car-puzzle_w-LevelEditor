@@ -46,7 +46,10 @@ namespace CarLotJam.GameManagementModule
             completedCarCount++;
             if (CheckLevelStatus()) _levelSignals.onLevelSuccessful?.Invoke();
         }
-        private bool CheckLevelStatus() => completedCarCount >= levelDatas[GetLevelIndex()].CarCount;
+        private bool CheckLevelStatus() 
+        {
+            return completedCarCount >= levelDatas[GetLevelIndex()].CarCount;
+        }
 
         #endregion
 
@@ -84,6 +87,7 @@ namespace CarLotJam.GameManagementModule
             }
 
             completedCarCount = 0;
+            levelDatas[_levelIndex].CalculateCarCount();
             gridController.ClearElements();
             
             gridController.SetGridController(GetCurrentLevelData());

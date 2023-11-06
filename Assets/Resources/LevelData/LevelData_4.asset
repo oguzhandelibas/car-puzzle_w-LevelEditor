@@ -87,11 +87,11 @@ MonoBehaviour:
       m_Tooltip: 
     Color: {r: 0.5882353, g: 0.16470584, b: 0.8705883, a: 1}
   - SelectedElement: 5
-    SelectedDirection: 3
+    SelectedDirection: 2
     SelectedColor: 7
     hasElement: 1
     GuiContent:
-      m_Text: TC_R
+      m_Text: TC_L
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
@@ -132,11 +132,11 @@ MonoBehaviour:
       m_Tooltip: 
     Color: {r: 0.20784307, g: 0.8, b: 0.8666667, a: 1}
   - SelectedElement: 5
-    SelectedDirection: 3
+    SelectedDirection: 2
     SelectedColor: 7
     hasElement: 1
     GuiContent:
-      m_Text: TC_R
+      m_Text: TC_L
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
@@ -204,11 +204,11 @@ MonoBehaviour:
       m_Tooltip: 
     Color: {r: 0.9921568, g: 0.7727113, b: 0.1411764, a: 1}
   - SelectedElement: 1
-    SelectedDirection: 1
+    SelectedDirection: 3
     SelectedColor: 5
     hasElement: 1
     GuiContent:
-      m_Text: SM_B
+      m_Text: SM_R
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 0.5882353, g: 0.16470584, b: 0.8705883, a: 1}

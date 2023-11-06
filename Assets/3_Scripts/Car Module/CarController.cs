@@ -160,33 +160,12 @@ namespace CarLotJam.CarModule
             bool canMove = false;
             if (selectedDirection == SelectedDirection.Forward || selectedDirection == SelectedDirection.Back)
             {
-                if (IsForwardAvailable())
-                {
-                    canMove = true;
-                }
-                else if (IsBackAvailable())
-                {
-                    canMove = true;
-                }
-                else
-                {
-                    Debug.LogError("You Cannot Go Anywhere, Just Wait");
-                }
+                if (IsForwardAvailable() || IsBackAvailable()) canMove = true;
+
             }
             else if (selectedDirection == SelectedDirection.Left || selectedDirection == SelectedDirection.Right)
             {
-                if (IsLeftAvailable())
-                {
-                    canMove = true;
-                }
-                else if (IsRightAvailable())
-                {
-                    canMove = true;
-                }
-                else
-                {
-                    Debug.LogError("You Cannot Go Anywhere, Just Wait");
-                }
+                if (IsLeftAvailable() || IsRightAvailable()) canMove = true;
             }
             if (!outside && !canMove)
             {

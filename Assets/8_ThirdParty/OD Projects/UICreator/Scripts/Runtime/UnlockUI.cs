@@ -18,17 +18,21 @@ namespace CarLotJam.UIModule
         [SerializeField] private TextMeshProUGUI unlockPercentageText;
         [SerializeField] private TextMeshProUGUI willGenerateCoinCount;
         [SerializeField] private Transform unlockedTextHolder;
+        [SerializeField] private GameObject continueButton;
 
         [Inject] private LevelSignals _levelSignals;
         private float progressValue;
 
-        private void Start()
+        private void OnEnable()
         {
             itemIcon.gameObject.SetActive(true);
+            continueButton.SetActive(true);
         }
+
 
         public void _ContinueButton()
         {
+            continueButton.SetActive(false);
             itemIcon.gameObject.SetActive(false);
             willGenerateCoinCount.text = 30.ToString();
             _coinController.CreateCoins(30);
