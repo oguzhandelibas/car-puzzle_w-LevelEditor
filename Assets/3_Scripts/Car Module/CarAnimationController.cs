@@ -47,7 +47,6 @@ namespace CarLotJam.CarModule
 
         public void MoveAcceleration(int multiplier)
         {
-            print("Multiplier: " + multiplier);
             carBody.DOLocalRotate(new Vector3(multiplier * 7, 0, 0), 0.2f).SetEase(Ease.InOutBack)
                 .OnComplete((() => carBody.DOLocalRotate(new Vector3(0, 0, 0), .4f).SetEase(Ease.InBounce)));
         }
