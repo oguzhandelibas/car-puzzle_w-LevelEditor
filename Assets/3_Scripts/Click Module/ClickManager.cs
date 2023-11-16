@@ -75,6 +75,8 @@ namespace CarLotJam.ClickModule
                         _stickmanController.SetEmotion(SelectedEmotion.ANGRY);
                     }
                 }
+
+                _stickmanController = null;
             }
         }
 
@@ -82,6 +84,13 @@ namespace CarLotJam.ClickModule
         {
             if (hit.transform.TryGetComponent(out StickmanController stickmanController))
             {
+                if (_stickmanController && _stickmanController == stickmanController)
+                {
+                    _stickmanController.IsHold = false;
+                    _stickmanController = null;
+                    return;
+                }
+                
                 if (!_tutorialManager.tutorialDone)
                 {
                     if (_tutorialManager.stickmanController.selectedColor != stickmanController.selectedColor)
@@ -96,7 +105,6 @@ namespace CarLotJam.ClickModule
 
                 _stickmanController = stickmanController;
                 _stickmanController.IsHold = true;
-
             }
         }
 
@@ -124,12 +132,14 @@ namespace CarLotJam.ClickModule
                     }
                     else
                     {
-                        _stickmanController.IsHold = false;
                         _stickmanController.SetEmotion(SelectedEmotion.ANGRY);
                     }
+                    
+                    _stickmanController.IsHold = false;
+                    _stickmanController = null;
+                    _carController = carController;
+                    _carController.Hold();
                 }
-                _carController = carController;
-                _carController.Hold();
             }
         }
 

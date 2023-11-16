@@ -218,7 +218,7 @@ namespace CarLotJam.GridModule
             {
                 CreateRoad(roadData.road_default, obj, Vector3.back * 4f, Quaternion.Euler(0, 90, 0));
             }
-            else if (x != 0 && x != _gridSize.y && y == _gridSize.y - 1) // Üst kenar
+            else if (x != 0 && x != _gridSize.y && y == _gridSize.y - 1) // Ãœst kenar
             {
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));
             }
@@ -226,7 +226,7 @@ namespace CarLotJam.GridModule
             {
                 CreateRoad(roadData.road_default, obj, Vector3.left * 4f, Quaternion.Euler(0, 0, 0));
             }
-            else if (y != 0 && y != _gridSize.y - 1 && x == _gridSize.x - 1) // Sað kenar
+            else if (y != 0 && y != _gridSize.y - 1 && x == _gridSize.x - 1) // SaÄŸ kenar
             {
                 CreateRoad(roadData.road_default, obj, Vector3.right * 4f, Quaternion.Euler(0, 0, 0));
             }
@@ -243,13 +243,13 @@ namespace CarLotJam.GridModule
                 CreateRoad(roadData.road_default, obj, Vector3.back * 4f, Quaternion.Euler(0, 90, 0));
                 CreateRoad(roadData.road_corner, obj, Vector3.back * 4f + Vector3.left * 4f, Quaternion.Euler(0, 270, 0));
             }
-            else if (y == 0 && x == _gridSize.x - 1) // (0,1) sað ve alt
+            else if (y == 0 && x == _gridSize.x - 1) // (0,1) saÄŸ ve alt
             {
                 CreateRoad(roadData.road_default, obj, Vector3.right * 4f, Quaternion.Euler(0, 0, 0));
                 CreateRoad(roadData.road_default, obj, Vector3.back * 4f, Quaternion.Euler(0, 90, 0));
                 CreateRoad(roadData.road_corner, obj, Vector3.back * 4f + Vector3.right * 4f, Quaternion.Euler(0, 180, 0));
             }
-            else if (y == _gridSize.y - 1 && x == 0) // (1,0) sol ve üst
+            else if (y == _gridSize.y - 1 && x == 0) // (1,0) sol ve Ã¼st
             {
                 CreateRoad(roadData.road_default, obj, Vector3.left * 4f, Quaternion.Euler(0, 0, 0));
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));
@@ -261,7 +261,7 @@ namespace CarLotJam.GridModule
                     CreateRoad(roadData.road_default, obj, (Vector3.forward * 3.69f * i) + Vector3.left * 4f, Quaternion.Euler(0, 360, 0));
                 }
             }
-            else if (y == _gridSize.y - 1 && x == _gridSize.x - 1) // (1,1) sað ve üst
+            else if (y == _gridSize.y - 1 && x == _gridSize.x - 1) // (1,1) saÄŸ ve Ã¼st
             {
                 CreateRoad(roadData.road_default, obj, Vector3.right * 4f, Quaternion.Euler(0, 0, 0));
                 CreateRoad(roadData.road_default, obj, Vector3.forward * 4f, Quaternion.Euler(0, 90, 0));

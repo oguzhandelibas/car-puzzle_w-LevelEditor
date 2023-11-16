@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CarLotJam.CarModule;
 using CarLotJam.ClickModule;
 using CarLotJam.GridModule;
@@ -96,7 +97,7 @@ namespace CarLotJam.StickmanModule
             int bestPointIndex = 0;
 
 
-            //HATA VERER BURASI AKTÝF OLARAK
+            //HATA VERER BURASI AKTï¿½F OLARAK
             if (points[0] != null && points[0] == _stickmanPoint)
             {
                 bestPath.Add(points[0]);
@@ -146,7 +147,7 @@ namespace CarLotJam.StickmanModule
             }
             else
             {
-                GridController.Instance.SetGroundColor(points[Random.Range(0,2)], SelectedColor.Red);
+                GridController.Instance.SetGroundColor(points[Random.Range(0,points.Count)], SelectedColor.Red);
             }
         }
 
@@ -218,12 +219,16 @@ namespace CarLotJam.StickmanModule
 
         #region CAR INTERACTIONS
 
-        private void GetInCar(Transform carTransfrom)
+        private async Task GetInCar(Transform carTransfrom)
         {
-            transform.DOLookAt(carTransfrom.position, 0.2f);
             _stickmanAnimationController.PlayAnim(StickmanAnimTypes.ENTER_CAR);
-            transform.DOLocalMove(carTransfrom.position, 1f).OnComplete((() => Destroy(gameObject)));
-            transform.DOScale(new Vector3(0.33f, 0.3f, 0.3f), 1.0f);
+            transform.DOLookAt(carTransfrom.position, 0.1f);
+            await Task.Delay(100); 
+            transform.DOLookAt(carTransfrom.forward, 0.1f);
+            transform.DOLocalMove(carTransfrom.position, 1.0f).OnComplete((() => Destroy(gameObject)));
+            await Task.Delay(100); 
+            transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
+            
         }
 
         #endregion
