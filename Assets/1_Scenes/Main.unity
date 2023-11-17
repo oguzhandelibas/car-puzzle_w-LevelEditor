@@ -1172,7 +1172,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.47018403, y: -0.12542932, z: 0.067710765, w: 0.8709821}
+  m_LocalRotation: {x: 0.47018406, y: -0.12542924, z: 0.06771072, w: 0.87098205}
   m_LocalPosition: {x: 10, y: 54, z: -34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3510,10 +3510,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridController: {fileID: 1106915935}
   levelDatas:
-  - {fileID: 11400000, guid: ec0e8e09f30ff7c49b5312d54e240a09, type: 2}
-  - {fileID: 11400000, guid: 9529eef724d09cf41a02b9a6fedaa6cc, type: 2}
   - {fileID: 11400000, guid: 47a5fe494a55da0478639ed211b8471e, type: 2}
   - {fileID: 11400000, guid: 7bb38f7dfeffa534d97dd969744062c3, type: 2}
+  - {fileID: 11400000, guid: 9529eef724d09cf41a02b9a6fedaa6cc, type: 2}
+  - {fileID: 11400000, guid: ec0e8e09f30ff7c49b5312d54e240a09, type: 2}
   colorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
   levelIndex: 0
 --- !u!1001 &1304040577
