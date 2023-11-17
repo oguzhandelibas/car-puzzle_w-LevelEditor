@@ -244,75 +244,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100533158}
   m_CullTransparentMesh: 1
---- !u!1001 &106896012
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7059919067011591548, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_Name
-      value: Stickman
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7059919067011591549, guid: 3b47458090d40d348a9b0309bcde04bc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3b47458090d40d348a9b0309bcde04bc, type: 3}
 --- !u!1 &136288893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1106,7 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585549}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1229,7 +1161,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -1355,6 +1287,32 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb42831ee5422f409e7f24f9e7488ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 1
+  renderingStrategy: 0
+  renderTargetName: 
+  renderingMode: 0
+  outlineLayerMask: -1
+  scaleIndepented: 1
+  primaryRendererScale: 0.75
+  blurShift: 1
+  dilateShift: 1
+  dilateIterations: 5
+  dilateQuality: 0
+  blurIterations: 1
+  blurType: 1
+  infoRendererScale: 0.75
 --- !u!1 &359785339
 GameObject:
   m_ObjectHideFlags: 0
@@ -3552,11 +3510,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridController: {fileID: 1106915935}
   levelDatas:
-  - {fileID: 11400000, guid: 24521c4b0664fd641b264d83a285d7de, type: 2}
-  - {fileID: 11400000, guid: 9529eef724d09cf41a02b9a6fedaa6cc, type: 2}
-  - {fileID: 11400000, guid: 7bb38f7dfeffa534d97dd969744062c3, type: 2}
-  - {fileID: 11400000, guid: 47a5fe494a55da0478639ed211b8471e, type: 2}
   - {fileID: 11400000, guid: ec0e8e09f30ff7c49b5312d54e240a09, type: 2}
+  - {fileID: 11400000, guid: 9529eef724d09cf41a02b9a6fedaa6cc, type: 2}
+  - {fileID: 11400000, guid: 47a5fe494a55da0478639ed211b8471e, type: 2}
+  - {fileID: 11400000, guid: 7bb38f7dfeffa534d97dd969744062c3, type: 2}
   colorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
   levelIndex: 0
 --- !u!1001 &1304040577

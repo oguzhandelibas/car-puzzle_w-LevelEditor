@@ -19,6 +19,7 @@ namespace CarLotJam.CarModule
         public CarType carType;
         public CarAnimationController carAnimationController;
         public Transform carTransform;
+        [SerializeField] private OutlineController outlineController;
         [SerializeField] private ColorData carColorData;
         [SerializeField] private GameObject outlineObject;
         [SerializeField] private GameObject carObject;
@@ -51,7 +52,7 @@ namespace CarLotJam.CarModule
 
         public void Hold()
         {
-            outlineObject.layer = LayerMask.NameToLayer("Outline");
+            //outlineObject.layer = LayerMask.NameToLayer("Outline");
             ReleaseRoutine();
         }
         public async Task ReleaseRoutine()
@@ -59,7 +60,9 @@ namespace CarLotJam.CarModule
             await Task.Delay(500);
             Release();
         }
-        public void Release() => outlineObject.layer = LayerMask.NameToLayer("NoOutline");
+        public void Release(){
+            //outlineObject.layer = LayerMask.NameToLayer("NoOutline");
+        }
         public void SetBoardingPoints(List<Point> boardingPoints) => _boardingPoints = boardingPoints;
         public Point OnClick() => _boardingPoints[0];
 
@@ -67,6 +70,8 @@ namespace CarLotJam.CarModule
         {
             return _boardingPoints;
         }
+
+        public void SetOutline(OutlineColorType outlineColorType) => outlineController.SetOutline(outlineColorType);
 
         #endregion
 
@@ -249,7 +254,7 @@ namespace CarLotJam.CarModule
         {
             int value = 0;
             if (selectedDirection == SelectedDirection.Left) value = 1;
-            bool moveAvailable = IsMoveAvailable(Vector2Int.right, Vector3.right * 4, carWidth-value, (GridController.Instance.GridSize().x - carPoint.x));
+            bool moveAvailable = IsMoveAvailable(Vector2Int.right, Vector3.right * 4, carWidth-value, (GridController.Instance.GridSize().x));
 
             if (moveAvailable)
             {

@@ -9,5 +9,6 @@ namespace CarLotJam.ClickModule
     {
         public Point OnClick();
         public List<Point> PointsList();
+        public void SetOutline(OutlineColorType outlineColorType);
     }
 }

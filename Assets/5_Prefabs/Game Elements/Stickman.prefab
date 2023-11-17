@@ -42,7 +42,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -173,6 +173,8 @@ GameObject:
   - component: {fileID: 7059919067011591550}
   - component: {fileID: 1544989964757399295}
   - component: {fileID: 7844901073460679466}
+  - component: {fileID: 5255249198100478245}
+  - component: {fileID: 4808145894531916872}
   m_Layer: 0
   m_Name: Stickman
   m_TagString: Untagged
@@ -209,7 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619628867eb84db49a387fb24a8a08e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickmanAnimationController: {fileID: 4779319571215391810}
+  stickmanAnimationController: {fileID: 4779319571215391810}
+  outlineController: {fileID: 4808145894531916872}
   emotionController: {fileID: 1544989964757399295}
   outlineObject: {fileID: 4867871314194678515}
   colorData: {fileID: 11400000, guid: 9e7440331d0bdd3469b15d652686af65, type: 2}
@@ -244,6 +247,76 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 1.1910555, z: 3}
   m_Center: {x: 0, y: 0.6905165, z: 0}
+--- !u!114 &5255249198100478245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059919067011591548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6030084421584686113}
+    rendererType: 2
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutDescriptionType: 0
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  renderStyle: 1
+  outlineParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+--- !u!114 &4808145894531916872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059919067011591548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea48c8bc7b52d5c4fad74f4c3eb3843b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlinable: {fileID: 5255249198100478245}
 --- !u!1 &8223520337056715600
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +410,11 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 572bb1bfb8162554c83f87146b64967a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5596013728043535740, guid: 572bb1bfb8162554c83f87146b64967a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 572bb1bfb8162554c83f87146b64967a,

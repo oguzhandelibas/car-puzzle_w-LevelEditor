@@ -60,7 +60,6 @@ namespace CarLotJam.CarModule
                     .OnComplete(((delegate
                     {
                         carBody.DOLocalRotate(new Vector3(carBody.transform.rotation.x, 0, 0), 0.15f);
-                        carController.MoveFinish();
                     })))));
 
             Transform door = multiplier == 1 ? leftDoor : rightDoor;

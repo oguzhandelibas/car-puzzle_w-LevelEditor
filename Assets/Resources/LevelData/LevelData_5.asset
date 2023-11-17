@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455b08186d5470946883ccffc27b754f, type: 3}
   m_Name: LevelData_5
   m_EditorClassIdentifier: 
-  gridSize: {x: 5, y: 6}
+  gridSize: {x: 5, y: 5}
   Elements:
   - SelectedElement: 0
     SelectedDirection: 0
@@ -41,6 +41,33 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
+  - SelectedElement: 3
+    SelectedDirection: 0
+    SelectedColor: 2
+    hasElement: 1
+    GuiContent:
+      m_Text: LC_F
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.3138989, g: 0.5588235, b: 0.20544976, a: 1}
+  - SelectedElement: 0
+    SelectedDirection: 0
+    SelectedColor: 0
+    hasElement: 0
+    GuiContent:
+      m_Text: N/A
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - SelectedElement: 3
+    SelectedDirection: 0
+    SelectedColor: 3
+    hasElement: 1
+    GuiContent:
+      m_Text: LC_F
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.20784307, g: 0.8, b: 0.8666667, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
@@ -59,6 +86,15 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
+  - SelectedElement: 3
+    SelectedDirection: 0
+    SelectedColor: 2
+    hasElement: 0
+    GuiContent:
+      m_Text: LC_F
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.3138989, g: 0.5588235, b: 0.20544976, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
@@ -68,51 +104,15 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
+  - SelectedElement: 3
     SelectedDirection: 0
-    SelectedColor: 0
+    SelectedColor: 3
     hasElement: 0
     GuiContent:
-      m_Text: N/A
+      m_Text: LC_F
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
+    Color: {r: 0.20784307, g: 0.8, b: 0.8666667, a: 1}
   - SelectedElement: 2
     SelectedDirection: 0
     SelectedColor: 2
@@ -122,6 +122,60 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 0.3138989, g: 0.5588235, b: 0.20544976, a: 1}
+  - SelectedElement: 0
+    SelectedDirection: 0
+    SelectedColor: 0
+    hasElement: 0
+    GuiContent:
+      m_Text: N/A
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - SelectedElement: 3
+    SelectedDirection: 0
+    SelectedColor: 2
+    hasElement: 0
+    GuiContent:
+      m_Text: LC_F
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.3138989, g: 0.5588235, b: 0.20544976, a: 1}
+  - SelectedElement: 1
+    SelectedDirection: 0
+    SelectedColor: 2
+    hasElement: 1
+    GuiContent:
+      m_Text: SM_F
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.3138989, g: 0.5588235, b: 0.20544976, a: 1}
+  - SelectedElement: 3
+    SelectedDirection: 0
+    SelectedColor: 3
+    hasElement: 0
+    GuiContent:
+      m_Text: LC_F
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.20784307, g: 0.8, b: 0.8666667, a: 1}
+  - SelectedElement: 2
+    SelectedDirection: 0
+    SelectedColor: 2
+    hasElement: 0
+    GuiContent:
+      m_Text: SC_F
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 0.3138989, g: 0.5588235, b: 0.20544976, a: 1}
+  - SelectedElement: 0
+    SelectedDirection: 0
+    SelectedColor: 0
+    hasElement: 0
+    GuiContent:
+      m_Text: N/A
+      m_Image: {fileID: 0}
+      m_Tooltip: 
+    Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
@@ -158,87 +212,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 2
-    SelectedDirection: 0
-    SelectedColor: 2
-    hasElement: 0
-    GuiContent:
-      m_Text: SC_F
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 0.3138989, g: 0.5588235, b: 0.20544976, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 2
-    SelectedDirection: 3
-    SelectedColor: 1
-    hasElement: 1
-    GuiContent:
-      m_Text: SC_R
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
-  - SelectedElement: 2
-    SelectedDirection: 0
-    SelectedColor: 1
-    hasElement: 0
-    GuiContent:
-      m_Text: SC_R
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
   - SelectedElement: 0
     SelectedDirection: 0
     SelectedColor: 0
@@ -258,31 +231,13 @@ MonoBehaviour:
       m_Tooltip: 
     Color: {r: 1, g: 1, b: 1, a: 1}
   - SelectedElement: 1
-    SelectedDirection: 3
-    SelectedColor: 1
+    SelectedDirection: 0
+    SelectedColor: 3
     hasElement: 1
     GuiContent:
-      m_Text: SM_R
+      m_Text: SM_F
       m_Image: {fileID: 0}
       m_Tooltip: 
-    Color: {r: 0.89411765, g: 0.28627446, b: 0.20784307, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - SelectedElement: 0
-    SelectedDirection: 0
-    SelectedColor: 0
-    hasElement: 0
-    GuiContent:
-      m_Text: N/A
-      m_Image: {fileID: 0}
-      m_Tooltip: 
-    Color: {r: 1, g: 1, b: 1, a: 1}
+    Color: {r: 0.20784307, g: 0.8, b: 0.8666667, a: 1}
   HasPath: 1
-  CarCount: 0
+  CarCount: 3

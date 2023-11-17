@@ -7,6 +7,7 @@ using ODProjects.LevelEditor;
 using CarLotJam.Pathfind;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace CarLotJam.StickmanModule
@@ -15,7 +16,9 @@ namespace CarLotJam.StickmanModule
     {
         #region FIELDS
 
-        [SerializeField] private StickmanAnimationController _stickmanAnimationController;
+        public StickmanAnimationController stickmanAnimationController;
+        
+        [SerializeField] private OutlineController outlineController;
         [SerializeField] private EmotionController emotionController;
         [SerializeField] private GameObject outlineObject;
         [SerializeField] private ColorData colorData;
@@ -46,11 +49,10 @@ namespace CarLotJam.StickmanModule
             {
                 if (!_onMove)
                 {
-                    if (value) Hold();
-                    else Release();
                     _onHold = value;
+                    if(_onHold == false) SetOutline(OutlineColorType.NONE);
+                    else SetOutline(OutlineColorType.YELLOW);
                 }
-
             }
         }
 
@@ -65,19 +67,9 @@ namespace CarLotJam.StickmanModule
             colorSetter.SetMeshMaterials(colorData.Colors[selectedColor]);
         }
 
-        private void Hold()
-        {
-            outlineObject.layer = LayerMask.NameToLayer("Outline");
-            _stickmanAnimationController.PlayAnim(StickmanAnimTypes.WAVE);
-        }
-        private void Release()
-        {
-            outlineObject.layer = LayerMask.NameToLayer("NoOutline");
-            _stickmanAnimationController.PlayAnim(StickmanAnimTypes.IDLE, 2);
-        }
-
         public Point OnClick() => _stickmanPoint;
         public List<Point> PointsList() => new List<Point>(1) { _stickmanPoint };
+        public void SetOutline(OutlineColorType outlineColorType) => outlineController.SetOutline(outlineColorType);
 
         public void SetStickmanPoint(Point stickmanPoint) => _stickmanPoint = stickmanPoint;
         public bool SetTargetPoint(Point targetPoint)
@@ -96,8 +88,7 @@ namespace CarLotJam.StickmanModule
             List<Point> bestPath = new List<Point>();
             int bestPointIndex = 0;
 
-
-            //HATA VERER BURASI AKT�F OLARAK
+            
             if (points[0] != null && points[0] == _stickmanPoint)
             {
                 bestPath.Add(points[0]);
@@ -131,7 +122,6 @@ namespace CarLotJam.StickmanModule
                 }
             }
             
-
             targetPath = bestPath;
 
             if (targetPath.Count > 0)
@@ -142,11 +132,16 @@ namespace CarLotJam.StickmanModule
                 GridController.Instance.SetGroundColor(points[bestPointIndex], SelectedColor.Green);
                 IsHold = false;
 
-                _stickmanAnimationController.PlayAnim(StickmanAnimTypes.RUN);
+                SetOutline(OutlineColorType.GREEN);
+                carController.SetOutline(OutlineColorType.GREEN);
+                
+                stickmanAnimationController.PlayAnim(StickmanAnimTypes.RUN);
                 SetEmotion(SelectedEmotion.HAPPY);
             }
             else
             {
+                SetOutline(OutlineColorType.RED);
+                carController.SetOutline(OutlineColorType.RED);
                 GridController.Instance.SetGroundColor(points[Random.Range(0,points.Count)], SelectedColor.Red);
             }
         }
@@ -161,7 +156,7 @@ namespace CarLotJam.StickmanModule
             targetPath = newPath;
             IsHold = false;
             _onMove = true;
-            _stickmanAnimationController.PlayAnim(StickmanAnimTypes.RUN);
+            stickmanAnimationController.PlayAnim(StickmanAnimTypes.RUN);
             return true;
         }
 
@@ -200,11 +195,10 @@ namespace CarLotJam.StickmanModule
                 currentTargetIndex = 0;
                 _onMove = false;
                 IsHold = false;
+                stickmanAnimationController.PlayAnim(StickmanAnimTypes.IDLE, 2);
                 if (_carController)
                 {
                     GetInCar(_carController.carTransform);
-                    _carController.carAnimationController.FindNearestDoor(transform.position);
-                    
                     GridController.Instance.UpdateMatrix(_stickmanPoint.x, _stickmanPoint.y, true);
                 }
                 else
@@ -221,16 +215,34 @@ namespace CarLotJam.StickmanModule
 
         private async Task GetInCar(Transform carTransfrom)
         {
-            _stickmanAnimationController.PlayAnim(StickmanAnimTypes.ENTER_CAR);
-            transform.DOLookAt(carTransfrom.position, 0.1f);
-            await Task.Delay(100); 
-            transform.DOLookAt(carTransfrom.forward, 0.1f);
-            transform.DOLocalMove(carTransfrom.position, 1.0f).OnComplete((() => Destroy(gameObject)));
-            await Task.Delay(100); 
-            transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f);
-            
-        }
+            stickmanAnimationController.PlayAnim(StickmanAnimTypes.ENTER_CAR);
+            _carController.carAnimationController.FindNearestDoor(transform.position);
 
+            if (_carController.selectedDirection == SelectedDirection.Forward ||
+                _carController.selectedDirection == SelectedDirection.Back)
+            {
+                transform.DOLocalMove(new Vector3(transform.position.x, transform.position.y, carTransfrom.position.z), 0.25f);
+            }
+            else
+            {
+                transform.DOLocalMove(new Vector3(carTransfrom.position.x, transform.position.y, transform.position.z), 0.25f);
+            }
+            
+            
+            transform.DOLookAt(carTransfrom.position, 0.1f);
+            await Task.Delay(200); 
+            transform.DOLookAt(carTransfrom.forward, 0.1f);
+            await Task.Delay(200); 
+            
+            transform.DOScale(new Vector3(0.7f, 0.6f, 0.7f), 1.0f);
+            transform.DOLocalMove(carTransfrom.position, 1.0f)
+                .OnComplete((delegate
+                {
+                    Destroy(gameObject);
+                    _carController.MoveFinish();
+                }));
+        }
+        
         #endregion
 
         #region EMOTION CONTROL

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489262904230183839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.067, z: 1.227}
+  m_LocalPosition: {x: 0.33, y: -0.3, z: 1.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 3393810021586367813}
   - component: {fileID: 4474223583191730035}
   - component: {fileID: 6212370672022460322}
+  - component: {fileID: 823698254634952400}
+  - component: {fileID: 7708052200831176045}
   m_Layer: 0
   m_Name: Car_Long
   m_TagString: Untagged
@@ -81,6 +83,7 @@ MonoBehaviour:
   carType: 0
   carAnimationController: {fileID: 6212370672022460322}
   carTransform: {fileID: 430827278547923129}
+  outlineController: {fileID: 7708052200831176045}
   carColorData: {fileID: 11400000, guid: 4a55553bfb4de924d8eab12d828101fa, type: 2}
   outlineObject: {fileID: 5460362728236580906}
   carObject: {fileID: 8237775039868971648}
@@ -120,6 +123,76 @@ MonoBehaviour:
   carBody: {fileID: 2598525957796858888}
   leftDoor: {fileID: 2875196593816663279}
   rightDoor: {fileID: 4748786976398158630}
+--- !u!114 &823698254634952400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393810021586367811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6350060681785137979}
+    rendererType: 1
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutDescriptionType: 0
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  renderStyle: 1
+  outlineParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+--- !u!114 &7708052200831176045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393810021586367811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea48c8bc7b52d5c4fad74f4c3eb3843b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlinable: {fileID: 823698254634952400}
 --- !u!1001 &3610567876566876506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,10 +200,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3393810021586367810}
     m_Modifications:
+    - target: {fileID: 604685820113410263, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507997085808231616, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918442783642066898, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4632273937295518682, guid: 54952c09778b99d4bbd92e27138aaa4a,
         type: 3}
       propertyPath: m_Name
       value: LongCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857217060586192627, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5405151019799474528, guid: 54952c09778b99d4bbd92e27138aaa4a,
         type: 3}
@@ -187,6 +280,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6209841585362885290, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639409888334895713, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932682363777330859, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744883381403407802, guid: 54952c09778b99d4bbd92e27138aaa4a,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54952c09778b99d4bbd92e27138aaa4a, type: 3}
 --- !u!4 &2598525957796858888 stripped
@@ -210,6 +323,12 @@ Transform:
 --- !u!1 &5460362728236580906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8780975433939648880, guid: 54952c09778b99d4bbd92e27138aaa4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3610567876566876506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6350060681785137979 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7639409888334895713, guid: 54952c09778b99d4bbd92e27138aaa4a,
     type: 3}
   m_PrefabInstance: {fileID: 3610567876566876506}
   m_PrefabAsset: {fileID: 0}

@@ -84,11 +84,19 @@ namespace CarLotJam.ClickModule
         {
             if (hit.transform.TryGetComponent(out StickmanController stickmanController))
             {
-                if (_stickmanController && _stickmanController == stickmanController)
+                if (_stickmanController)
                 {
                     _stickmanController.IsHold = false;
+                    _stickmanController.stickmanAnimationController.PlayAnim(StickmanAnimTypes.IDLE, 2);
+                    _stickmanController.SetOutline(OutlineColorType.NONE);
+                    
+                    if(_stickmanController == stickmanController)
+                    {
+                        _stickmanController = null;
+                        return;
+                    }
+                    
                     _stickmanController = null;
-                    return;
                 }
                 
                 if (!_tutorialManager.tutorialDone)
@@ -103,8 +111,12 @@ namespace CarLotJam.ClickModule
                     }
                 }
 
+                
+                
                 _stickmanController = stickmanController;
                 _stickmanController.IsHold = true;
+                _stickmanController.stickmanAnimationController.PlayAnim(StickmanAnimTypes.WAVE);
+                _stickmanController.SetOutline(OutlineColorType.YELLOW);
             }
         }
 
@@ -125,6 +137,9 @@ namespace CarLotJam.ClickModule
                             _tutorialManager.SecondClick();
                         }
                     }
+                    
+                    _stickmanController.IsHold = false;
+                    _stickmanController.stickmanAnimationController.PlayAnim(StickmanAnimTypes.IDLE, 2);
 
                     if (carController.selectedColor == _stickmanController.selectedColor)
                     {
@@ -133,9 +148,11 @@ namespace CarLotJam.ClickModule
                     else
                     {
                         _stickmanController.SetEmotion(SelectedEmotion.ANGRY);
+                        _stickmanController.SetOutline(OutlineColorType.RED);
+                        carController.SetOutline(OutlineColorType.RED);
                     }
                     
-                    _stickmanController.IsHold = false;
+                    
                     _stickmanController = null;
                     _carController = carController;
                     _carController.Hold();

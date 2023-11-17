@@ -19,22 +19,42 @@ namespace CarLotJam
         public Vector3 GetDirection()
         {
             Vector3 direction = Vector3.zero;
-            switch (SelectedDirection)
+            if (SelectedElement == SelectedElement.BO_BarrierObstacle)
             {
-                case SelectedDirection.Forward:
-                    direction = new Vector3(0, 0, 0);
-                    break;
-                case SelectedDirection.Back:
-                    direction = new Vector3(0, 180, 0);
-                    break;
-                case SelectedDirection.Left:
-                    direction = new Vector3(0, -90, 0);
-                    break;
-                case SelectedDirection.Right:
-                    direction = new Vector3(0, 90, 0);
-                    break;
+                switch (SelectedDirection)
+                {
+                    case SelectedDirection.Forward:
+                        direction = new Vector3(0, 90, 0);
+                        break;
+                    case SelectedDirection.Back:
+                        direction = new Vector3(0, -90, 0);
+                        break;
+                    case SelectedDirection.Left:
+                        direction = new Vector3(0, 0, 0);
+                        break;
+                    case SelectedDirection.Right:
+                        direction = new Vector3(0, 180, 0);
+                        break;
+                }
             }
-
+            else
+            {
+                switch (SelectedDirection)
+                {
+                    case SelectedDirection.Forward:
+                        direction = new Vector3(0, 0, 0);
+                        break;
+                    case SelectedDirection.Back:
+                        direction = new Vector3(0, 180, 0);
+                        break;
+                    case SelectedDirection.Left:
+                        direction = new Vector3(0, -90, 0);
+                        break;
+                    case SelectedDirection.Right:
+                        direction = new Vector3(0, 90, 0);
+                        break;
+                }
+            }
             return direction;
         }
     }

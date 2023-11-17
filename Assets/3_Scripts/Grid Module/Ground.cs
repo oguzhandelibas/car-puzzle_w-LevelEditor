@@ -16,6 +16,8 @@ namespace CarLotJam.GridModule
         public void SetPoint(int x, int y) => point = new Point(x, y);
         public Point OnClick() => point;
         public List<Point> PointsList() => new List<Point>(1) { point };
+        public void SetOutline(OutlineColorType outlineColorType) { }
+
         public void SetColorAnim(SelectedColor selectedColor)
         {
             Material groundMaterial = groundRenderer.materials[0];
